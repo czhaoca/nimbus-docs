@@ -2278,6 +2278,2340 @@
       "tier": 2
     },
     {
+      "description": "Show registry admin credentials (az acr credential show). SENSITIVE output \u2014 printed for manual copy, never logged.",
+      "display_name": "Show registry admin credentials",
+      "id": "az.acr.credentials.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "CredentialShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a container registry (az acr create).",
+      "display_name": "Create container registry",
+      "id": "az.acr.registries.create",
+      "params_schema": {
+        "properties": {
+          "admin_enabled": {
+            "default": false,
+            "title": "Admin Enabled",
+            "type": "boolean"
+          },
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "sku": {
+            "default": "Basic",
+            "title": "Sku",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "RegistryCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a container registry (az acr delete). Confirmation is CLI-side (--yes).",
+      "display_name": "Delete container registry",
+      "id": "az.acr.registries.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "RegistryRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List container registries (az acr list).",
+      "display_name": "List container registries",
+      "id": "az.acr.registries.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "RegistryListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show a container registry (az acr show).",
+      "display_name": "Show container registry",
+      "id": "az.acr.registries.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "RegistryRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a single-container group (az container create).",
+      "display_name": "Create Azure container group",
+      "id": "az.container.create",
+      "params_schema": {
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "Config",
+            "type": "object"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "config"
+        ],
+        "title": "ContainerCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a container group (az container delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure container group",
+      "id": "az.container.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "ContainerNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List container groups in a resource group (az container list).",
+      "display_name": "List Azure container groups",
+      "id": "az.container.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "ContainerListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Print a container's logs (az container logs).",
+      "display_name": "Show Azure container logs",
+      "id": "az.container.logs",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "ContainerNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show a container group (az container show).",
+      "display_name": "Show Azure container group",
+      "id": "az.container.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "ContainerNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Clear the active Azure provider context (az context clear).",
+      "display_name": "Clear active Azure provider context",
+      "id": "az.context.clear",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextClearParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Activate an Azure provider as the active context (az context set).",
+      "display_name": "Set active Azure provider context",
+      "id": "az.context.set",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "ContextSetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show the current active Azure provider context (az context show).",
+      "display_name": "Show active Azure provider context",
+      "id": "az.context.show",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show Azure spending for a billing period (az cost current).",
+      "display_name": "Azure current spending",
+      "id": "az.cost.current",
+      "params_schema": {
+        "properties": {
+          "period": {
+            "title": "Period",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ],
+        "title": "CostCurrentParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an empty managed disk (az disk create).",
+      "display_name": "Create Azure managed disk",
+      "id": "az.disk.create",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "size_gb": {
+            "title": "Size Gb",
+            "type": "integer"
+          },
+          "sku": {
+            "default": "Standard_LRS",
+            "title": "Sku",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name",
+          "size_gb"
+        ],
+        "title": "DiskCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a managed disk (az disk delete). The --yes confirmation prompt stays CLI-side.",
+      "display_name": "Delete Azure managed disk",
+      "id": "az.disk.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "DiskRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List managed disks in a resource group (az disk list).",
+      "display_name": "List Azure managed disks",
+      "id": "az.disk.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "DiskListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a network security group (az network nsg create).",
+      "display_name": "Create Azure network security group",
+      "id": "az.network.nsgs.create",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "NsgCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a network security group (az network nsg delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure network security group",
+      "id": "az.network.nsgs.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "NsgNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List network security groups (az network nsg list).",
+      "display_name": "List Azure network security groups",
+      "id": "az.network.nsgs.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "NsgListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an NSG security rule (az network nsg rule create).",
+      "display_name": "Create Azure NSG rule",
+      "id": "az.network.nsgs.rules.create",
+      "params_schema": {
+        "properties": {
+          "access": {
+            "default": "Allow",
+            "title": "Access",
+            "type": "string"
+          },
+          "destination_port_ranges": {
+            "default": "*",
+            "title": "Destination Port Ranges",
+            "type": "string"
+          },
+          "direction": {
+            "default": "Inbound",
+            "title": "Direction",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "nsg_name": {
+            "title": "Nsg Name",
+            "type": "string"
+          },
+          "priority": {
+            "title": "Priority",
+            "type": "integer"
+          },
+          "protocol": {
+            "default": "Tcp",
+            "title": "Protocol",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "source_address_prefixes": {
+            "default": "*",
+            "title": "Source Address Prefixes",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "nsg_name",
+          "name",
+          "priority"
+        ],
+        "title": "NsgRuleCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an NSG security rule (az network nsg rule delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure NSG rule",
+      "id": "az.network.nsgs.rules.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "nsg_name": {
+            "title": "Nsg Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "nsg_name",
+          "name"
+        ],
+        "title": "NsgRuleNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List NSG security rules (az network nsg rule list).",
+      "display_name": "List Azure NSG rules",
+      "id": "az.network.nsgs.rules.list",
+      "params_schema": {
+        "properties": {
+          "nsg_name": {
+            "title": "Nsg Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "nsg_name"
+        ],
+        "title": "NsgRuleListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a public IP address (az network public-ip create).",
+      "display_name": "Create Azure public IP",
+      "id": "az.network.public-ips.create",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "sku": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Sku"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "PublicIpCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a public IP address (az network public-ip delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure public IP",
+      "id": "az.network.public-ips.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "PublicIpNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List public IP addresses (az network public-ip list).",
+      "display_name": "List Azure public IPs",
+      "id": "az.network.public-ips.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "PublicIpListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a virtual network (az network vnet create).",
+      "display_name": "Create Azure virtual network",
+      "id": "az.network.vnets.create",
+      "params_schema": {
+        "properties": {
+          "address_prefixes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Address Prefixes",
+            "type": "array"
+          },
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "subnet_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Subnet Name"
+          },
+          "subnet_prefixes": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Subnet Prefixes"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name",
+          "address_prefixes"
+        ],
+        "title": "VnetCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a virtual network (az network vnet delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure virtual network",
+      "id": "az.network.vnets.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VnetNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List virtual networks (az network vnet list).",
+      "display_name": "List Azure virtual networks",
+      "id": "az.network.vnets.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "VnetListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show one virtual network (az network vnet show).",
+      "display_name": "Show Azure virtual network",
+      "id": "az.network.vnets.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VnetNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a subnet (az network vnet subnet create).",
+      "display_name": "Create Azure subnet",
+      "id": "az.network.vnets.subnets.create",
+      "params_schema": {
+        "properties": {
+          "address_prefixes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Address Prefixes",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vnet_name": {
+            "title": "Vnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "vnet_name",
+          "name",
+          "address_prefixes"
+        ],
+        "title": "SubnetCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a subnet (az network vnet subnet delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure subnet",
+      "id": "az.network.vnets.subnets.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vnet_name": {
+            "title": "Vnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "vnet_name",
+          "name"
+        ],
+        "title": "SubnetNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List subnets in a vnet (az network vnet subnet list).",
+      "display_name": "List Azure subnets",
+      "id": "az.network.vnets.subnets.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vnet_name": {
+            "title": "Vnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "vnet_name"
+        ],
+        "title": "SubnetListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a database on a SQL server (az sql db create).",
+      "display_name": "Create Azure SQL database",
+      "id": "az.sql.dbs.create",
+      "params_schema": {
+        "properties": {
+          "auto_pause_delay": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Auto Pause Delay"
+          },
+          "capacity": {
+            "default": 2,
+            "title": "Capacity",
+            "type": "integer"
+          },
+          "compute_model": {
+            "default": "Serverless",
+            "title": "Compute Model",
+            "type": "string"
+          },
+          "edition": {
+            "default": "GeneralPurpose",
+            "title": "Edition",
+            "type": "string"
+          },
+          "family": {
+            "default": "Gen5",
+            "title": "Family",
+            "type": "string"
+          },
+          "free_limit_exhaustion_behavior": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Free Limit Exhaustion Behavior"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          },
+          "use_free_limit": {
+            "default": false,
+            "title": "Use Free Limit",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server",
+          "name"
+        ],
+        "title": "DatabaseCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a database (az sql db delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure SQL database",
+      "id": "az.sql.dbs.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server",
+          "name"
+        ],
+        "title": "DatabaseNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List databases on a SQL server (az sql db list).",
+      "display_name": "List Azure SQL databases",
+      "id": "az.sql.dbs.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server"
+        ],
+        "title": "DatabaseListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show a single database (az sql db show).",
+      "display_name": "Show Azure SQL database",
+      "id": "az.sql.dbs.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server",
+          "name"
+        ],
+        "title": "DatabaseNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a server firewall rule (az sql server firewall-rule create).",
+      "display_name": "Create Azure SQL firewall rule",
+      "id": "az.sql.firewall-rules.create",
+      "params_schema": {
+        "properties": {
+          "end_ip_address": {
+            "title": "End Ip Address",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          },
+          "start_ip_address": {
+            "title": "Start Ip Address",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server",
+          "name",
+          "start_ip_address",
+          "end_ip_address"
+        ],
+        "title": "FirewallRuleCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List server firewall rules (az sql server firewall-rule list).",
+      "display_name": "List Azure SQL firewall rules",
+      "id": "az.sql.firewall-rules.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "server": {
+            "title": "Server",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "server"
+        ],
+        "title": "FirewallRuleListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a SQL logical server (az sql server create).",
+      "display_name": "Create Azure SQL server",
+      "id": "az.sql.servers.create",
+      "params_schema": {
+        "properties": {
+          "admin_password": {
+            "title": "Admin Password",
+            "type": "string"
+          },
+          "admin_user": {
+            "title": "Admin User",
+            "type": "string"
+          },
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name",
+          "admin_user",
+          "admin_password"
+        ],
+        "title": "ServerCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a SQL server (az sql server delete). Confirmation stays CLI-side (--yes).",
+      "display_name": "Delete Azure SQL server",
+      "id": "az.sql.servers.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "ServerNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List SQL servers in a resource group (az sql server list).",
+      "display_name": "List Azure SQL servers",
+      "id": "az.sql.servers.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "ServerListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show a single SQL server (az sql server show).",
+      "display_name": "Show Azure SQL server",
+      "id": "az.sql.servers.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "ServerNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a storage account (az storage account create).",
+      "display_name": "Create storage account",
+      "id": "az.storage.accounts.create",
+      "params_schema": {
+        "properties": {
+          "kind": {
+            "default": "StorageV2",
+            "title": "Kind",
+            "type": "string"
+          },
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "sku": {
+            "default": "Standard_LRS",
+            "title": "Sku",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "AccountCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a storage account (az storage account delete). Confirmation is CLI-side (--yes).",
+      "display_name": "Delete storage account",
+      "id": "az.storage.accounts.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "AccountDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List storage accounts (az storage account list).",
+      "display_name": "List storage accounts",
+      "id": "az.storage.accounts.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group"
+        ],
+        "title": "AccountListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Delete a blob (az storage blob delete). Confirmation is CLI-side (--yes).",
+      "display_name": "Delete blob",
+      "id": "az.storage.blobs.delete",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "container": {
+            "title": "Container",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "container",
+          "name"
+        ],
+        "title": "BlobDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Download a blob to a local path (az storage blob download).",
+      "display_name": "Download blob",
+      "id": "az.storage.blobs.download",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "container": {
+            "title": "Container",
+            "type": "string"
+          },
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "container",
+          "name",
+          "file"
+        ],
+        "title": "BlobDownloadParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List blobs in a container (az storage blob list).",
+      "display_name": "List blobs",
+      "id": "az.storage.blobs.list",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "container": {
+            "title": "Container",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "container"
+        ],
+        "title": "BlobListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Upload a local file as a blob (az storage blob upload).",
+      "display_name": "Upload blob",
+      "id": "az.storage.blobs.upload",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "container": {
+            "title": "Container",
+            "type": "string"
+          },
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "container",
+          "file",
+          "name"
+        ],
+        "title": "BlobUploadParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a blob container (az storage container create).",
+      "display_name": "Create blob container",
+      "id": "az.storage.containers.create",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "name"
+        ],
+        "title": "ContainerParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a blob container (az storage container delete). Confirmation is CLI-side (--yes).",
+      "display_name": "Delete blob container",
+      "id": "az.storage.containers.delete",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name",
+          "name"
+        ],
+        "title": "ContainerParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List blob containers (az storage container list).",
+      "display_name": "List blob containers",
+      "id": "az.storage.containers.list",
+      "params_schema": {
+        "properties": {
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_name"
+        ],
+        "title": "ContainerListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a virtual machine (az vm create).",
+      "display_name": "Create Azure VM",
+      "id": "az.vm.create",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "eastus",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vm_size": {
+            "default": "Standard_B1s",
+            "title": "Vm Size",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Deallocate (stop) a virtual machine (az vm deallocate).",
+      "display_name": "Deallocate Azure VM",
+      "id": "az.vm.deallocate",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a virtual machine (az vm delete). The --yes confirmation prompt stays CLI-side.",
+      "display_name": "Delete Azure VM",
+      "id": "az.vm.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Attach a managed disk to a VM (az vm disk attach).",
+      "display_name": "Attach disk to Azure VM",
+      "id": "az.vm.disk.attach",
+      "params_schema": {
+        "properties": {
+          "lun": {
+            "default": 0,
+            "title": "Lun",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vm_name": {
+            "title": "Vm Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "vm_name",
+          "name"
+        ],
+        "title": "VmDiskAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Detach a managed disk from a VM (az vm disk detach).",
+      "display_name": "Detach disk from Azure VM",
+      "id": "az.vm.disk.detach",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          },
+          "vm_name": {
+            "title": "Vm Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "vm_name",
+          "name"
+        ],
+        "title": "VmDiskDetachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List virtual machines (az vm list).",
+      "display_name": "List Azure VMs",
+      "id": "az.vm.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "VmListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List available VM sizes in a location (az vm list-sizes).",
+      "display_name": "List Azure VM sizes",
+      "id": "az.vm.list-sizes",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location"
+        ],
+        "title": "VmListSizesParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Restart a virtual machine (az vm restart).",
+      "display_name": "Restart Azure VM",
+      "id": "az.vm.restart",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show a VM by resource group + name (az vm show).",
+      "display_name": "Show Azure VM",
+      "id": "az.vm.show",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Start a virtual machine (az vm start).",
+      "display_name": "Start Azure VM",
+      "id": "az.vm.start",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_group": {
+            "title": "Resource Group",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_group",
+          "name"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "azure",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Compose the daily briefing (spending, budget, health, activity).",
       "display_name": "Morning briefing",
       "id": "briefing.compose",
