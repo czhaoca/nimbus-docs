@@ -1,6 +1,8 @@
 # nimbus-docs CI — standalone site build from vendored artifacts (#251)
+# cron = nightly contract revalidation; manual = backend API trigger
+# (backend #253). The image publish lives in build-image.yml, push-only.
 when:
-  event: [push, pull_request]
+  event: [push, pull_request, cron, manual]
   branch: main
 
 steps:
