@@ -1,0 +1,31 @@
+---
+title: Nimbus
+description: Personal multi-cloud orchestration platform
+template: splash
+hero:
+  tagline: Provision, monitor, and manage infrastructure across cloud providers and on-prem systems.
+  actions:
+    - text: Get Started
+      link: /setup/getting-started/
+      icon: right-arrow
+    - text: API Reference
+      link: /api/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Setup" icon="setting">
+		Install Nimbus, configure providers, and get running.
+	</Card>
+	<Card title="Providers" icon="puzzle">
+		Connect OCI, AWS, Azure, GCP, Cloudflare, Proxmox, and UniFi.
+	</Card>
+	<Card title="Environments" icon="rocket">
+		Deploy and manage governed environments on Proxmox.
+	</Card>
+	<Card title="Operations" icon="open-book">
+		Manage resources, budgets, monitoring, secrets, and workflows.
+	</Card>
+</CardGrid>

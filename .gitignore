@@ -1,0 +1,36 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# --- repo-privacy-kit: developer privacy block (do not edit; re-run install.sh to update) ---
+**/local/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+**/api-keys/
+**/ssh-keys/
+*.db
+# --- end repo-privacy-kit block ---

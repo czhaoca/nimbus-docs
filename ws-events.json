@@ -1,0 +1,109 @@
+{
+  "auth": "Bearer header or token query param (WebSocketAuthMiddleware; #241)",
+  "contract_version": "1.0.0",
+  "endpoint": "/ws",
+  "events": [
+    {
+      "description": "Health-monitor incident transitions (failure / recovery).",
+      "schema": {
+        "additionalProperties": true,
+        "description": "Health-monitor incident transitions (failure / recovery).",
+        "properties": {
+          "action": {
+            "enum": [
+              "health_failure",
+              "health_recovery"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "status": {
+            "default": "",
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "const": "incident",
+            "default": "incident",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "resource_id",
+          "provider_id"
+        ],
+        "title": "WsIncidentEvent",
+        "type": "object"
+      },
+      "type": "incident"
+    },
+    {
+      "description": "Reply to a client ``ping`` text frame.",
+      "schema": {
+        "description": "Reply to a client ``ping`` text frame.",
+        "properties": {
+          "type": {
+            "const": "pong",
+            "default": "pong",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "title": "WsPongEvent",
+        "type": "object"
+      },
+      "type": "pong"
+    },
+    {
+      "description": "A resource was created/updated/deleted or changed power state.",
+      "schema": {
+        "additionalProperties": true,
+        "description": "A resource was created/updated/deleted or changed power state.",
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "type": {
+            "const": "resource_change",
+            "default": "resource_change",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "resource_id",
+          "provider_id"
+        ],
+        "title": "WsResourceChangeEvent",
+        "type": "object"
+      },
+      "type": "resource_change"
+    }
+  ],
+  "schema_version": 1
+}

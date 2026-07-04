@@ -1,0 +1,22 @@
+# nimbus-docs CI — standalone site build from vendored artifacts (#251)
+when:
+  event: [push, pull_request]
+  branch: main
+
+steps:
+  # Standalone gate (ADR-0008): the site must build with no engine
+  # reference of any kind — vendored artifacts are the only contract input.
+  - name: no-engine-refs
+    image: alpine
+    commands:
+      - if grep -rn "\.\./engine" --include="*.mjs" --include="*.json" --include="*.ts" --include="*.md" --exclude=pnpm-lock.yaml .; then echo "engine reference found — this repo builds from vendored artifacts only"; exit 1; fi
+      - echo "no engine references"
+
+  - name: build
+    image: node:22-alpine
+    environment:
+      NODE_OPTIONS: "--max-old-space-size=1536"
+    commands:
+      - corepack enable && corepack prepare pnpm@latest --activate
+      - pnpm install --frozen-lockfile
+      - pnpm build

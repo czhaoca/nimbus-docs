@@ -1,0 +1,7619 @@
+{
+  "contract_version": "1.0.0",
+  "ops": [
+    {
+      "description": "Silence alert dispatch for a duration (two-phase).",
+      "display_name": "Silence alerts",
+      "id": "alerts.silence",
+      "params_schema": {
+        "properties": {
+          "duration_minutes": {
+            "maximum": 10080,
+            "minimum": 1,
+            "title": "Duration Minutes",
+            "type": "integer"
+          },
+          "username": {
+            "default": "",
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "duration_minutes"
+        ],
+        "title": "AlertSilenceParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Send a test alert to all configured channels (two-phase).",
+      "display_name": "Test alert",
+      "id": "alerts.test",
+      "params_schema": {
+        "properties": {
+          "username": {
+            "default": "",
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "title": "AlertTestParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Compose the daily briefing (spending, budget, health, activity).",
+      "display_name": "Morning briefing",
+      "id": "briefing.compose",
+      "params_schema": {
+        "description": "Which briefing window to compose (only ``yesterday`` is implemented).",
+        "properties": {
+          "period": {
+            "default": "yesterday",
+            "title": "Period",
+            "type": "string"
+          }
+        },
+        "title": "BriefingParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a budget enforcement rule (admin; modal submit confirms).",
+      "display_name": "Set budget rule",
+      "id": "budget.set-rule",
+      "params_schema": {
+        "properties": {
+          "action_on_exceed": {
+            "default": "alert",
+            "title": "Action On Exceed",
+            "type": "string"
+          },
+          "monthly_limit_usd": {
+            "title": "Monthly Limit Usd",
+            "type": "number"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "monthly_limit_usd"
+        ],
+        "title": "BudgetSetRuleParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "result_schema": {
+        "description": "Typed ``OperationResult.data`` for budget.set-rule (#244 contract typing).",
+        "properties": {
+          "action_on_exceed": {
+            "title": "Action On Exceed",
+            "type": "string"
+          },
+          "alert_threshold": {
+            "title": "Alert Threshold",
+            "type": "number"
+          },
+          "monthly_limit": {
+            "title": "Monthly Limit",
+            "type": "number"
+          },
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_id",
+          "alert_threshold",
+          "scope",
+          "monthly_limit",
+          "action_on_exceed"
+        ],
+        "title": "BudgetSetRuleResult",
+        "type": "object"
+      },
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "Current spending summary, optionally for a period.",
+      "display_name": "Spending summary",
+      "id": "budget.spending",
+      "params_schema": {
+        "properties": {
+          "period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period"
+          }
+        },
+        "title": "SpendingParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Stop a governed deployment (two-phase: preview then confirm).",
+      "display_name": "Deploy down",
+      "id": "deploy.down",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env"
+        ],
+        "title": "DeployDownParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Deployment slot status, optionally for one project.",
+      "display_name": "Deployment status",
+      "id": "deploy.status",
+      "params_schema": {
+        "properties": {
+          "project": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Project"
+          }
+        },
+        "title": "DeployStatusParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Deploy a governed environment (two-phase: preview then confirm).",
+      "display_name": "Deploy up",
+      "id": "deploy.up",
+      "params_schema": {
+        "properties": {
+          "domain": {
+            "default": "",
+            "title": "Domain",
+            "type": "string"
+          },
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env"
+        ],
+        "title": "DeployUpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Run a command across selected VMs (two-phase: preview then confirm).",
+      "display_name": "Fleet exec",
+      "id": "fleet.exec",
+      "params_schema": {
+        "properties": {
+          "command": {
+            "title": "Command",
+            "type": "string"
+          },
+          "env": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Env"
+          },
+          "live": {
+            "default": true,
+            "title": "Live",
+            "type": "boolean"
+          },
+          "providers": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Providers"
+          },
+          "ssh_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssh Key"
+          },
+          "ssh_user": {
+            "default": "nimbus",
+            "title": "Ssh User",
+            "type": "string"
+          },
+          "status": {
+            "default": "active",
+            "title": "Status",
+            "type": "string"
+          },
+          "tag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Tag"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "title": "FleetExecParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "fleet",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Install/update software across selected VMs (two-phase).",
+      "display_name": "Fleet install",
+      "id": "fleet.install",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Env"
+          },
+          "live": {
+            "default": true,
+            "title": "Live",
+            "type": "boolean"
+          },
+          "providers": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Providers"
+          },
+          "recipe": {
+            "default": "apt-upgrade",
+            "title": "Recipe",
+            "type": "string"
+          },
+          "ssh_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssh Key"
+          },
+          "ssh_user": {
+            "default": "nimbus",
+            "title": "Ssh User",
+            "type": "string"
+          },
+          "status": {
+            "default": "active",
+            "title": "Status",
+            "type": "string"
+          },
+          "tag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Tag"
+          }
+        },
+        "title": "FleetInstallParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "fleet",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a persistent disk (gcloud compute disks create).",
+      "display_name": "Create persistent disk",
+      "id": "gcloud.compute.disks.create",
+      "params_schema": {
+        "properties": {
+          "disk_name": {
+            "title": "Disk Name",
+            "type": "string"
+          },
+          "disk_type": {
+            "default": "pd-standard",
+            "title": "Disk Type",
+            "type": "string"
+          },
+          "size_gb": {
+            "title": "Size Gb",
+            "type": "integer"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "disk_name",
+          "zone",
+          "size_gb"
+        ],
+        "title": "DiskCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a disk (gcloud compute disks delete).",
+      "display_name": "Delete persistent disk",
+      "id": "gcloud.compute.disks.delete",
+      "params_schema": {
+        "properties": {
+          "disk_name": {
+            "title": "Disk Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "disk_name",
+          "zone"
+        ],
+        "title": "DiskRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one disk (gcloud compute disks describe).",
+      "display_name": "Describe persistent disk",
+      "id": "gcloud.compute.disks.describe",
+      "params_schema": {
+        "properties": {
+          "disk_name": {
+            "title": "Disk Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "disk_name",
+          "zone"
+        ],
+        "title": "DiskRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List disks in a zone (gcloud compute disks list).",
+      "display_name": "List persistent disks",
+      "id": "gcloud.compute.disks.list",
+      "params_schema": {
+        "properties": {
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "zone"
+        ],
+        "title": "DiskListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a firewall rule (gcloud compute firewall-rules create).",
+      "display_name": "Create firewall rule",
+      "id": "gcloud.compute.firewall-rules.create",
+      "params_schema": {
+        "properties": {
+          "allow": {
+            "title": "Allow",
+            "type": "string"
+          },
+          "direction": {
+            "title": "Direction",
+            "type": "string"
+          },
+          "network": {
+            "title": "Network",
+            "type": "string"
+          },
+          "priority": {
+            "title": "Priority",
+            "type": "integer"
+          },
+          "rule_name": {
+            "title": "Rule Name",
+            "type": "string"
+          },
+          "source_ranges": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Source Ranges"
+          },
+          "target_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Target Tags"
+          }
+        },
+        "required": [
+          "rule_name",
+          "network",
+          "allow",
+          "direction",
+          "priority"
+        ],
+        "title": "FirewallCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a firewall rule (gcloud compute firewall-rules delete).",
+      "display_name": "Delete firewall rule",
+      "id": "gcloud.compute.firewall-rules.delete",
+      "params_schema": {
+        "properties": {
+          "rule_name": {
+            "title": "Rule Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_name"
+        ],
+        "title": "FirewallRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one firewall rule (gcloud compute firewall-rules describe).",
+      "display_name": "Describe firewall rule",
+      "id": "gcloud.compute.firewall-rules.describe",
+      "params_schema": {
+        "properties": {
+          "rule_name": {
+            "title": "Rule Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_name"
+        ],
+        "title": "FirewallRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List firewall rules (gcloud compute firewall-rules list).",
+      "display_name": "List firewall rules",
+      "id": "gcloud.compute.firewall-rules.list",
+      "params_schema": {
+        "properties": {
+          "network": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Network"
+          }
+        },
+        "title": "FirewallListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Patch a firewall rule (gcloud compute firewall-rules update).",
+      "display_name": "Update firewall rule",
+      "id": "gcloud.compute.firewall-rules.update",
+      "params_schema": {
+        "properties": {
+          "allow": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Allow"
+          },
+          "priority": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Priority"
+          },
+          "rule_name": {
+            "title": "Rule Name",
+            "type": "string"
+          },
+          "source_ranges": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Source Ranges"
+          },
+          "target_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Target Tags"
+          }
+        },
+        "required": [
+          "rule_name"
+        ],
+        "title": "FirewallUpdateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Attach a disk (gcloud compute instances attach-disk).",
+      "display_name": "Attach disk to instance",
+      "id": "gcloud.compute.instances.attach-disk",
+      "params_schema": {
+        "properties": {
+          "disk": {
+            "title": "Disk",
+            "type": "string"
+          },
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "disk",
+          "zone"
+        ],
+        "title": "DiskAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Provision a GCE VM (gcloud compute instances create).",
+      "display_name": "Create Compute Engine instance",
+      "id": "gcloud.compute.instances.create",
+      "params_schema": {
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "Config",
+            "type": "object"
+          }
+        },
+        "required": [
+          "config"
+        ],
+        "title": "InstanceCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a GCE VM (gcloud compute instances delete).",
+      "display_name": "Delete Compute Engine instance",
+      "id": "gcloud.compute.instances.delete",
+      "params_schema": {
+        "properties": {
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "zone"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one GCE VM (gcloud compute instances describe).",
+      "display_name": "Describe Compute Engine instance",
+      "id": "gcloud.compute.instances.describe",
+      "params_schema": {
+        "properties": {
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "zone"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Detach a disk (gcloud compute instances detach-disk).",
+      "display_name": "Detach disk from instance",
+      "id": "gcloud.compute.instances.detach-disk",
+      "params_schema": {
+        "properties": {
+          "disk": {
+            "title": "Disk",
+            "type": "string"
+          },
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "disk",
+          "zone"
+        ],
+        "title": "DiskAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List GCE VMs (gcloud compute instances list).",
+      "display_name": "List Compute Engine instances",
+      "id": "gcloud.compute.instances.list",
+      "params_schema": {
+        "properties": {},
+        "title": "InstanceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Start a GCE VM (gcloud compute instances start).",
+      "display_name": "Start Compute Engine instance",
+      "id": "gcloud.compute.instances.start",
+      "params_schema": {
+        "properties": {
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "zone"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a GCE VM (gcloud compute instances stop).",
+      "display_name": "Stop Compute Engine instance",
+      "id": "gcloud.compute.instances.stop",
+      "params_schema": {
+        "properties": {
+          "instance_name": {
+            "title": "Instance Name",
+            "type": "string"
+          },
+          "zone": {
+            "title": "Zone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_name",
+          "zone"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a VPC network (gcloud compute networks create).",
+      "display_name": "Create VPC network",
+      "id": "gcloud.compute.networks.create",
+      "params_schema": {
+        "properties": {
+          "mtu": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Mtu"
+          },
+          "network_name": {
+            "title": "Network Name",
+            "type": "string"
+          },
+          "subnet_mode": {
+            "title": "Subnet Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "network_name",
+          "subnet_mode"
+        ],
+        "title": "NetworkCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a VPC network (gcloud compute networks delete).",
+      "display_name": "Delete VPC network",
+      "id": "gcloud.compute.networks.delete",
+      "params_schema": {
+        "properties": {
+          "network_name": {
+            "title": "Network Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "network_name"
+        ],
+        "title": "NetworkRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one VPC network (gcloud compute networks describe).",
+      "display_name": "Describe VPC network",
+      "id": "gcloud.compute.networks.describe",
+      "params_schema": {
+        "properties": {
+          "network_name": {
+            "title": "Network Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "network_name"
+        ],
+        "title": "NetworkRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List VPC networks (gcloud compute networks list).",
+      "display_name": "List VPC networks",
+      "id": "gcloud.compute.networks.list",
+      "params_schema": {
+        "properties": {},
+        "title": "NetworkListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a subnet (gcloud compute networks subnets create).",
+      "display_name": "Create VPC subnet",
+      "id": "gcloud.compute.networks.subnets.create",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "network": {
+            "title": "Network",
+            "type": "string"
+          },
+          "region": {
+            "title": "Region",
+            "type": "string"
+          },
+          "subnet_name": {
+            "title": "Subnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_name",
+          "network",
+          "region",
+          "cidr"
+        ],
+        "title": "SubnetCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a subnet (gcloud compute networks subnets delete).",
+      "display_name": "Delete VPC subnet",
+      "id": "gcloud.compute.networks.subnets.delete",
+      "params_schema": {
+        "properties": {
+          "region": {
+            "title": "Region",
+            "type": "string"
+          },
+          "subnet_name": {
+            "title": "Subnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_name",
+          "region"
+        ],
+        "title": "SubnetRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one subnet (gcloud compute networks subnets describe).",
+      "display_name": "Describe VPC subnet",
+      "id": "gcloud.compute.networks.subnets.describe",
+      "params_schema": {
+        "properties": {
+          "region": {
+            "title": "Region",
+            "type": "string"
+          },
+          "subnet_name": {
+            "title": "Subnet Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_name",
+          "region"
+        ],
+        "title": "SubnetRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List subnets (gcloud compute networks subnets list).",
+      "display_name": "List VPC subnets",
+      "id": "gcloud.compute.networks.subnets.list",
+      "params_schema": {
+        "properties": {
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Region"
+          }
+        },
+        "title": "SubnetListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a GKE cluster (gcloud container clusters create).",
+      "display_name": "Create GKE cluster",
+      "id": "gcloud.container.clusters.create",
+      "params_schema": {
+        "properties": {
+          "cluster_name": {
+            "title": "Cluster Name",
+            "type": "string"
+          },
+          "cluster_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cluster Version"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "machine_type": {
+            "default": "e2-small",
+            "title": "Machine Type",
+            "type": "string"
+          },
+          "num_nodes": {
+            "default": 3,
+            "title": "Num Nodes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "location",
+          "cluster_name"
+        ],
+        "title": "ClusterCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a GKE cluster (gcloud container clusters delete).",
+      "display_name": "Delete GKE cluster",
+      "id": "gcloud.container.clusters.delete",
+      "params_schema": {
+        "properties": {
+          "cluster_name": {
+            "title": "Cluster Name",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "cluster_name"
+        ],
+        "title": "ClusterRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one GKE cluster (gcloud container clusters describe).",
+      "display_name": "Describe GKE cluster",
+      "id": "gcloud.container.clusters.describe",
+      "params_schema": {
+        "properties": {
+          "cluster_name": {
+            "title": "Cluster Name",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "cluster_name"
+        ],
+        "title": "ClusterRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List GKE clusters (gcloud container clusters list).",
+      "display_name": "List GKE clusters",
+      "id": "gcloud.container.clusters.list",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "-",
+            "title": "Location",
+            "type": "string"
+          }
+        },
+        "title": "ClusterListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Resize a cluster's node pool (gcloud container clusters resize).",
+      "display_name": "Resize GKE cluster",
+      "id": "gcloud.container.clusters.resize",
+      "params_schema": {
+        "properties": {
+          "cluster_name": {
+            "title": "Cluster Name",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "node_pool": {
+            "default": "default-pool",
+            "title": "Node Pool",
+            "type": "string"
+          },
+          "num_nodes": {
+            "title": "Num Nodes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "location",
+          "cluster_name",
+          "num_nodes"
+        ],
+        "title": "ClusterResizeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a node pool (gcloud container node-pools create).",
+      "display_name": "Create GKE node pool",
+      "id": "gcloud.container.node-pools.create",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "machine_type": {
+            "default": "e2-small",
+            "title": "Machine Type",
+            "type": "string"
+          },
+          "num_nodes": {
+            "default": 3,
+            "title": "Num Nodes",
+            "type": "integer"
+          },
+          "pool_name": {
+            "title": "Pool Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "cluster",
+          "pool_name"
+        ],
+        "title": "NodePoolCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a node pool (gcloud container node-pools delete).",
+      "display_name": "Delete GKE node pool",
+      "id": "gcloud.container.node-pools.delete",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          },
+          "pool_name": {
+            "title": "Pool Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "cluster",
+          "pool_name"
+        ],
+        "title": "NodePoolRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List node pools (gcloud container node-pools list).",
+      "display_name": "List GKE node pools",
+      "id": "gcloud.container.node-pools.list",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "cluster"
+        ],
+        "title": "NodePoolListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a database in an instance (gcloud sql databases create).",
+      "display_name": "Create Cloud SQL database",
+      "id": "gcloud.sql.databases.create",
+      "params_schema": {
+        "properties": {
+          "charset": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Charset"
+          },
+          "collation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Collation"
+          },
+          "database": {
+            "title": "Database",
+            "type": "string"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance",
+          "database"
+        ],
+        "title": "DatabaseCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a database from an instance (gcloud sql databases delete).",
+      "display_name": "Delete Cloud SQL database",
+      "id": "gcloud.sql.databases.delete",
+      "params_schema": {
+        "properties": {
+          "database": {
+            "title": "Database",
+            "type": "string"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance",
+          "database"
+        ],
+        "title": "DatabaseRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List databases in an instance (gcloud sql databases list).",
+      "display_name": "List Cloud SQL databases",
+      "id": "gcloud.sql.databases.list",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "DatabaseListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Provision a Cloud SQL instance (gcloud sql instances create).",
+      "display_name": "Create Cloud SQL instance",
+      "id": "gcloud.sql.instances.create",
+      "params_schema": {
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "Config",
+            "type": "object"
+          }
+        },
+        "required": [
+          "config"
+        ],
+        "title": "InstanceCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a Cloud SQL instance (gcloud sql instances delete).",
+      "display_name": "Delete Cloud SQL instance",
+      "id": "gcloud.sql.instances.delete",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one Cloud SQL instance (gcloud sql instances describe).",
+      "display_name": "Describe Cloud SQL instance",
+      "id": "gcloud.sql.instances.describe",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List Cloud SQL instances (gcloud sql instances list).",
+      "display_name": "List Cloud SQL instances",
+      "id": "gcloud.sql.instances.list",
+      "params_schema": {
+        "properties": {},
+        "title": "InstanceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Patch instance activation policy (gcloud sql instances patch).",
+      "display_name": "Patch Cloud SQL instance",
+      "id": "gcloud.sql.instances.patch",
+      "params_schema": {
+        "properties": {
+          "activation_policy": {
+            "title": "Activation Policy",
+            "type": "string"
+          },
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance",
+          "activation_policy"
+        ],
+        "title": "InstancePatchParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Restart a Cloud SQL instance (gcloud sql instances restart).",
+      "display_name": "Restart Cloud SQL instance",
+      "id": "gcloud.sql.instances.restart",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a user in an instance (gcloud sql users create).",
+      "display_name": "Create Cloud SQL user",
+      "id": "gcloud.sql.users.create",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          },
+          "password": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "secret": true,
+            "title": "Password"
+          },
+          "user": {
+            "title": "User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance",
+          "user"
+        ],
+        "title": "UserCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List users in an instance (gcloud sql users list).",
+      "display_name": "List Cloud SQL users",
+      "id": "gcloud.sql.users.list",
+      "params_schema": {
+        "properties": {
+          "instance": {
+            "title": "Instance",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "UserListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a bucket (gcloud storage buckets create).",
+      "display_name": "Create Cloud Storage bucket",
+      "id": "gcloud.storage.buckets.create",
+      "params_schema": {
+        "properties": {
+          "location": {
+            "default": "US",
+            "title": "Location",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "uniform_bucket_level_access": {
+            "default": false,
+            "title": "Uniform Bucket Level Access",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "BucketCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an empty bucket (gcloud storage buckets delete).",
+      "display_name": "Delete Cloud Storage bucket",
+      "id": "gcloud.storage.buckets.delete",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "BucketRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one bucket (gcloud storage buckets describe).",
+      "display_name": "Describe Cloud Storage bucket",
+      "id": "gcloud.storage.buckets.describe",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "BucketRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List buckets (gcloud storage buckets list).",
+      "display_name": "List Cloud Storage buckets",
+      "id": "gcloud.storage.buckets.list",
+      "params_schema": {
+        "properties": {},
+        "title": "BucketListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Download object(s) from a bucket (gcloud storage cp gs\u2192local).",
+      "display_name": "Download from Cloud Storage",
+      "id": "gcloud.storage.cp.download",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "dst": {
+            "title": "Dst",
+            "type": "string"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prefix"
+          },
+          "recursive": {
+            "default": false,
+            "title": "Recursive",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "bucket",
+          "prefix",
+          "dst"
+        ],
+        "title": "ObjectDownloadParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Upload local file(s) to a bucket (gcloud storage cp local\u2192gs).",
+      "display_name": "Upload to Cloud Storage",
+      "id": "gcloud.storage.cp.upload",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prefix"
+          },
+          "recursive": {
+            "default": false,
+            "title": "Recursive",
+            "type": "boolean"
+          },
+          "src": {
+            "title": "Src",
+            "type": "string"
+          }
+        },
+        "required": [
+          "src",
+          "bucket"
+        ],
+        "title": "ObjectUploadParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List buckets or objects (gcloud storage ls).",
+      "display_name": "List Cloud Storage buckets or objects",
+      "id": "gcloud.storage.ls",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Bucket"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prefix"
+          }
+        },
+        "title": "ObjectListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Remove object(s) from a bucket (gcloud storage rm).",
+      "display_name": "Remove Cloud Storage objects",
+      "id": "gcloud.storage.rm",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prefix"
+          },
+          "recursive": {
+            "default": false,
+            "title": "Recursive",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "bucket",
+          "prefix"
+        ],
+        "title": "ObjectRemoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "gcloud",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Resources, optionally filtered by provider type.",
+      "display_name": "List resources",
+      "id": "infra.resources",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          }
+        },
+        "title": "ResourcesParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Health summary across providers.",
+      "display_name": "Infrastructure status",
+      "id": "infra.status",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "CIDR allocations, optionally filtered by provider type.",
+      "display_name": "Network allocations",
+      "id": "network.allocations",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          }
+        },
+        "title": "AllocationsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Toggle WARP exposure for a device (/32) or an allocation (whole VLAN).",
+      "display_name": "Expose to WARP",
+      "id": "network.device.expose",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Allocation Id"
+          },
+          "device_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Device Id"
+          },
+          "exposed": {
+            "default": true,
+            "title": "Exposed",
+            "type": "boolean"
+          },
+          "tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Tags"
+          }
+        },
+        "title": "DeviceExposeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Set a device's tags/categories.",
+      "display_name": "Tag network device",
+      "id": "network.device.tag",
+      "params_schema": {
+        "properties": {
+          "categories": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Categories"
+          },
+          "device_id": {
+            "title": "Device Id",
+            "type": "integer"
+          },
+          "tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Tags"
+          }
+        },
+        "required": [
+          "device_id"
+        ],
+        "title": "DeviceTagParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "CIDR allocation tree.",
+      "display_name": "Network plan",
+      "id": "network.plan",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Register a CIDR allocation (admin; modal submit confirms).",
+      "display_name": "Register CIDR",
+      "id": "network.register",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "network_name": {
+            "default": "",
+            "title": "Network Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "status": {
+            "default": "planned",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "cidr_block"
+        ],
+        "title": "NetworkRegisterParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "Enforce approved proposals in blast-radius order (dry-run -> confirm).",
+      "display_name": "Apply approved resolutions",
+      "id": "network.resolution.apply",
+      "params_schema": {
+        "properties": {
+          "apply_manual": {
+            "default": false,
+            "title": "Apply Manual",
+            "type": "boolean"
+          }
+        },
+        "title": "ApplyParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Mark a staged proposal approved (ready for enforcement).",
+      "display_name": "Approve a resolution proposal",
+      "id": "network.resolution.approve",
+      "params_schema": {
+        "properties": {
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "proposal_id": {
+            "title": "Proposal Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "proposal_id"
+        ],
+        "title": "DecideParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List staged IP-resolution proposals (optionally filtered by status).",
+      "display_name": "List resolution proposals",
+      "id": "network.resolution.list",
+      "params_schema": {
+        "properties": {
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status"
+          }
+        },
+        "title": "ListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Stage proposals for blocked-CIDR conflicts in scope (dry-run -> confirm).",
+      "display_name": "Plan network resolutions",
+      "id": "network.resolution.plan",
+      "params_schema": {
+        "properties": {
+          "base": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Base"
+          },
+          "default_prefix": {
+            "default": 24,
+            "title": "Default Prefix",
+            "type": "integer"
+          }
+        },
+        "title": "PlanParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Mark a staged proposal rejected (it will not be enforced).",
+      "display_name": "Reject a resolution proposal",
+      "id": "network.resolution.reject",
+      "params_schema": {
+        "properties": {
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "proposal_id": {
+            "title": "Proposal Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "proposal_id"
+        ],
+        "title": "DecideParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Converge sites: connector ensure \u2192 UniFi permit (confirm-gated) \u2192 CF routes via the WARP reconciler (two-phase).",
+      "display_name": "Tunnel apply",
+      "id": "network.tunnel.apply",
+      "params_schema": {
+        "properties": {
+          "ostemplate": {
+            "default": "",
+            "title": "Ostemplate",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provision": {
+            "default": false,
+            "title": "Provision",
+            "type": "boolean"
+          },
+          "prune": {
+            "default": false,
+            "title": "Prune",
+            "type": "boolean"
+          },
+          "site": {
+            "default": "",
+            "title": "Site",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          },
+          "unifi_provider": {
+            "default": "",
+            "title": "Unifi Provider",
+            "type": "string"
+          },
+          "yes_firewall": {
+            "default": false,
+            "title": "Yes Firewall",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "NetworkTunnelApplyParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "network",
+        "tunnel"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Drift entries only (route/connector/permit/site-cidr classes).",
+      "display_name": "Tunnel drift",
+      "id": "network.tunnel.drift",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "unifi_provider": {
+            "default": "",
+            "title": "Unifi Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "NetworkTunnelParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "network",
+        "tunnel"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Read-only per-site full-LAN checklist: connector, routes, permits, drift.",
+      "display_name": "Tunnel plan",
+      "id": "network.tunnel.plan",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "unifi_provider": {
+            "default": "",
+            "title": "Unifi Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "NetworkTunnelParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "network",
+        "tunnel"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Converged/drift-count summary of the cross-provider tunnel plan.",
+      "display_name": "Tunnel status",
+      "id": "network.tunnel.status",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "unifi_provider": {
+            "default": "",
+            "title": "Unifi Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "NetworkTunnelParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "network",
+        "tunnel"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List active compartments in the tenancy (oci admin compartments).",
+      "display_name": "List OCI compartments",
+      "id": "oci.admin.compartments",
+      "params_schema": {
+        "properties": {},
+        "title": "AdminCompartmentsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "admin",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show OCI tenancy name, OCID, home region, and subscribed regions (oci admin info).",
+      "display_name": "OCI tenancy info",
+      "id": "oci.admin.info",
+      "params_schema": {
+        "properties": {},
+        "title": "AdminInfoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "admin",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List service limits for the tenancy (oci admin limits). Optionally filtered by --service.",
+      "display_name": "List OCI service limits",
+      "id": "oci.admin.limits",
+      "params_schema": {
+        "properties": {
+          "service": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Service"
+          }
+        },
+        "title": "AdminLimitsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "admin",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List all registered OCI tenancy aliases (oci alias list).",
+      "display_name": "List OCI tenancy aliases",
+      "id": "oci.alias.list",
+      "params_schema": {
+        "properties": {
+          "fmt": {
+            "default": "table",
+            "title": "Fmt",
+            "type": "string"
+          }
+        },
+        "title": "AliasListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Rename a tenancy alias (oci alias rename). Local DB only.",
+      "display_name": "Rename OCI tenancy alias",
+      "id": "oci.alias.rename",
+      "params_schema": {
+        "properties": {
+          "new_name": {
+            "title": "New Name",
+            "type": "string"
+          },
+          "old_name": {
+            "title": "Old Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "old_name",
+          "new_name"
+        ],
+        "title": "AliasRenameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Set the default compartment OCID for an alias.",
+      "display_name": "Set default compartment for OCI alias",
+      "id": "oci.alias.set-default-compartment",
+      "params_schema": {
+        "properties": {
+          "alias_name": {
+            "title": "Alias Name",
+            "type": "string"
+          },
+          "compartment": {
+            "title": "Compartment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias_name",
+          "compartment"
+        ],
+        "title": "AliasSetCompartmentParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "OCI ARM Ampere A1 capacity poller status.",
+      "display_name": "ARM capacity status",
+      "id": "oci.arm_status",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native",
+        "provider:oci"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Attach a block volume to an instance (oci compute volume-attachment attach).",
+      "display_name": "Attach OCI block volume",
+      "id": "oci.bv.attachment.attach",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "is_read_only": {
+            "default": false,
+            "title": "Is Read Only",
+            "type": "boolean"
+          },
+          "is_shareable": {
+            "default": false,
+            "title": "Is Shareable",
+            "type": "boolean"
+          },
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id",
+          "volume_id"
+        ],
+        "title": "AttachVolumeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Detach a block volume from an instance (oci compute volume-attachment detach).",
+      "display_name": "Detach OCI block volume",
+      "id": "oci.bv.attachment.detach",
+      "params_schema": {
+        "properties": {
+          "volume_attachment_id": {
+            "title": "Volume Attachment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_attachment_id"
+        ],
+        "title": "DetachVolumeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List volume attachments (oci compute volume-attachment list).",
+      "display_name": "List OCI volume attachments",
+      "id": "oci.bv.attachment.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Instance Id"
+          },
+          "volume_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Volume Id"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "ListAttachmentsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a block volume (oci bv volume create).",
+      "display_name": "Create OCI block volume",
+      "id": "oci.bv.volume.create",
+      "params_schema": {
+        "properties": {
+          "availability_domain": {
+            "title": "Availability Domain",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "size_in_gbs": {
+            "title": "Size In Gbs",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "availability_domain",
+          "size_in_gbs"
+        ],
+        "title": "VolumeCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a block volume (oci bv volume delete).",
+      "display_name": "Delete OCI block volume",
+      "id": "oci.bv.volume.delete",
+      "params_schema": {
+        "properties": {
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id"
+        ],
+        "title": "VolumeDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe one block volume (oci bv volume get).",
+      "display_name": "Get OCI block volume",
+      "id": "oci.bv.volume.get",
+      "params_schema": {
+        "properties": {
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id"
+        ],
+        "title": "VolumeGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List block volumes (oci bv volume list).",
+      "display_name": "List OCI block volumes",
+      "id": "oci.bv.volume.list",
+      "params_schema": {
+        "properties": {
+          "availability_domain": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Availability Domain"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "VolumeListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an OKE cluster (oci ce cluster create); async work-request.",
+      "display_name": "Create OKE cluster",
+      "id": "oci.ce.cluster.create",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "endpoint_subnet_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Endpoint Subnet Id"
+          },
+          "kubernetes_version": {
+            "title": "Kubernetes Version",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "name",
+          "vcn_id",
+          "kubernetes_version"
+        ],
+        "title": "ClusterCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an OKE cluster (oci ce cluster delete).",
+      "display_name": "Delete OKE cluster",
+      "id": "oci.ce.cluster.delete",
+      "params_schema": {
+        "properties": {
+          "cluster_id": {
+            "title": "Cluster Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster_id"
+        ],
+        "title": "ClusterDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List OKE clusters (oci ce cluster list).",
+      "display_name": "List OKE clusters",
+      "id": "oci.ce.cluster.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "ClusterListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an OKE node pool (oci ce node-pool create); async work-request.",
+      "display_name": "Create OKE node pool",
+      "id": "oci.ce.nodepool.create",
+      "params_schema": {
+        "properties": {
+          "cluster_id": {
+            "title": "Cluster Id",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "kubernetes_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Kubernetes Version"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "node_shape": {
+            "title": "Node Shape",
+            "type": "string"
+          },
+          "placement_configs": {
+            "items": {},
+            "title": "Placement Configs",
+            "type": "array"
+          },
+          "size": {
+            "title": "Size",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "compartment_id",
+          "name",
+          "node_shape",
+          "size",
+          "placement_configs"
+        ],
+        "title": "NodePoolCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an OKE node pool (oci ce node-pool delete).",
+      "display_name": "Delete OKE node pool",
+      "id": "oci.ce.nodepool.delete",
+      "params_schema": {
+        "properties": {
+          "node_pool_id": {
+            "title": "Node Pool Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node_pool_id"
+        ],
+        "title": "NodePoolDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one OKE node pool (oci ce node-pool get).",
+      "display_name": "Get OKE node pool",
+      "id": "oci.ce.nodepool.get",
+      "params_schema": {
+        "properties": {
+          "node_pool_id": {
+            "title": "Node Pool Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node_pool_id"
+        ],
+        "title": "NodePoolGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List OKE node pools (oci ce node-pool list).",
+      "display_name": "List OKE node pools",
+      "id": "oci.ce.nodepool.list",
+      "params_schema": {
+        "properties": {
+          "cluster_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cluster Id"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "NodePoolListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List images (oci compute image list).",
+      "display_name": "List OCI compute images",
+      "id": "oci.compute.images.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "operating_system": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Operating System"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "ImageListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Run START/STOP/SOFTRESET/RESET (oci compute instance action). STOP is ARM-guarded.",
+      "display_name": "OCI compute instance lifecycle action",
+      "id": "oci.compute.instances.action",
+      "params_schema": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id",
+          "action"
+        ],
+        "title": "InstanceActionParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one instance (oci compute instance get).",
+      "display_name": "Get OCI compute instance",
+      "id": "oci.compute.instances.get",
+      "params_schema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "InstanceRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Launch a new OCI compute instance via OciProvisionFacade (oci compute instance launch). Free-tier guardrails enforced in the facade.",
+      "display_name": "Launch OCI compute instance (provision facade)",
+      "id": "oci.compute.instances.launch",
+      "params_schema": {
+        "properties": {
+          "request": {
+            "title": "Request"
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "title": "VmCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "compute",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List instances (oci compute instance list).",
+      "display_name": "List OCI compute instances",
+      "id": "oci.compute.instances.list",
+      "params_schema": {
+        "properties": {},
+        "title": "InstanceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Terminate an instance (oci compute instance terminate). ARM A1.Flex instances are refused at the handler.",
+      "display_name": "Terminate OCI compute instance",
+      "id": "oci.compute.instances.terminate",
+      "params_schema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "preserve_boot_volume": {
+            "default": false,
+            "title": "Preserve Boot Volume",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "InstanceTerminateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Terminate a registered OCI instance (two-phase: typed-name gated preview then confirm; the adapter's ARM protection is absolute).",
+      "display_name": "Terminate OCI instance (typed-name confirmed)",
+      "id": "oci.compute.instances.terminate-confirmed",
+      "params_schema": {
+        "description": "Terminate request; ``reason`` is required (DEC-Q5 \u2014 audit justification\non a destructive op) and ``typed_name`` must match the instance display\nname exactly for the dry-run to stage.",
+        "properties": {
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "typed_name": {
+            "title": "Typed Name",
+            "type": "string"
+          },
+          "username": {
+            "default": "",
+            "title": "Username",
+            "type": "string"
+          },
+          "vm_external_id": {
+            "title": "Vm External Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vm_external_id",
+          "typed_name",
+          "reason"
+        ],
+        "title": "OciTerminateParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "chatbot",
+        "native",
+        "provider:oci"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "List shapes (oci compute shape list).",
+      "display_name": "List OCI compute shapes",
+      "id": "oci.compute.shapes.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "ShapeListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a container instance (oci container-instances container-instance create).",
+      "display_name": "Create OCI container instance",
+      "id": "oci.container.instance.create",
+      "params_schema": {
+        "properties": {
+          "availability_domain": {
+            "title": "Availability Domain",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "containers": {
+            "items": {},
+            "secret": true,
+            "title": "Containers",
+            "type": "array"
+          },
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "shape": {
+            "title": "Shape",
+            "type": "string"
+          },
+          "shape_config": {
+            "additionalProperties": true,
+            "title": "Shape Config",
+            "type": "object"
+          },
+          "vnics": {
+            "items": {},
+            "title": "Vnics",
+            "type": "array"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "availability_domain",
+          "shape",
+          "shape_config",
+          "containers",
+          "vnics"
+        ],
+        "title": "CICreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a container instance (oci container-instances container-instance delete).",
+      "display_name": "Delete OCI container instance",
+      "id": "oci.container.instance.delete",
+      "params_schema": {
+        "properties": {
+          "container_instance_id": {
+            "title": "Container Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "container_instance_id"
+        ],
+        "title": "CIRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one container instance (oci container-instances container-instance get).",
+      "display_name": "Get OCI container instance",
+      "id": "oci.container.instance.get",
+      "params_schema": {
+        "properties": {
+          "container_instance_id": {
+            "title": "Container Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "container_instance_id"
+        ],
+        "title": "CIRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List container instances (oci container-instances container-instance list).",
+      "display_name": "List OCI container instances",
+      "id": "oci.container.instance.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "CIListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Restart a container instance (oci container-instances container-instance restart).",
+      "display_name": "Restart OCI container instance",
+      "id": "oci.container.instance.restart",
+      "params_schema": {
+        "properties": {
+          "container_instance_id": {
+            "title": "Container Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "container_instance_id"
+        ],
+        "title": "CIRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Start a container instance (oci container-instances container-instance start).",
+      "display_name": "Start OCI container instance",
+      "id": "oci.container.instance.start",
+      "params_schema": {
+        "properties": {
+          "container_instance_id": {
+            "title": "Container Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "container_instance_id"
+        ],
+        "title": "CIRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a container instance (oci container-instances container-instance stop).",
+      "display_name": "Stop OCI container instance",
+      "id": "oci.container.instance.stop",
+      "params_schema": {
+        "properties": {
+          "container_instance_id": {
+            "title": "Container Instance Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "container_instance_id"
+        ],
+        "title": "CIRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Clear the active tenancy context (oci context clear).",
+      "display_name": "Clear active OCI tenancy context",
+      "id": "oci.context.clear",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextClearParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Activate a tenancy alias as the active context (oci context set).",
+      "display_name": "Set active OCI tenancy context",
+      "id": "oci.context.set",
+      "params_schema": {
+        "properties": {
+          "alias_name": {
+            "title": "Alias Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias_name"
+        ],
+        "title": "ContextSetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show the current active tenancy context (oci context show).",
+      "display_name": "Show active OCI tenancy context",
+      "id": "oci.context.show",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show current month OCI spending via UsageapiClient (oci cost current). FREE \u2014 included with OCI account.",
+      "display_name": "OCI current month spending",
+      "id": "oci.cost.current",
+      "params_schema": {
+        "properties": {
+          "period": {
+            "title": "Period",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "period"
+        ],
+        "title": "CostCurrentParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "billing",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show OCI spending history (last 7 days) (oci cost history). FREE \u2014 included with OCI account.",
+      "display_name": "OCI spending history",
+      "id": "oci.cost.history",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "CostHistoryParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "billing",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an Autonomous Database (oci db autonomous-database create).",
+      "display_name": "Create OCI Autonomous Database",
+      "id": "oci.db.adb.create",
+      "params_schema": {
+        "properties": {
+          "admin_password": {
+            "secret": true,
+            "title": "Admin Password",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "compute_count": {
+            "default": 2,
+            "title": "Compute Count",
+            "type": "number"
+          },
+          "db_name": {
+            "title": "Db Name",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "is_free_tier": {
+            "default": true,
+            "title": "Is Free Tier",
+            "type": "boolean"
+          },
+          "private_endpoint_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Private Endpoint Ip"
+          },
+          "storage_gb": {
+            "default": 20,
+            "title": "Storage Gb",
+            "type": "integer"
+          },
+          "subnet_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Subnet Id"
+          },
+          "workload": {
+            "title": "Workload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "db_name",
+          "admin_password",
+          "display_name",
+          "workload"
+        ],
+        "title": "AdbCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an Autonomous Database (oci db autonomous-database delete).",
+      "display_name": "Delete OCI Autonomous Database",
+      "id": "oci.db.adb.delete",
+      "params_schema": {
+        "properties": {
+          "autonomous_database_id": {
+            "title": "Autonomous Database Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "autonomous_database_id"
+        ],
+        "title": "AdbDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one Autonomous Database (oci db autonomous-database get).",
+      "display_name": "Get OCI Autonomous Database",
+      "id": "oci.db.adb.get",
+      "params_schema": {
+        "properties": {
+          "autonomous_database_id": {
+            "title": "Autonomous Database Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "autonomous_database_id"
+        ],
+        "title": "AdbGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List Autonomous Databases (oci db autonomous-database list).",
+      "display_name": "List OCI Autonomous Databases",
+      "id": "oci.db.adb.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "AdbListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Start a stopped Autonomous Database (oci db autonomous-database start).",
+      "display_name": "Start OCI Autonomous Database",
+      "id": "oci.db.adb.start",
+      "params_schema": {
+        "properties": {
+          "autonomous_database_id": {
+            "title": "Autonomous Database Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "autonomous_database_id"
+        ],
+        "title": "AdbStartParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop an Autonomous Database (oci db autonomous-database stop).",
+      "display_name": "Stop OCI Autonomous Database",
+      "id": "oci.db.adb.stop",
+      "params_schema": {
+        "properties": {
+          "autonomous_database_id": {
+            "title": "Autonomous Database Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "autonomous_database_id"
+        ],
+        "title": "AdbStopParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a MySQL HeatWave DB System (oci mysql db-system create).",
+      "display_name": "Create OCI MySQL HeatWave DB System",
+      "id": "oci.db.mysql.create",
+      "params_schema": {
+        "properties": {
+          "admin_password": {
+            "secret": true,
+            "title": "Admin Password",
+            "type": "string"
+          },
+          "admin_username": {
+            "title": "Admin Username",
+            "type": "string"
+          },
+          "availability_domain": {
+            "title": "Availability Domain",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "data_storage_size_in_gbs": {
+            "default": 50,
+            "title": "Data Storage Size In Gbs",
+            "type": "integer"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "ip_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ip Address"
+          },
+          "shape_name": {
+            "default": "MySQL.Free",
+            "title": "Shape Name",
+            "type": "string"
+          },
+          "subnet_id": {
+            "title": "Subnet Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "subnet_id",
+          "display_name",
+          "admin_username",
+          "admin_password",
+          "availability_domain"
+        ],
+        "title": "MysqlCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a MySQL DB System (oci mysql db-system delete).",
+      "display_name": "Delete OCI MySQL HeatWave DB System",
+      "id": "oci.db.mysql.delete",
+      "params_schema": {
+        "properties": {
+          "db_system_id": {
+            "title": "Db System Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_system_id"
+        ],
+        "title": "MysqlDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one MySQL DB System (oci mysql db-system get).",
+      "display_name": "Get OCI MySQL HeatWave DB System",
+      "id": "oci.db.mysql.get",
+      "params_schema": {
+        "properties": {
+          "db_system_id": {
+            "title": "Db System Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_system_id"
+        ],
+        "title": "MysqlGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List MySQL HeatWave DB Systems (oci mysql db-system list).",
+      "display_name": "List OCI MySQL HeatWave DB Systems",
+      "id": "oci.db.mysql.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id"
+        ],
+        "title": "MysqlListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Start a stopped MySQL DB System (oci mysql db-system start).",
+      "display_name": "Start OCI MySQL HeatWave DB System",
+      "id": "oci.db.mysql.start",
+      "params_schema": {
+        "properties": {
+          "db_system_id": {
+            "title": "Db System Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_system_id"
+        ],
+        "title": "MysqlStartParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a MySQL DB System (oci mysql db-system stop).",
+      "display_name": "Stop OCI MySQL HeatWave DB System",
+      "id": "oci.db.mysql.stop",
+      "params_schema": {
+        "properties": {
+          "db_system_id": {
+            "title": "Db System Id",
+            "type": "string"
+          },
+          "shutdown_type": {
+            "default": "FAST",
+            "title": "Shutdown Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_system_id"
+        ],
+        "title": "MysqlStopParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show free tier usage vs limits for all validatable resources (oci freetier status).",
+      "display_name": "OCI free tier status",
+      "id": "oci.freetier.status",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "FreetierStatusParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "billing",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Assign a secondary private IP to a VNIC (oci network ip assign).",
+      "display_name": "Assign OCI private IP",
+      "id": "oci.network.ip.assign",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "ip_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ip Address"
+          },
+          "vnic_id": {
+            "title": "Vnic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vnic_id"
+        ],
+        "title": "IpAssignParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List all private IPs in a subnet (oci network ip list).",
+      "display_name": "List OCI private IPs",
+      "id": "oci.network.ip.list",
+      "params_schema": {
+        "properties": {
+          "subnet_id": {
+            "title": "Subnet Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_id"
+        ],
+        "title": "IpListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Move a secondary private IP to a different VNIC (oci network ip move).",
+      "display_name": "Move OCI private IP",
+      "id": "oci.network.ip.move",
+      "params_schema": {
+        "properties": {
+          "private_ip_id": {
+            "title": "Private Ip Id",
+            "type": "string"
+          },
+          "target_vnic_id": {
+            "title": "Target Vnic Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "private_ip_id",
+          "target_vnic_id"
+        ],
+        "title": "IpMoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove a secondary private IP (oci network ip unassign).",
+      "display_name": "Unassign OCI private IP",
+      "id": "oci.network.ip.unassign",
+      "params_schema": {
+        "properties": {
+          "private_ip_id": {
+            "title": "Private Ip Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "private_ip_id"
+        ],
+        "title": "IpUnassignParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a Network Security Group (oci network nsg create).",
+      "display_name": "Create OCI NSG",
+      "id": "oci.network.nsg.create",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "vcn_id"
+        ],
+        "title": "NsgCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a Network Security Group (oci network nsg delete).",
+      "display_name": "Delete OCI NSG",
+      "id": "oci.network.nsg.delete",
+      "params_schema": {
+        "properties": {
+          "nsg_id": {
+            "title": "Nsg Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "nsg_id"
+        ],
+        "title": "NsgDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List Network Security Groups (oci network nsg list).",
+      "display_name": "List OCI NSGs",
+      "id": "oci.network.nsg.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "vcn_id"
+        ],
+        "title": "NsgListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Add security rules to an NSG (oci network nsg rules add).",
+      "display_name": "Add OCI NSG rules",
+      "id": "oci.network.nsg.rules.add",
+      "params_schema": {
+        "properties": {
+          "nsg_id": {
+            "title": "Nsg Id",
+            "type": "string"
+          },
+          "rules": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Rules",
+            "type": "array"
+          }
+        },
+        "required": [
+          "nsg_id",
+          "rules"
+        ],
+        "title": "NsgRulesAddParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List security rules in an NSG (oci network nsg rules list).",
+      "display_name": "List OCI NSG rules",
+      "id": "oci.network.nsg.rules.list",
+      "params_schema": {
+        "properties": {
+          "nsg_id": {
+            "title": "Nsg Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "nsg_id"
+        ],
+        "title": "NsgRulesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Remove security rules from an NSG (oci network nsg rules remove).",
+      "display_name": "Remove OCI NSG rules",
+      "id": "oci.network.nsg.rules.remove",
+      "params_schema": {
+        "properties": {
+          "nsg_id": {
+            "title": "Nsg Id",
+            "type": "string"
+          },
+          "rule_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Rule Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "nsg_id",
+          "rule_ids"
+        ],
+        "title": "NsgRulesRemoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Add a rule to a security list (oci network seclist add-rule).",
+      "display_name": "Add OCI security list rule",
+      "id": "oci.network.seclist.add_rule",
+      "params_schema": {
+        "properties": {
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Destination"
+          },
+          "direction": {
+            "title": "Direction",
+            "type": "string"
+          },
+          "port_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Port Max"
+          },
+          "port_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Port Min"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
+          },
+          "seclist_id": {
+            "title": "Seclist Id",
+            "type": "string"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Source"
+          }
+        },
+        "required": [
+          "seclist_id",
+          "direction",
+          "protocol"
+        ],
+        "title": "SeclistAddRuleParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove a matching rule from a security list (oci network seclist remove-rule).",
+      "display_name": "Remove OCI security list rule",
+      "id": "oci.network.seclist.remove_rule",
+      "params_schema": {
+        "properties": {
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Destination"
+          },
+          "direction": {
+            "title": "Direction",
+            "type": "string"
+          },
+          "port_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Port Min"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
+          },
+          "seclist_id": {
+            "title": "Seclist Id",
+            "type": "string"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Source"
+          }
+        },
+        "required": [
+          "seclist_id",
+          "direction",
+          "protocol"
+        ],
+        "title": "SeclistRemoveRuleParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Add a route rule to a route table (oci network seclist add-route).",
+      "display_name": "Add OCI route rule",
+      "id": "oci.network.seclist.routes.add",
+      "params_schema": {
+        "properties": {
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "network_entity_id": {
+            "title": "Network Entity Id",
+            "type": "string"
+          },
+          "route_table_id": {
+            "title": "Route Table Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "route_table_id",
+          "destination",
+          "network_entity_id"
+        ],
+        "title": "RouteAddParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove a route rule by destination CIDR (oci network seclist remove-route).",
+      "display_name": "Remove OCI route rule",
+      "id": "oci.network.seclist.routes.remove",
+      "params_schema": {
+        "properties": {
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "route_table_id": {
+            "title": "Route Table Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "route_table_id",
+          "destination"
+        ],
+        "title": "RouteRemoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show route rules in a route table (oci network seclist routes).",
+      "display_name": "Show OCI route table rules",
+      "id": "oci.network.seclist.routes.show",
+      "params_schema": {
+        "properties": {
+          "route_table_id": {
+            "title": "Route Table Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "route_table_id"
+        ],
+        "title": "RouteShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show all rules in a security list (oci network seclist show).",
+      "display_name": "Show OCI security list",
+      "id": "oci.network.seclist.show",
+      "params_schema": {
+        "properties": {
+          "seclist_id": {
+            "title": "Seclist Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "seclist_id"
+        ],
+        "title": "SeclistShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a subnet (oci network subnet create).",
+      "display_name": "Create OCI subnet",
+      "id": "oci.network.subnet.create",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "prohibit_public_ip": {
+            "default": false,
+            "title": "Prohibit Public Ip",
+            "type": "boolean"
+          },
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "vcn_id",
+          "display_name",
+          "cidr_block"
+        ],
+        "title": "SubnetCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a subnet (oci network subnet delete).",
+      "display_name": "Delete OCI subnet",
+      "id": "oci.network.subnet.delete",
+      "params_schema": {
+        "properties": {
+          "subnet_id": {
+            "title": "Subnet Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_id"
+        ],
+        "title": "SubnetDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List subnets (oci network subnet list).",
+      "display_name": "List OCI subnets",
+      "id": "oci.network.subnet.list",
+      "params_schema": {
+        "properties": {},
+        "title": "SubnetListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a VCN (oci network vcn create).",
+      "display_name": "Create OCI VCN",
+      "id": "oci.network.vcn.create",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "dns_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Dns Label"
+          }
+        },
+        "required": [
+          "compartment_id",
+          "display_name",
+          "cidr_block"
+        ],
+        "title": "VcnCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a VCN (oci network vcn delete).",
+      "display_name": "Delete OCI VCN",
+      "id": "oci.network.vcn.delete",
+      "params_schema": {
+        "properties": {
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vcn_id"
+        ],
+        "title": "VcnDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one VCN (oci network vcn get).",
+      "display_name": "Get OCI VCN",
+      "id": "oci.network.vcn.get",
+      "params_schema": {
+        "properties": {
+          "vcn_id": {
+            "title": "Vcn Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vcn_id"
+        ],
+        "title": "VcnGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List VCNs (oci network vcn list).",
+      "display_name": "List OCI VCNs",
+      "id": "oci.network.vcn.list",
+      "params_schema": {
+        "properties": {},
+        "title": "VcnListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "network",
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an Object Storage bucket (oci os bucket create).",
+      "display_name": "Create OCI bucket",
+      "id": "oci.os.bucket.create",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "compartment_id",
+          "name"
+        ],
+        "title": "BucketCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an empty Object Storage bucket (oci os bucket delete).",
+      "display_name": "Delete OCI bucket",
+      "id": "oci.os.bucket.delete",
+      "params_schema": {
+        "properties": {
+          "bucket_name": {
+            "title": "Bucket Name",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "bucket_name"
+        ],
+        "title": "BucketDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List Object Storage buckets (oci os bucket list).",
+      "display_name": "List OCI buckets",
+      "id": "oci.os.bucket.list",
+      "params_schema": {
+        "properties": {
+          "compartment_id": {
+            "title": "Compartment Id",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "compartment_id"
+        ],
+        "title": "BucketListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Delete an Object Storage object (oci os object delete).",
+      "display_name": "Delete OCI object",
+      "id": "oci.os.object.delete",
+      "params_schema": {
+        "properties": {
+          "bucket_name": {
+            "title": "Bucket Name",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          },
+          "object_name": {
+            "title": "Object Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "bucket_name",
+          "object_name"
+        ],
+        "title": "ObjectDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Download an Object Storage object to a file (oci os object get).",
+      "display_name": "Download OCI object",
+      "id": "oci.os.object.get",
+      "params_schema": {
+        "properties": {
+          "bucket_name": {
+            "title": "Bucket Name",
+            "type": "string"
+          },
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "bucket_name",
+          "name",
+          "file"
+        ],
+        "title": "ObjectGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List objects in a bucket (oci os object list).",
+      "display_name": "List OCI objects",
+      "id": "oci.os.object.list",
+      "params_schema": {
+        "properties": {
+          "bucket_name": {
+            "title": "Bucket Name",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          },
+          "prefix": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prefix"
+          }
+        },
+        "required": [
+          "namespace",
+          "bucket_name"
+        ],
+        "title": "ObjectListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Upload a file as an Object Storage object (oci os object put).",
+      "display_name": "Upload OCI object",
+      "id": "oci.os.object.put",
+      "params_schema": {
+        "properties": {
+          "bucket_name": {
+            "title": "Bucket Name",
+            "type": "string"
+          },
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "namespace": {
+            "title": "Namespace",
+            "type": "string"
+          },
+          "object_name": {
+            "title": "Object Name",
+            "type": "string"
+          },
+          "size_guard_mb": {
+            "default": 1024,
+            "title": "Size Guard Mb",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "namespace",
+          "bucket_name",
+          "object_name",
+          "file"
+        ],
+        "title": "ObjectPutParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one preference value (oci prefs get).",
+      "display_name": "Get OCI tenancy preference",
+      "id": "oci.prefs.get",
+      "params_schema": {
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenancy_alias",
+          "key"
+        ],
+        "title": "PrefsGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List all preferences for a tenancy (oci prefs list).",
+      "display_name": "List OCI tenancy preferences",
+      "id": "oci.prefs.list",
+      "params_schema": {
+        "properties": {
+          "fmt": {
+            "default": "table",
+            "title": "Fmt",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenancy_alias"
+        ],
+        "title": "PrefsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Upsert a preference value (oci prefs set).",
+      "display_name": "Set OCI tenancy preference",
+      "id": "oci.prefs.set",
+      "params_schema": {
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenancy_alias",
+          "key",
+          "value"
+        ],
+        "title": "PrefsSetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Provision an OCI compute instance (two-phase: preview then confirm; free-tier guardrails enforced in the facade).",
+      "display_name": "Provision OCI VM",
+      "id": "oci.provision",
+      "params_schema": {
+        "additionalProperties": false,
+        "description": "Provision request plus the requesting actor for the resource tag.",
+        "properties": {
+          "actor": {
+            "default": "chatbot",
+            "title": "Actor",
+            "type": "string"
+          },
+          "assign_public_ip": {
+            "default": true,
+            "title": "Assign Public Ip",
+            "type": "boolean"
+          },
+          "block_volume_gbs": {
+            "default": 0,
+            "maximum": 32768,
+            "minimum": 0,
+            "title": "Block Volume Gbs",
+            "type": "integer"
+          },
+          "boot_volume_gbs": {
+            "default": 50,
+            "maximum": 32768,
+            "minimum": 50,
+            "title": "Boot Volume Gbs",
+            "type": "integer"
+          },
+          "cloud_init_addons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Cloud Init Addons",
+            "type": "array"
+          },
+          "confirm_token": {
+            "default": "",
+            "description": "One-shot token required for chatbot non-dry-run; CLI ignores",
+            "title": "Confirm Token",
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Render plan without launching",
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "image_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Explicit image OCID; None \u2192 latest",
+            "title": "Image Id"
+          },
+          "label": {
+            "description": "Resource label (e.g. arm-juliet)",
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "memory_gbs": {
+            "default": 6.0,
+            "exclusiveMinimum": 0,
+            "maximum": 512,
+            "title": "Memory Gbs",
+            "type": "number"
+          },
+          "ocpus": {
+            "default": 1.0,
+            "exclusiveMinimum": 0,
+            "maximum": 64,
+            "title": "Ocpus",
+            "type": "number"
+          },
+          "os_distro": {
+            "default": "Canonical Ubuntu",
+            "description": "OS family for image lookup",
+            "title": "Os Distro",
+            "type": "string"
+          },
+          "shape": {
+            "default": "VM.Standard.A1.Flex",
+            "description": "Compute shape",
+            "title": "Shape",
+            "type": "string"
+          },
+          "ssh_public_key": {
+            "default": "",
+            "description": "SSH key for instance metadata",
+            "title": "Ssh Public Key",
+            "type": "string"
+          },
+          "subnet_id": {
+            "description": "Target subnet OCID",
+            "minLength": 1,
+            "title": "Subnet Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "description": "OCI tenancy alias (registry key)",
+            "minLength": 1,
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenancy_alias",
+          "label",
+          "subnet_id"
+        ],
+        "title": "OciProvisionParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "chatbot",
+        "native",
+        "provider:oci"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "Fetch all OCI resources with IPs and upsert into CloudResource table (oci sync resources).",
+      "display_name": "Sync OCI resources to DB",
+      "id": "oci.sync.resources",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "SyncResourcesParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Provision a new OCI compute instance via OciProvisionFacade (oci vm create). Free-tier guardrails enforced in the facade.",
+      "display_name": "Create OCI VM (provision facade)",
+      "id": "oci.vm.create",
+      "params_schema": {
+        "properties": {
+          "request": {
+            "title": "Request"
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "title": "VmCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "compute",
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one instance (oci vm get).",
+      "display_name": "Get OCI VM (deprecated grammar)",
+      "id": "oci.vm.get",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Health-check an instance (oci vm health).",
+      "display_name": "OCI VM health (deprecated grammar)",
+      "id": "oci.vm.health",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List instances (oci vm list).",
+      "display_name": "List OCI VMs (deprecated grammar)",
+      "id": "oci.vm.list",
+      "params_schema": {
+        "properties": {},
+        "title": "VmListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Reinstall the OS / replace boot volume (oci vm reinstall). Allowed for ARM (recovery path); gated by typed confirmation in the CLI.",
+      "display_name": "Reinstall OCI VM OS",
+      "id": "oci.vm.reinstall",
+      "params_schema": {
+        "properties": {
+          "image_id": {
+            "title": "Image Id"
+          },
+          "preserve_old_bv": {
+            "default": true,
+            "title": "Preserve Old Bv",
+            "type": "boolean"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "image_id"
+        ],
+        "title": "VmReinstallParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Start an instance (oci vm start).",
+      "display_name": "Start OCI VM (deprecated grammar)",
+      "id": "oci.vm.start",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop an instance (oci vm stop). ARM-guarded.",
+      "display_name": "Stop OCI VM (deprecated grammar)",
+      "id": "oci.vm.stop",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Terminate an instance (oci vm terminate). ARM A1.Flex refused at the handler.",
+      "display_name": "Terminate OCI VM (deprecated grammar)",
+      "id": "oci.vm.terminate",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "oci",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "OCI compute instances.",
+      "display_name": "List OCI instances",
+      "id": "oci.vms",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native",
+        "provider:oci"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Registered cloud providers.",
+      "display_name": "List providers",
+      "id": "providers.list",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Clone an LXC template container (pve lxc clone).",
+      "display_name": "Clone LXC container",
+      "id": "pve.lxc.clone",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "default": "",
+            "title": "Hostname",
+            "type": "string"
+          },
+          "src_ctid": {
+            "title": "Src Ctid",
+            "type": "integer"
+          },
+          "start": {
+            "default": true,
+            "title": "Start",
+            "type": "boolean"
+          },
+          "storage": {
+            "default": "local-zfs",
+            "title": "Storage",
+            "type": "string"
+          },
+          "vlan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vlan Id"
+          },
+          "vmid": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vmid"
+          }
+        },
+        "required": [
+          "src_ctid"
+        ],
+        "title": "LxcCloneParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show full container configuration (pve lxc config).",
+      "display_name": "Show LXC container config",
+      "id": "pve.lxc.config",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a new LXC container (pve lxc create).",
+      "display_name": "Create LXC container",
+      "id": "pve.lxc.create",
+      "params_schema": {
+        "properties": {
+          "cores": {
+            "default": 1,
+            "title": "Cores",
+            "type": "integer"
+          },
+          "hostname": {
+            "default": "",
+            "title": "Hostname",
+            "type": "string"
+          },
+          "memory": {
+            "default": 512,
+            "title": "Memory",
+            "type": "integer"
+          },
+          "nameserver": {
+            "default": "",
+            "title": "Nameserver",
+            "type": "string"
+          },
+          "net0": {
+            "default": "name=eth0,bridge=vmbr0,ip=dhcp,type=veth",
+            "title": "Net0",
+            "type": "string"
+          },
+          "ostemplate": {
+            "title": "Ostemplate",
+            "type": "string"
+          },
+          "rootfs_size": {
+            "default": 8,
+            "title": "Rootfs Size",
+            "type": "integer"
+          },
+          "ssh_public_keys": {
+            "default": "",
+            "title": "Ssh Public Keys",
+            "type": "string"
+          },
+          "start": {
+            "default": false,
+            "title": "Start",
+            "type": "boolean"
+          },
+          "storage": {
+            "default": "local-zfs",
+            "title": "Storage",
+            "type": "string"
+          },
+          "swap": {
+            "default": 256,
+            "title": "Swap",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ostemplate"
+        ],
+        "title": "LxcCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop and destroy a container (pve lxc delete).",
+      "display_name": "Delete LXC container",
+      "id": "pve.lxc.delete",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show container status (pve lxc describe).",
+      "display_name": "Describe LXC container",
+      "id": "pve.lxc.describe",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List LXC containers (pve lxc list).",
+      "display_name": "List LXC containers",
+      "id": "pve.lxc.list",
+      "params_schema": {
+        "properties": {},
+        "title": "LxcListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Resize CPU/memory/swap (pve lxc resize).",
+      "display_name": "Resize LXC container",
+      "id": "pve.lxc.resize",
+      "params_schema": {
+        "properties": {
+          "cores": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cores"
+          },
+          "memory": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Memory"
+          },
+          "swap": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Swap"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcResizeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Set a static IP on a container NIC (pve lxc set-ip).",
+      "display_name": "Set LXC static IP",
+      "id": "pve.lxc.set-ip",
+      "params_schema": {
+        "properties": {
+          "gateway": {
+            "title": "Gateway",
+            "type": "string"
+          },
+          "ip": {
+            "title": "Ip",
+            "type": "string"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid",
+          "ip",
+          "gateway"
+        ],
+        "title": "LxcSetIpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Start a container (pve lxc start).",
+      "display_name": "Start LXC container",
+      "id": "pve.lxc.start",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a container (pve lxc stop).",
+      "display_name": "Stop LXC container",
+      "id": "pve.lxc.stop",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Check whether a bridge is VLAN-aware (pve network bridge check).",
+      "display_name": "Check bridge VLAN-awareness",
+      "id": "pve.network.bridge.check",
+      "params_schema": {
+        "properties": {
+          "bridge": {
+            "default": "vmbr0",
+            "title": "Bridge",
+            "type": "string"
+          },
+          "node": {
+            "title": "Node",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node"
+        ],
+        "title": "BridgeCheckParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Set the VLAN tag on a NIC (pve network vlan set).",
+      "display_name": "Set VM/LXC VLAN tag",
+      "id": "pve.network.vlan.set",
+      "params_schema": {
+        "properties": {
+          "nic": {
+            "default": "net0",
+            "title": "Nic",
+            "type": "string"
+          },
+          "node": {
+            "title": "Node",
+            "type": "string"
+          },
+          "vlan_id": {
+            "title": "Vlan Id",
+            "type": "integer"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "node",
+          "vmid",
+          "vlan_id"
+        ],
+        "title": "VlanSetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show node resource usage (pve node describe).",
+      "display_name": "Describe Proxmox node",
+      "id": "pve.node.describe",
+      "params_schema": {
+        "properties": {},
+        "title": "NodeStatusParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List cluster nodes (pve node list).",
+      "display_name": "List Proxmox nodes",
+      "id": "pve.node.list",
+      "params_schema": {
+        "properties": {},
+        "title": "NodeListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List storage pools (pve storage list).",
+      "display_name": "List Proxmox storage pools",
+      "id": "pve.storage.list",
+      "params_schema": {
+        "properties": {
+          "node": {
+            "title": "Node",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node"
+        ],
+        "title": "StorageListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List OS templates on a storage pool (pve storage templates list).",
+      "display_name": "List Proxmox OS templates",
+      "id": "pve.storage.templates.list",
+      "params_schema": {
+        "properties": {
+          "node": {
+            "title": "Node",
+            "type": "string"
+          },
+          "storage": {
+            "default": "local",
+            "title": "Storage",
+            "type": "string"
+          }
+        },
+        "required": [
+          "node"
+        ],
+        "title": "TemplatesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a QEMU VM (pve vm create).",
+      "display_name": "Create QEMU VM",
+      "id": "pve.vm.create",
+      "params_schema": {
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "Config",
+            "type": "object"
+          }
+        },
+        "required": [
+          "config"
+        ],
+        "title": "VmCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop and destroy a VM (pve vm delete).",
+      "display_name": "Delete QEMU VM",
+      "id": "pve.vm.delete",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show VM status (pve vm describe).",
+      "display_name": "Describe QEMU VM",
+      "id": "pve.vm.describe",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List QEMU VMs (pve vm list).",
+      "display_name": "List QEMU VMs",
+      "id": "pve.vm.list",
+      "params_schema": {
+        "properties": {},
+        "title": "VmListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Start a VM (pve vm start).",
+      "display_name": "Start QEMU VM",
+      "id": "pve.vm.start",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Gracefully shut down a VM (pve vm stop).",
+      "display_name": "Stop QEMU VM",
+      "id": "pve.vm.stop",
+      "params_schema": {
+        "properties": {
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Check a CIDR against existing allocations and the blocklist.",
+      "display_name": "Check a CIDR block",
+      "id": "registry.cidr.check",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ],
+        "title": "CidrCheckParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Render the environment access manifest (json or md).",
+      "display_name": "Get access manifest",
+      "id": "registry.manifest.get",
+      "params_schema": {
+        "properties": {
+          "format": {
+            "default": "json",
+            "title": "Format",
+            "type": "string"
+          }
+        },
+        "title": "ManifestParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List projects in the Nimbus environment registry.",
+      "display_name": "List registry projects",
+      "id": "registry.projects.list",
+      "params_schema": {
+        "properties": {},
+        "title": "ProjectListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Register a new project (two-phase: preview then confirm).",
+      "display_name": "Register a project",
+      "id": "registry.projects.register",
+      "params_schema": {
+        "properties": {
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "repo_url": {
+            "default": "",
+            "title": "Repo Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ProjectRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List environment slots, optionally filtered by project name.",
+      "display_name": "List environment slots",
+      "id": "registry.slots.list",
+      "params_schema": {
+        "properties": {
+          "project_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Project Name"
+          }
+        },
+        "title": "SlotListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Release a slot, freeing its target and ports (two-phase).",
+      "display_name": "Release an environment slot",
+      "id": "registry.slots.release",
+      "params_schema": {
+        "properties": {
+          "actor": {
+            "default": "mcp-agent",
+            "title": "Actor",
+            "type": "string"
+          },
+          "env_type": {
+            "title": "Env Type",
+            "type": "string"
+          },
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "slot_key": {
+            "default": "default",
+            "title": "Slot Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_name",
+          "env_type"
+        ],
+        "title": "SlotReleaseParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Reserve a slot for a project on a target (two-phase).",
+      "display_name": "Reserve an environment slot",
+      "id": "registry.slots.reserve",
+      "params_schema": {
+        "properties": {
+          "env_type": {
+            "title": "Env Type",
+            "type": "string"
+          },
+          "port_pool_id": {
+            "title": "Port Pool Id",
+            "type": "string"
+          },
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "requested_by": {
+            "default": "mcp-agent",
+            "title": "Requested By",
+            "type": "string"
+          },
+          "services": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Services",
+            "type": "array"
+          },
+          "slot_key": {
+            "default": "default",
+            "title": "Slot Key",
+            "type": "string"
+          },
+          "target_inventory_id": {
+            "title": "Target Inventory Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_name",
+          "env_type",
+          "target_inventory_id",
+          "port_pool_id"
+        ],
+        "title": "SlotReserveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List deployment targets, optionally filtered by provider.",
+      "display_name": "List deployment targets",
+      "id": "registry.targets.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider Id"
+          }
+        },
+        "title": "TargetListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Mark a finding dismissed (terminal-safe; promoted findings refused).",
+      "display_name": "Dismiss a finding",
+      "id": "security.review.dismiss",
+      "params_schema": {
+        "properties": {
+          "finding_id": {
+            "title": "Finding Id",
+            "type": "integer"
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id"
+        ],
+        "title": "DismissParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "review",
+        "security"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List persisted findings (filter by status/severity/run).",
+      "display_name": "List review findings",
+      "id": "security.review.list",
+      "params_schema": {
+        "properties": {
+          "limit": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "run_id": {
+            "default": "",
+            "title": "Run Id",
+            "type": "string"
+          },
+          "severity": {
+            "default": "",
+            "title": "Severity",
+            "type": "string"
+          },
+          "status": {
+            "default": "",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "title": "ReviewListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "review",
+        "security"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Convert an allow-listed finding into a staged resolution proposal.",
+      "display_name": "Promote a finding",
+      "id": "security.review.promote",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "type": "integer"
+          },
+          "finding_id": {
+            "title": "Finding Id",
+            "type": "integer"
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "proposed_cidr": {
+            "default": "",
+            "title": "Proposed Cidr",
+            "type": "string"
+          },
+          "proposed_ip": {
+            "default": "",
+            "title": "Proposed Ip",
+            "type": "string"
+          },
+          "proposed_vlan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Proposed Vlan Id"
+          }
+        },
+        "required": [
+          "finding_id",
+          "allocation_id"
+        ],
+        "title": "PromoteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "review",
+        "security"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Run the deterministic cross-provider rules review (dry-run -> confirm).",
+      "display_name": "Run rules review",
+      "id": "security.review.run",
+      "params_schema": {
+        "properties": {
+          "cloudflare": {
+            "default": "",
+            "title": "Cloudflare",
+            "type": "string"
+          },
+          "proxmox": {
+            "default": "",
+            "title": "Proxmox",
+            "type": "string"
+          },
+          "unifi": {
+            "default": "",
+            "title": "Unifi",
+            "type": "string"
+          }
+        },
+        "title": "ReviewRunParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "review",
+        "security"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Full detail of one finding, including remediation text.",
+      "display_name": "Show a finding",
+      "id": "security.review.show",
+      "params_schema": {
+        "properties": {
+          "finding_id": {
+            "title": "Finding Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "finding_id"
+        ],
+        "title": "FindingParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "review",
+        "security"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Registered scheduled tasks and their status.",
+      "display_name": "List scheduled tasks",
+      "id": "tasks.list",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Status snapshot for one scheduled task.",
+      "display_name": "Task status",
+      "id": "tasks.status",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "TaskNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Publish a hostname on the tunnel behind a mandatory Access app + policy (two-phase; Access is created before ingress/DNS and failures abort).",
+      "display_name": "Tunnel publish",
+      "id": "tunnel.publish",
+      "params_schema": {
+        "properties": {
+          "adopt": {
+            "default": false,
+            "title": "Adopt",
+            "type": "boolean"
+          },
+          "bypass_paths": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Bypass Paths",
+            "type": "array"
+          },
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "identity": {
+            "default": "",
+            "title": "Identity",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "service": {
+            "default": "",
+            "title": "Service",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          },
+          "zone_id": {
+            "default": "",
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "hostname"
+        ],
+        "title": "TunnelPublishParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "tunnel"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Tear down a published hostname: ingress route, DNS CNAME, Access apps (root + bypass sub-apps), and the persisted ingress row (two-phase).",
+      "display_name": "Tunnel unpublish",
+      "id": "tunnel.unpublish",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          },
+          "zone_id": {
+            "default": "",
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "hostname"
+        ],
+        "title": "TunnelUnpublishParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "tunnel"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove every client's fixed (reserved) IP on the controller.",
+      "display_name": "Clear all UniFi fixed-IP reservations",
+      "id": "unifi.network.clients.clear-fixed-ips",
+      "params_schema": {
+        "properties": {},
+        "title": "FixedIpClearAllParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List connected network clients (unifi network clients list).",
+      "display_name": "List UniFi clients",
+      "id": "unifi.network.clients.list",
+      "params_schema": {
+        "properties": {
+          "site": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Site"
+          }
+        },
+        "title": "ClientListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List clients that hold a fixed (reserved) IP.",
+      "display_name": "List UniFi fixed-IP reservations",
+      "id": "unifi.network.clients.list-fixed-ips",
+      "params_schema": {
+        "properties": {},
+        "title": "FixedIpListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Get one device by MAC (unifi network devices describe).",
+      "display_name": "Describe UniFi device",
+      "id": "unifi.network.devices.describe",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "DeviceRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List adopted devices (unifi network devices list).",
+      "display_name": "List UniFi devices",
+      "id": "unifi.network.devices.list",
+      "params_schema": {
+        "properties": {
+          "resource_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Resource Type"
+          }
+        },
+        "title": "DeviceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a firewall rule (unifi network firewall rules create).",
+      "display_name": "Create UniFi firewall rule",
+      "id": "unifi.network.firewall.rules.create",
+      "params_schema": {
+        "properties": {
+          "action": {
+            "default": "drop",
+            "title": "Action",
+            "type": "string"
+          },
+          "dst": {
+            "default": "",
+            "title": "Dst",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "protocol": {
+            "default": "all",
+            "title": "Protocol",
+            "type": "string"
+          },
+          "ruleset": {
+            "default": "LAN_IN",
+            "title": "Ruleset",
+            "type": "string"
+          },
+          "src": {
+            "default": "",
+            "title": "Src",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "FirewallRuleCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a firewall rule (unifi network firewall rules delete).",
+      "display_name": "Delete UniFi firewall rule",
+      "id": "unifi.network.firewall.rules.delete",
+      "params_schema": {
+        "properties": {
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_id"
+        ],
+        "title": "FirewallRuleDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List firewall rules (unifi network firewall rules list).",
+      "display_name": "List UniFi firewall rules",
+      "id": "unifi.network.firewall.rules.list",
+      "params_schema": {
+        "properties": {},
+        "title": "FirewallRuleListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Apply a profile to a switch port (unifi network port-profiles assign).",
+      "display_name": "Assign UniFi port profile",
+      "id": "unifi.network.port-profiles.assign",
+      "params_schema": {
+        "properties": {
+          "device_mac": {
+            "title": "Device Mac",
+            "type": "string"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer"
+          },
+          "profile_id": {
+            "title": "Profile Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_mac",
+          "port",
+          "profile_id"
+        ],
+        "title": "PortProfileAssignParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a port profile (unifi network port-profiles create).",
+      "display_name": "Create UniFi port profile",
+      "id": "unifi.network.port-profiles.create",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "native_vlan": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Native Vlan"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "PortProfileCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List switch port profiles (unifi network port-profiles list).",
+      "display_name": "List UniFi port profiles",
+      "id": "unifi.network.port-profiles.list",
+      "params_schema": {
+        "properties": {},
+        "title": "PortProfileListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a VLAN network (unifi network vlans create).",
+      "display_name": "Create UniFi VLAN",
+      "id": "unifi.network.vlans.create",
+      "params_schema": {
+        "properties": {
+          "dhcp_enabled": {
+            "default": false,
+            "title": "Dhcp Enabled",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "subnet": {
+            "default": "",
+            "title": "Subnet",
+            "type": "string"
+          },
+          "vlan_id": {
+            "title": "Vlan Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "vlan_id"
+        ],
+        "title": "VlanCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a VLAN network (unifi network vlans delete).",
+      "display_name": "Delete UniFi VLAN",
+      "id": "unifi.network.vlans.delete",
+      "params_schema": {
+        "properties": {
+          "config_id": {
+            "title": "Config Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "config_id"
+        ],
+        "title": "VlanDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show one VLAN's detail (unifi network vlans describe).",
+      "display_name": "Describe UniFi VLAN",
+      "id": "unifi.network.vlans.describe",
+      "params_schema": {
+        "properties": {
+          "network_id": {
+            "title": "Network Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "network_id"
+        ],
+        "title": "VlanRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List VLANs (unifi network vlans list).",
+      "display_name": "List UniFi VLANs",
+      "id": "unifi.network.vlans.list",
+      "params_schema": {
+        "properties": {},
+        "title": "VlanListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a WiFi SSID bound to a VLAN (unifi network wlans create).",
+      "display_name": "Create UniFi WLAN (SSID)",
+      "id": "unifi.network.wlans.create",
+      "params_schema": {
+        "properties": {
+          "enabled": {
+            "default": true,
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "network_id": {
+            "default": "",
+            "title": "Network Id",
+            "type": "string"
+          },
+          "passphrase": {
+            "title": "Passphrase",
+            "type": "string"
+          },
+          "security": {
+            "default": "wpapsk",
+            "title": "Security",
+            "type": "string"
+          },
+          "wlan_band": {
+            "default": "both",
+            "title": "Wlan Band",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "passphrase"
+        ],
+        "title": "WlanCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a WiFi SSID (unifi network wlans delete).",
+      "display_name": "Delete UniFi WLAN (SSID)",
+      "id": "unifi.network.wlans.delete",
+      "params_schema": {
+        "properties": {
+          "config_id": {
+            "title": "Config Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "config_id"
+        ],
+        "title": "WlanDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List WiFi SSIDs (unifi network wlans list).",
+      "display_name": "List UniFi WLANs (SSIDs)",
+      "id": "unifi.network.wlans.list",
+      "params_schema": {
+        "properties": {},
+        "title": "WlanListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "provider",
+        "unifi"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Publish exposed devices' hostname\u2192IP A records in the internal zone (two-phase).",
+      "display_name": "WARP internal DNS reconcile",
+      "id": "warp.dns.reconcile",
+      "params_schema": {
+        "properties": {
+          "domain": {
+            "default": "",
+            "title": "Domain",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "zone_id"
+        ],
+        "title": "WarpDnsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "warp"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Reconcile per-category Gateway allow rules for exposed segments (two-phase).",
+      "display_name": "WARP policy apply",
+      "id": "warp.policy.apply",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "WarpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "warp"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Converge Cloudflare teamnet routes + split-tunnel to the registry (two-phase).",
+      "display_name": "WARP reconcile",
+      "id": "warp.reconcile",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "WarpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "warp"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Drift between the registry's desired WARP exposure and live Cloudflare.",
+      "display_name": "WARP status",
+      "id": "warp.status",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "WarpParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "native",
+        "warp"
+      ],
+      "tier": 1
+    }
+  ],
+  "schema_version": 1
+}
