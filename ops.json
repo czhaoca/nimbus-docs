@@ -1136,6 +1136,11 @@
             "title": "Disk Type",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "size_gb": {
             "title": "Size Gb",
             "type": "integer"
@@ -1170,6 +1175,11 @@
             "title": "Disk Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "zone": {
             "title": "Zone",
             "type": "string"
@@ -1199,6 +1209,11 @@
             "title": "Disk Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "zone": {
             "title": "Zone",
             "type": "string"
@@ -1224,6 +1239,11 @@
       "id": "gcloud.compute.disks.list",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "zone": {
             "title": "Zone",
             "type": "string"
@@ -1263,6 +1283,11 @@
           "priority": {
             "title": "Priority",
             "type": "integer"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "rule_name": {
             "title": "Rule Name",
@@ -1322,6 +1347,11 @@
       "id": "gcloud.compute.firewall-rules.delete",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "rule_name": {
             "title": "Rule Name",
             "type": "string"
@@ -1346,6 +1376,11 @@
       "id": "gcloud.compute.firewall-rules.describe",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "rule_name": {
             "title": "Rule Name",
             "type": "string"
@@ -1381,6 +1416,11 @@
             ],
             "default": null,
             "title": "Network"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "title": "FirewallListParams",
@@ -1422,6 +1462,11 @@
             ],
             "default": null,
             "title": "Priority"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "rule_name": {
             "title": "Rule Name",
@@ -1485,6 +1530,11 @@
             "title": "Instance Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "zone": {
             "title": "Zone",
             "type": "string"
@@ -1515,6 +1565,11 @@
             "additionalProperties": true,
             "title": "Config",
             "type": "object"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -1538,6 +1593,11 @@
         "properties": {
           "instance_name": {
             "title": "Instance Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "zone": {
@@ -1567,6 +1627,11 @@
         "properties": {
           "instance_name": {
             "title": "Instance Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "zone": {
@@ -1602,6 +1667,11 @@
             "title": "Instance Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "zone": {
             "title": "Zone",
             "type": "string"
@@ -1627,7 +1697,13 @@
       "display_name": "List Compute Engine instances",
       "id": "gcloud.compute.instances.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "InstanceListParams",
         "type": "object"
       },
@@ -1646,6 +1722,11 @@
         "properties": {
           "instance_name": {
             "title": "Instance Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "zone": {
@@ -1675,6 +1756,11 @@
         "properties": {
           "instance_name": {
             "title": "Instance Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "zone": {
@@ -1718,6 +1804,11 @@
             "title": "Network Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "subnet_mode": {
             "title": "Subnet Mode",
             "type": "string"
@@ -1746,6 +1837,11 @@
           "network_name": {
             "title": "Network Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -1770,6 +1866,11 @@
           "network_name": {
             "title": "Network Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -1790,7 +1891,13 @@
       "display_name": "List VPC networks",
       "id": "gcloud.compute.networks.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "NetworkListParams",
         "type": "object"
       },
@@ -1813,6 +1920,11 @@
           },
           "network": {
             "title": "Network",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "region": {
@@ -1846,6 +1958,11 @@
       "id": "gcloud.compute.networks.subnets.delete",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "region": {
             "title": "Region",
             "type": "string"
@@ -1875,6 +1992,11 @@
       "id": "gcloud.compute.networks.subnets.describe",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "region": {
             "title": "Region",
             "type": "string"
@@ -1904,6 +2026,11 @@
       "id": "gcloud.compute.networks.subnets.list",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "region": {
             "anyOf": [
               {
@@ -1962,6 +2089,11 @@
             "default": 3,
             "title": "Num Nodes",
             "type": "integer"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -1990,6 +2122,11 @@
           },
           "location": {
             "title": "Location",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2020,6 +2157,11 @@
           "location": {
             "title": "Location",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2045,6 +2187,11 @@
           "location": {
             "default": "-",
             "title": "Location",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2080,6 +2227,11 @@
           "num_nodes": {
             "title": "Num Nodes",
             "type": "integer"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2124,6 +2276,11 @@
           "pool_name": {
             "title": "Pool Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2158,6 +2315,11 @@
           "pool_name": {
             "title": "Pool Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2187,6 +2349,11 @@
           },
           "location": {
             "title": "Location",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2241,6 +2408,11 @@
           "instance": {
             "title": "Instance",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2270,6 +2442,11 @@
           "instance": {
             "title": "Instance",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2294,6 +2471,11 @@
         "properties": {
           "instance": {
             "title": "Instance",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2320,6 +2502,11 @@
             "additionalProperties": true,
             "title": "Config",
             "type": "object"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2343,6 +2530,11 @@
         "properties": {
           "instance": {
             "title": "Instance",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2368,6 +2560,11 @@
           "instance": {
             "title": "Instance",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2388,7 +2585,13 @@
       "display_name": "List Cloud SQL instances",
       "id": "gcloud.sql.instances.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "InstanceListParams",
         "type": "object"
       },
@@ -2411,6 +2614,11 @@
           },
           "instance": {
             "title": "Instance",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2436,6 +2644,11 @@
         "properties": {
           "instance": {
             "title": "Instance",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2475,6 +2688,11 @@
             "secret": true,
             "title": "Password"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "user": {
             "title": "User",
             "type": "string"
@@ -2502,6 +2720,11 @@
         "properties": {
           "instance": {
             "title": "Instance",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -2533,6 +2756,11 @@
             "title": "Name",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "uniform_bucket_level_access": {
             "default": false,
             "title": "Uniform Bucket Level Access",
@@ -2561,6 +2789,11 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2585,6 +2818,11 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -2605,7 +2843,13 @@
       "display_name": "List Cloud Storage buckets",
       "id": "gcloud.storage.buckets.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "BucketListParams",
         "type": "object"
       },
@@ -2640,6 +2884,11 @@
               }
             ],
             "title": "Prefix"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "recursive": {
             "default": false,
@@ -2683,6 +2932,11 @@
             ],
             "default": null,
             "title": "Prefix"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "recursive": {
             "default": false,
@@ -2737,6 +2991,11 @@
             ],
             "default": null,
             "title": "Prefix"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "title": "ObjectListParams",
@@ -2769,6 +3028,11 @@
               }
             ],
             "title": "Prefix"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "recursive": {
             "default": false,
@@ -4647,7 +4911,13 @@
       "display_name": "List OCI compartments",
       "id": "oci.admin.compartments",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "AdminCompartmentsParams",
         "type": "object"
       },
@@ -4664,7 +4934,13 @@
       "display_name": "OCI tenancy info",
       "id": "oci.admin.info",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "AdminInfoParams",
         "type": "object"
       },
@@ -4693,6 +4969,11 @@
             ],
             "default": null,
             "title": "Service"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "title": "AdminLimitsParams",
@@ -4829,6 +5110,11 @@
             "title": "Is Shareable",
             "type": "boolean"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "volume_id": {
             "title": "Volume Id",
             "type": "string"
@@ -4854,6 +5140,11 @@
       "id": "oci.bv.attachment.detach",
       "params_schema": {
         "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "volume_attachment_id": {
             "title": "Volume Attachment Id",
             "type": "string"
@@ -4893,6 +5184,11 @@
             ],
             "default": null,
             "title": "Instance Id"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           },
           "volume_id": {
             "anyOf": [
@@ -4942,6 +5238,11 @@
           "size_in_gbs": {
             "title": "Size In Gbs",
             "type": "integer"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -4965,6 +5266,11 @@
       "id": "oci.bv.volume.delete",
       "params_schema": {
         "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "volume_id": {
             "title": "Volume Id",
             "type": "string"
@@ -4989,6 +5295,11 @@
       "id": "oci.bv.volume.get",
       "params_schema": {
         "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "volume_id": {
             "title": "Volume Id",
             "type": "string"
@@ -5027,6 +5338,11 @@
           },
           "compartment_id": {
             "title": "Compartment Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5073,6 +5389,11 @@
             "title": "Name",
             "type": "string"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vcn_id": {
             "title": "Vcn Id",
             "type": "string"
@@ -5103,6 +5424,11 @@
           "cluster_id": {
             "title": "Cluster Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5126,6 +5452,11 @@
         "properties": {
           "compartment_id": {
             "title": "Compartment Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5184,6 +5515,11 @@
           "size": {
             "title": "Size",
             "type": "integer"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5213,6 +5549,11 @@
           "node_pool_id": {
             "title": "Node Pool Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5236,6 +5577,11 @@
         "properties": {
           "node_pool_id": {
             "title": "Node Pool Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5273,6 +5619,11 @@
           "compartment_id": {
             "title": "Compartment Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5309,6 +5660,11 @@
             ],
             "default": null,
             "title": "Operating System"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5337,6 +5693,11 @@
           "instance_id": {
             "title": "Instance Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5362,6 +5723,11 @@
           "instance_id": {
             "title": "Instance Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5385,6 +5751,11 @@
         "properties": {
           "request": {
             "title": "Request"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5406,7 +5777,13 @@
       "display_name": "List OCI compute instances",
       "id": "oci.compute.instances.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "InstanceListParams",
         "type": "object"
       },
@@ -5431,6 +5808,11 @@
             "default": false,
             "title": "Preserve Boot Volume",
             "type": "boolean"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5496,6 +5878,11 @@
           "compartment_id": {
             "title": "Compartment Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5545,6 +5932,11 @@
             "title": "Shape Config",
             "type": "object"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vnics": {
             "items": {},
             "title": "Vnics",
@@ -5578,6 +5970,11 @@
           "container_instance_id": {
             "title": "Container Instance Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5601,6 +5998,11 @@
         "properties": {
           "container_instance_id": {
             "title": "Container Instance Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5626,6 +6028,11 @@
           "compartment_id": {
             "title": "Compartment Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5649,6 +6056,11 @@
         "properties": {
           "container_instance_id": {
             "title": "Container Instance Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5674,6 +6086,11 @@
           "container_instance_id": {
             "title": "Container Instance Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5697,6 +6114,11 @@
         "properties": {
           "container_instance_id": {
             "title": "Container Instance Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5782,6 +6204,11 @@
           "provider_id": {
             "title": "Provider Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5807,6 +6234,11 @@
         "properties": {
           "provider_id": {
             "title": "Provider Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5886,6 +6318,11 @@
             "default": null,
             "title": "Subnet Id"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "workload": {
             "title": "Workload",
             "type": "string"
@@ -5917,6 +6354,11 @@
           "autonomous_database_id": {
             "title": "Autonomous Database Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5940,6 +6382,11 @@
         "properties": {
           "autonomous_database_id": {
             "title": "Autonomous Database Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -5965,6 +6412,11 @@
           "compartment_id": {
             "title": "Compartment Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -5989,6 +6441,11 @@
           "autonomous_database_id": {
             "title": "Autonomous Database Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6012,6 +6469,11 @@
         "properties": {
           "autonomous_database_id": {
             "title": "Autonomous Database Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6080,6 +6542,11 @@
           "subnet_id": {
             "title": "Subnet Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6109,6 +6576,11 @@
           "db_system_id": {
             "title": "Db System Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6132,6 +6604,11 @@
         "properties": {
           "db_system_id": {
             "title": "Db System Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6157,6 +6634,11 @@
           "compartment_id": {
             "title": "Compartment Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6180,6 +6662,11 @@
         "properties": {
           "db_system_id": {
             "title": "Db System Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6210,6 +6697,11 @@
             "default": "FAST",
             "title": "Shutdown Type",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6233,6 +6725,11 @@
         "properties": {
           "provider_id": {
             "title": "Provider Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6273,6 +6770,11 @@
             "default": null,
             "title": "Ip Address"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vnic_id": {
             "title": "Vnic Id",
             "type": "string"
@@ -6300,6 +6802,11 @@
         "properties": {
           "subnet_id": {
             "title": "Subnet Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6330,6 +6837,11 @@
           "target_vnic_id": {
             "title": "Target Vnic Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6355,6 +6867,11 @@
         "properties": {
           "private_ip_id": {
             "title": "Private Ip Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6387,6 +6904,11 @@
             "title": "Display Name",
             "type": "string"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vcn_id": {
             "title": "Vcn Id",
             "type": "string"
@@ -6416,6 +6938,11 @@
           "nsg_id": {
             "title": "Nsg Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6440,6 +6967,11 @@
         "properties": {
           "compartment_id": {
             "title": "Compartment Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           },
           "vcn_id": {
@@ -6479,6 +7011,11 @@
             },
             "title": "Rules",
             "type": "array"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6504,6 +7041,11 @@
         "properties": {
           "nsg_id": {
             "title": "Nsg Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6537,6 +7079,11 @@
             },
             "title": "Rule Ids",
             "type": "array"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6624,6 +7171,11 @@
             ],
             "default": null,
             "title": "Source"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6695,6 +7247,11 @@
             ],
             "default": null,
             "title": "Source"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6730,6 +7287,11 @@
           "route_table_id": {
             "title": "Route Table Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6761,6 +7323,11 @@
           "route_table_id": {
             "title": "Route Table Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6787,6 +7354,11 @@
           "route_table_id": {
             "title": "Route Table Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6811,6 +7383,11 @@
         "properties": {
           "seclist_id": {
             "title": "Seclist Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -6851,6 +7428,11 @@
             "title": "Prohibit Public Ip",
             "type": "boolean"
           },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vcn_id": {
             "title": "Vcn Id",
             "type": "string"
@@ -6882,6 +7464,11 @@
           "subnet_id": {
             "title": "Subnet Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6903,7 +7490,13 @@
       "display_name": "List OCI subnets",
       "id": "oci.network.subnet.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "SubnetListParams",
         "type": "object"
       },
@@ -6944,6 +7537,11 @@
             ],
             "default": null,
             "title": "Dns Label"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -6968,6 +7566,11 @@
       "id": "oci.network.vcn.delete",
       "params_schema": {
         "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vcn_id": {
             "title": "Vcn Id",
             "type": "string"
@@ -6993,6 +7596,11 @@
       "id": "oci.network.vcn.get",
       "params_schema": {
         "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          },
           "vcn_id": {
             "title": "Vcn Id",
             "type": "string"
@@ -7017,7 +7625,13 @@
       "display_name": "List OCI VCNs",
       "id": "oci.network.vcn.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "VcnListParams",
         "type": "object"
       },
@@ -7045,6 +7659,11 @@
           },
           "namespace": {
             "title": "Namespace",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -7076,6 +7695,11 @@
           "namespace": {
             "title": "Namespace",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7104,6 +7728,11 @@
           },
           "namespace": {
             "title": "Namespace",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -7137,6 +7766,11 @@
           },
           "object_name": {
             "title": "Object Name",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -7175,6 +7809,11 @@
           },
           "namespace": {
             "title": "Namespace",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -7219,6 +7858,11 @@
             ],
             "default": null,
             "title": "Prefix"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7261,6 +7905,11 @@
             "default": 1024,
             "title": "Size Guard Mb",
             "type": "integer"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7511,6 +8160,11 @@
           "provider_id": {
             "title": "Provider Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7534,6 +8188,11 @@
         "properties": {
           "request": {
             "title": "Request"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7559,6 +8218,11 @@
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7583,6 +8247,11 @@
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7603,7 +8272,13 @@
       "display_name": "List OCI VMs (deprecated grammar)",
       "id": "oci.vm.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
         "title": "VmListParams",
         "type": "object"
       },
@@ -7631,6 +8306,11 @@
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7656,6 +8336,11 @@
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7680,6 +8365,11 @@
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
           }
         },
         "required": [
@@ -7703,6 +8393,11 @@
         "properties": {
           "resource_id": {
             "title": "Resource Id",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
             "type": "string"
           }
         },
@@ -8031,6 +8726,11 @@
             "title": "Hostname",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "src_ctid": {
             "title": "Src Ctid",
             "type": "integer"
@@ -8089,6 +8789,11 @@
       "id": "pve.lxc.config",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8142,6 +8847,11 @@
             "title": "Ostemplate",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "rootfs_size": {
             "default": 8,
             "title": "Rootfs Size",
@@ -8187,6 +8897,11 @@
       "id": "pve.lxc.delete",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8211,6 +8926,11 @@
       "id": "pve.lxc.describe",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8234,7 +8954,13 @@
       "display_name": "List LXC containers",
       "id": "pve.lxc.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "LxcListParams",
         "type": "object"
       },
@@ -8274,6 +9000,11 @@
             ],
             "default": null,
             "title": "Memory"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           },
           "swap": {
             "anyOf": [
@@ -8319,6 +9050,11 @@
             "title": "Ip",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8345,6 +9081,11 @@
       "id": "pve.lxc.start",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8369,6 +9110,11 @@
       "id": "pve.lxc.stop",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8401,6 +9147,11 @@
           "node": {
             "title": "Node",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -8429,6 +9180,11 @@
           },
           "node": {
             "title": "Node",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "vlan_id": {
@@ -8460,7 +9216,13 @@
       "display_name": "Describe Proxmox node",
       "id": "pve.node.describe",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "NodeStatusParams",
         "type": "object"
       },
@@ -8476,7 +9238,13 @@
       "display_name": "List Proxmox nodes",
       "id": "pve.node.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "NodeListParams",
         "type": "object"
       },
@@ -8495,6 +9263,11 @@
         "properties": {
           "node": {
             "title": "Node",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -8519,6 +9292,11 @@
         "properties": {
           "node": {
             "title": "Node",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "storage": {
@@ -8550,6 +9328,11 @@
             "additionalProperties": true,
             "title": "Config",
             "type": "object"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -8571,6 +9354,11 @@
       "id": "pve.vm.delete",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8595,6 +9383,11 @@
       "id": "pve.vm.describe",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8618,7 +9411,13 @@
       "display_name": "List QEMU VMs",
       "id": "pve.vm.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "VmListParams",
         "type": "object"
       },
@@ -8635,6 +9434,11 @@
       "id": "pve.vm.start",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -8659,6 +9463,11 @@
       "id": "pve.vm.stop",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "vmid": {
             "title": "Vmid",
             "type": "integer"
@@ -9550,7 +10359,13 @@
       "display_name": "Clear all UniFi fixed-IP reservations",
       "id": "unifi.network.clients.clear-fixed-ips",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "FixedIpClearAllParams",
         "type": "object"
       },
@@ -9567,6 +10382,11 @@
       "id": "unifi.network.clients.list",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "site": {
             "anyOf": [
               {
@@ -9595,7 +10415,13 @@
       "display_name": "List UniFi fixed-IP reservations",
       "id": "unifi.network.clients.list-fixed-ips",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "FixedIpListParams",
         "type": "object"
       },
@@ -9612,6 +10438,11 @@
       "id": "unifi.network.devices.describe",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "resource_id": {
             "title": "Resource Id",
             "type": "string"
@@ -9636,6 +10467,11 @@
       "id": "unifi.network.devices.list",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "resource_type": {
             "anyOf": [
               {
@@ -9684,6 +10520,11 @@
             "title": "Protocol",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "ruleset": {
             "default": "LAN_IN",
             "title": "Ruleset",
@@ -9714,6 +10555,11 @@
       "id": "unifi.network.firewall.rules.delete",
       "params_schema": {
         "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "rule_id": {
             "title": "Rule Id",
             "type": "string"
@@ -9737,7 +10583,13 @@
       "display_name": "List UniFi firewall rules",
       "id": "unifi.network.firewall.rules.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "FirewallRuleListParams",
         "type": "object"
       },
@@ -9764,6 +10616,11 @@
           },
           "profile_id": {
             "title": "Profile Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           }
         },
@@ -9803,6 +10660,11 @@
             ],
             "default": null,
             "title": "Native Vlan"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -9823,7 +10685,13 @@
       "display_name": "List UniFi port profiles",
       "id": "unifi.network.port-profiles.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "PortProfileListParams",
         "type": "object"
       },
@@ -9847,6 +10715,11 @@
           },
           "name": {
             "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "subnet": {
@@ -9882,6 +10755,11 @@
           "config_id": {
             "title": "Config Id",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -9906,6 +10784,11 @@
           "network_id": {
             "title": "Network Id",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -9926,7 +10809,13 @@
       "display_name": "List UniFi VLANs",
       "id": "unifi.network.vlans.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "VlanListParams",
         "type": "object"
       },
@@ -9959,6 +10848,11 @@
           },
           "passphrase": {
             "title": "Passphrase",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
             "type": "string"
           },
           "security": {
@@ -9995,6 +10889,11 @@
           "config_id": {
             "title": "Config Id",
             "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
           }
         },
         "required": [
@@ -10015,7 +10914,13 @@
       "display_name": "List UniFi WLANs (SSIDs)",
       "id": "unifi.network.wlans.list",
       "params_schema": {
-        "properties": {},
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
         "title": "WlanListParams",
         "type": "object"
       },
