@@ -5,7 +5,7 @@ sidebar:
 ---
 
 Auto-generated from the `nimbus` Typer command tree. Do not edit by
-hand — run `cd docs && pnpm gen-cli` and commit the result.
+hand — run `scripts/gen-contracts.sh` and commit the result.
 
 ## Command Inventory
 
