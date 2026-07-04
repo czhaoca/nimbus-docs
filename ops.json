@@ -55,6 +55,2229 @@
       "tier": 2
     },
     {
+      "description": "Clear the active AWS provider context (aws context clear).",
+      "display_name": "Clear active AWS provider context",
+      "id": "aws.context.clear",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextClearParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Activate an AWS provider as the active context (aws context set).",
+      "display_name": "Set active AWS provider context",
+      "id": "aws.context.set",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "ContextSetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show the current active AWS provider context (aws context show).",
+      "display_name": "Show active AWS provider context",
+      "id": "aws.context.show",
+      "params_schema": {
+        "properties": {},
+        "title": "ContextShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show AWS spending for a billing period (aws cost current).",
+      "display_name": "AWS current spending",
+      "id": "aws.cost.current",
+      "params_schema": {
+        "properties": {
+          "period": {
+            "title": "Period",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ],
+        "title": "CostCurrentParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List AMIs (aws ec2 describe-images).",
+      "display_name": "List EC2 images",
+      "id": "aws.ec2.images.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "owners": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Owners"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ImageDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List instances (aws ec2 describe-instances).",
+      "display_name": "List EC2 instances",
+      "id": "aws.ec2.instances.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "instance_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Instance Ids"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "InstanceDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Reboot instances (aws ec2 reboot-instances).",
+      "display_name": "Reboot EC2 instances",
+      "id": "aws.ec2.instances.reboot",
+      "params_schema": {
+        "properties": {
+          "instance_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Instance Ids",
+            "type": "array"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_ids"
+        ],
+        "title": "InstanceIdsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Launch instances (aws ec2 run-instances).",
+      "display_name": "Launch EC2 instances",
+      "id": "aws.ec2.instances.run",
+      "params_schema": {
+        "properties": {
+          "count": {
+            "default": 1,
+            "title": "Count",
+            "type": "integer"
+          },
+          "image_id": {
+            "title": "Image Id",
+            "type": "string"
+          },
+          "instance_type": {
+            "default": "t3.micro",
+            "title": "Instance Type",
+            "type": "string"
+          },
+          "key_name": {
+            "default": "",
+            "title": "Key Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "security_group_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Security Group Ids"
+          },
+          "tag_specifications": {
+            "default": null,
+            "title": "Tag Specifications"
+          }
+        },
+        "required": [
+          "image_id"
+        ],
+        "title": "InstanceRunParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Start instances (aws ec2 start-instances).",
+      "display_name": "Start EC2 instances",
+      "id": "aws.ec2.instances.start",
+      "params_schema": {
+        "properties": {
+          "instance_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Instance Ids",
+            "type": "array"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_ids"
+        ],
+        "title": "InstanceIdsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop instances (aws ec2 stop-instances).",
+      "display_name": "Stop EC2 instances",
+      "id": "aws.ec2.instances.stop",
+      "params_schema": {
+        "properties": {
+          "instance_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Instance Ids",
+            "type": "array"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_ids"
+        ],
+        "title": "InstanceIdsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Terminate instances (aws ec2 terminate-instances). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Terminate EC2 instances",
+      "id": "aws.ec2.instances.terminate",
+      "params_schema": {
+        "properties": {
+          "instance_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Instance Ids",
+            "type": "array"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_ids"
+        ],
+        "title": "InstanceIdsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Attach an internet gateway to a VPC (aws ec2 attach-internet-gateway).",
+      "display_name": "Attach internet gateway",
+      "id": "aws.ec2.internet-gateways.attach",
+      "params_schema": {
+        "properties": {
+          "internet_gateway_id": {
+            "title": "Internet Gateway Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vpc_id": {
+            "title": "Vpc Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "internet_gateway_id",
+          "vpc_id"
+        ],
+        "title": "IgwAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create an internet gateway (aws ec2 create-internet-gateway).",
+      "display_name": "Create internet gateway",
+      "id": "aws.ec2.internet-gateways.create",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tag_specifications": {
+            "default": null,
+            "title": "Tag Specifications"
+          }
+        },
+        "title": "IgwCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an internet gateway (aws ec2 delete-internet-gateway). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete internet gateway",
+      "id": "aws.ec2.internet-gateways.delete",
+      "params_schema": {
+        "properties": {
+          "internet_gateway_id": {
+            "title": "Internet Gateway Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "internet_gateway_id"
+        ],
+        "title": "IgwIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List internet gateways (aws ec2 describe-internet-gateways).",
+      "display_name": "List internet gateways",
+      "id": "aws.ec2.internet-gateways.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "IgwDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Detach an internet gateway from a VPC (aws ec2 detach-internet-gateway).",
+      "display_name": "Detach internet gateway",
+      "id": "aws.ec2.internet-gateways.detach",
+      "params_schema": {
+        "properties": {
+          "internet_gateway_id": {
+            "title": "Internet Gateway Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vpc_id": {
+            "title": "Vpc Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "internet_gateway_id",
+          "vpc_id"
+        ],
+        "title": "IgwAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Add an ingress rule (aws ec2 authorize-security-group-ingress).",
+      "display_name": "Authorize security group ingress",
+      "id": "aws.ec2.security-groups.authorize-ingress",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "group_id": {
+            "title": "Group Id",
+            "type": "string"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "group_id",
+          "protocol",
+          "port",
+          "cidr"
+        ],
+        "title": "SgIngressParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a security group (aws ec2 create-security-group).",
+      "display_name": "Create security group",
+      "id": "aws.ec2.security-groups.create",
+      "params_schema": {
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "group_name": {
+            "title": "Group Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vpc_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vpc Id"
+          }
+        },
+        "required": [
+          "group_name",
+          "description"
+        ],
+        "title": "SgCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a security group (aws ec2 delete-security-group). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete security group",
+      "id": "aws.ec2.security-groups.delete",
+      "params_schema": {
+        "properties": {
+          "group_id": {
+            "title": "Group Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "title": "SgIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List security groups (aws ec2 describe-security-groups).",
+      "display_name": "List security groups",
+      "id": "aws.ec2.security-groups.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "group_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Group Ids"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "SgDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Remove an ingress rule (aws ec2 revoke-security-group-ingress).",
+      "display_name": "Revoke security group ingress",
+      "id": "aws.ec2.security-groups.revoke-ingress",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "group_id": {
+            "title": "Group Id",
+            "type": "string"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "group_id",
+          "protocol",
+          "port",
+          "cidr"
+        ],
+        "title": "SgIngressParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a subnet (aws ec2 create-subnet).",
+      "display_name": "Create subnet",
+      "id": "aws.ec2.subnets.create",
+      "params_schema": {
+        "properties": {
+          "availability_zone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Availability Zone"
+          },
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vpc_id": {
+            "title": "Vpc Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vpc_id",
+          "cidr_block"
+        ],
+        "title": "SubnetCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a subnet (aws ec2 delete-subnet). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete subnet",
+      "id": "aws.ec2.subnets.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "subnet_id": {
+            "title": "Subnet Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "subnet_id"
+        ],
+        "title": "SubnetIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List subnets (aws ec2 describe-subnets).",
+      "display_name": "List subnets",
+      "id": "aws.ec2.subnets.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "SubnetDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Attach a volume to an instance (aws ec2 attach-volume).",
+      "display_name": "Attach EBS volume",
+      "id": "aws.ec2.volumes.attach",
+      "params_schema": {
+        "properties": {
+          "device": {
+            "title": "Device",
+            "type": "string"
+          },
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "instance_id",
+          "device"
+        ],
+        "title": "VolumeAttachParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create an EBS volume (aws ec2 create-volume).",
+      "display_name": "Create EBS volume",
+      "id": "aws.ec2.volumes.create",
+      "params_schema": {
+        "properties": {
+          "availability_zone": {
+            "title": "Availability Zone",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "integer"
+          },
+          "volume_type": {
+            "default": "gp3",
+            "title": "Volume Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "availability_zone",
+          "size"
+        ],
+        "title": "VolumeCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a volume (aws ec2 delete-volume). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete EBS volume",
+      "id": "aws.ec2.volumes.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id"
+        ],
+        "title": "VolumeIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List EBS volumes (aws ec2 describe-volumes).",
+      "display_name": "List EBS volumes",
+      "id": "aws.ec2.volumes.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "volume_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Volume Ids"
+          }
+        },
+        "title": "VolumeDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Detach a volume (aws ec2 detach-volume).",
+      "display_name": "Detach EBS volume",
+      "id": "aws.ec2.volumes.detach",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "volume_id": {
+            "title": "Volume Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id"
+        ],
+        "title": "VolumeIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a VPC (aws ec2 create-vpc).",
+      "display_name": "Create VPC",
+      "id": "aws.ec2.vpcs.create",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tag_specifications": {
+            "default": null,
+            "title": "Tag Specifications"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ],
+        "title": "VpcCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a VPC (aws ec2 delete-vpc). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete VPC",
+      "id": "aws.ec2.vpcs.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vpc_id": {
+            "title": "Vpc Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vpc_id"
+        ],
+        "title": "VpcIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List VPCs (aws ec2 describe-vpcs).",
+      "display_name": "List VPCs",
+      "id": "aws.ec2.vpcs.describe",
+      "params_schema": {
+        "properties": {
+          "filters": {
+            "default": null,
+            "title": "Filters"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "VpcDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a repository (aws ecr create-repository).",
+      "display_name": "Create ECR repository",
+      "id": "aws.ecr.repositories.create",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "repository_name": {
+            "title": "Repository Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name"
+        ],
+        "title": "RepositoryCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a repository (aws ecr delete-repository). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete ECR repository",
+      "id": "aws.ecr.repositories.delete",
+      "params_schema": {
+        "properties": {
+          "force": {
+            "default": false,
+            "title": "Force",
+            "type": "boolean"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "repository_name": {
+            "title": "Repository Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name"
+        ],
+        "title": "RepositoryDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List repositories (aws ecr describe-repositories).",
+      "display_name": "List ECR repositories",
+      "id": "aws.ecr.repositories.describe",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "repository_names": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Repository Names"
+          }
+        },
+        "title": "RepositoryDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create an ECS cluster (aws ecs create-cluster).",
+      "display_name": "Create ECS cluster",
+      "id": "aws.ecs.clusters.create",
+      "params_schema": {
+        "properties": {
+          "cluster_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cluster Name"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ClusterCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete an ECS cluster (aws ecs delete-cluster). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete ECS cluster",
+      "id": "aws.ecs.clusters.delete",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster"
+        ],
+        "title": "ClusterDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List ECS clusters (aws ecs list-clusters).",
+      "display_name": "List ECS clusters",
+      "id": "aws.ecs.clusters.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ClusterListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Register a task definition (aws ecs register-task-definition).",
+      "display_name": "Register ECS task definition",
+      "id": "aws.ecs.task-definitions.register",
+      "params_schema": {
+        "properties": {
+          "container_definitions": {
+            "default": null,
+            "title": "Container Definitions"
+          },
+          "cpu": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cpu"
+          },
+          "execution_role_arn": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Execution Role Arn"
+          },
+          "family": {
+            "title": "Family",
+            "type": "string"
+          },
+          "memory": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Memory"
+          },
+          "network_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Network Mode"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "requires_compatibilities": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Requires Compatibilities"
+          }
+        },
+        "required": [
+          "family"
+        ],
+        "title": "TaskDefinitionRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Describe tasks (aws ecs describe-tasks).",
+      "display_name": "Describe ECS tasks",
+      "id": "aws.ecs.tasks.describe",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tasks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tasks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster",
+          "tasks"
+        ],
+        "title": "TaskDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List task ARNs (aws ecs list-tasks).",
+      "display_name": "List ECS tasks",
+      "id": "aws.ecs.tasks.list",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Cluster"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "TaskListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Run task(s) (aws ecs run-task). Fargate compute is not free-tier eligible.",
+      "display_name": "Run ECS task",
+      "id": "aws.ecs.tasks.run",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "count": {
+            "default": 1,
+            "title": "Count",
+            "type": "integer"
+          },
+          "launch_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Launch Type"
+          },
+          "network_configuration": {
+            "default": null,
+            "title": "Network Configuration"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "task_definition": {
+            "title": "Task Definition",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster",
+          "task_definition"
+        ],
+        "title": "TaskRunParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a task (aws ecs stop-task).",
+      "display_name": "Stop ECS task",
+      "id": "aws.ecs.tasks.stop",
+      "params_schema": {
+        "properties": {
+          "cluster": {
+            "title": "Cluster",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reason"
+          },
+          "task": {
+            "title": "Task",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster",
+          "task"
+        ],
+        "title": "TaskStopParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Launch an EC2 instance (aws instance create).",
+      "display_name": "Create AWS instance (deprecated grammar)",
+      "id": "aws.instance.create",
+      "params_schema": {
+        "properties": {
+          "image_id": {
+            "title": "Image Id",
+            "type": "string"
+          },
+          "instance_type": {
+            "default": "t3.micro",
+            "title": "Instance Type",
+            "type": "string"
+          },
+          "key_name": {
+            "default": "",
+            "title": "Key Name",
+            "type": "string"
+          },
+          "name": {
+            "default": "",
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "security_groups": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Security Groups"
+          }
+        },
+        "required": [
+          "image_id"
+        ],
+        "title": "VmCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Get one EC2 instance (aws instance get).",
+      "display_name": "Get AWS instance (deprecated grammar)",
+      "id": "aws.instance.get",
+      "params_schema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List EC2 instances (aws instance list).",
+      "display_name": "List AWS instances (deprecated grammar)",
+      "id": "aws.instance.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "VmListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Stop an EC2 instance (aws instance stop).",
+      "display_name": "Stop AWS instance (deprecated grammar)",
+      "id": "aws.instance.stop",
+      "params_schema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Terminate an EC2 instance (aws instance terminate). Gated by confirmation in the CLI (--force skips).",
+      "display_name": "Terminate AWS instance (deprecated grammar)",
+      "id": "aws.instance.terminate",
+      "params_schema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "VmRefParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a DB instance (aws rds create-db-instance).",
+      "display_name": "Create RDS DB instance",
+      "id": "aws.rds.instances.create",
+      "params_schema": {
+        "properties": {
+          "allocated_storage": {
+            "default": 20,
+            "title": "Allocated Storage",
+            "type": "integer"
+          },
+          "db_instance_class": {
+            "default": "db.t3.micro",
+            "title": "Db Instance Class",
+            "type": "string"
+          },
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "engine": {
+            "title": "Engine",
+            "type": "string"
+          },
+          "master_user_password": {
+            "title": "Master User Password",
+            "type": "string"
+          },
+          "master_username": {
+            "title": "Master Username",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_instance_identifier",
+          "engine",
+          "master_username",
+          "master_user_password"
+        ],
+        "title": "DbInstanceCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a DB instance (aws rds delete-db-instance). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete RDS DB instance",
+      "id": "aws.rds.instances.delete",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "final_db_snapshot_identifier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Final Db Snapshot Identifier"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "skip_final_snapshot": {
+            "default": false,
+            "title": "Skip Final Snapshot",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "db_instance_identifier"
+        ],
+        "title": "DbInstanceDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List DB instances (aws rds describe-db-instances).",
+      "display_name": "List RDS DB instances",
+      "id": "aws.rds.instances.describe",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Db Instance Identifier"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "DbInstanceDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Modify a DB instance (aws rds modify-db-instance).",
+      "display_name": "Modify RDS DB instance",
+      "id": "aws.rds.instances.modify",
+      "params_schema": {
+        "properties": {
+          "allocated_storage": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Allocated Storage"
+          },
+          "apply_immediately": {
+            "default": false,
+            "title": "Apply Immediately",
+            "type": "boolean"
+          },
+          "db_instance_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Db Instance Class"
+          },
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_instance_identifier"
+        ],
+        "title": "DbInstanceModifyParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Start a DB instance (aws rds start-db-instance).",
+      "display_name": "Start RDS DB instance",
+      "id": "aws.rds.instances.start",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_instance_identifier"
+        ],
+        "title": "DbInstanceIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a DB instance (aws rds stop-db-instance).",
+      "display_name": "Stop RDS DB instance",
+      "id": "aws.rds.instances.stop",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_instance_identifier"
+        ],
+        "title": "DbInstanceIdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a manual DB snapshot (aws rds create-db-snapshot).",
+      "display_name": "Create RDS DB snapshot",
+      "id": "aws.rds.snapshots.create",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "title": "Db Instance Identifier",
+            "type": "string"
+          },
+          "db_snapshot_identifier": {
+            "title": "Db Snapshot Identifier",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "db_instance_identifier",
+          "db_snapshot_identifier"
+        ],
+        "title": "DbSnapshotCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List DB snapshots (aws rds describe-db-snapshots).",
+      "display_name": "List RDS DB snapshots",
+      "id": "aws.rds.snapshots.describe",
+      "params_schema": {
+        "properties": {
+          "db_instance_identifier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Db Instance Identifier"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "DbSnapshotDescribeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List buckets (aws s3 ls).",
+      "display_name": "List S3 buckets",
+      "id": "aws.s3.buckets.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "BucketListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a bucket (aws s3 mb).",
+      "display_name": "Make S3 bucket",
+      "id": "aws.s3.buckets.mb",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bucket"
+        ],
+        "title": "BucketParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove a bucket (aws s3 rb; --force empties it first). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Remove S3 bucket",
+      "id": "aws.s3.buckets.rb",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "force": {
+            "default": false,
+            "title": "Force",
+            "type": "boolean"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bucket"
+        ],
+        "title": "BucketDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Copy files to/from S3 (aws s3 cp; --recursive walks the tree).",
+      "display_name": "Copy S3 objects",
+      "id": "aws.s3.objects.cp",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "direction": {
+            "title": "Direction",
+            "type": "string"
+          },
+          "key": {
+            "default": "",
+            "title": "Key",
+            "type": "string"
+          },
+          "local_path": {
+            "title": "Local Path",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "recursive": {
+            "default": false,
+            "title": "Recursive",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "direction",
+          "local_path",
+          "bucket"
+        ],
+        "title": "ObjectCpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List objects under a bucket/prefix (aws s3 ls s3://BUCKET[/PREFIX]).",
+      "display_name": "List S3 objects",
+      "id": "aws.s3.objects.list",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "prefix": {
+            "default": "",
+            "title": "Prefix",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bucket"
+        ],
+        "title": "ObjectListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Delete objects (aws s3 rm; --recursive deletes the prefix). No confirmation \u2014 the native AWS CLI has none.",
+      "display_name": "Delete S3 objects",
+      "id": "aws.s3.objects.rm",
+      "params_schema": {
+        "properties": {
+          "bucket": {
+            "title": "Bucket",
+            "type": "string"
+          },
+          "key": {
+            "default": "",
+            "title": "Key",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "recursive": {
+            "default": false,
+            "title": "Recursive",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "bucket"
+        ],
+        "title": "ObjectRmParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "aws",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Compose the daily briefing (spending, budget, health, activity).",
       "display_name": "Morning briefing",
       "id": "briefing.compose",
