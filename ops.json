@@ -78,6 +78,61 @@
       "tier": 1
     },
     {
+      "description": "Create a budget rule with CLI-add semantics (no validation).",
+      "display_name": "Add budget rule",
+      "id": "budget.add-rule",
+      "params_schema": {
+        "description": "CLI-posture rule creation (#260) \u2014 mirrors `nimbus budget add` exactly:\nzero limits and unvalidated providers are accepted (unlike the chatbot's\nTier-3 ``budget.set-rule``, which rejects both).",
+        "properties": {
+          "action_on_exceed": {
+            "default": "alert",
+            "title": "Action On Exceed",
+            "type": "string"
+          },
+          "alert_threshold": {
+            "default": 0.8,
+            "title": "Alert Threshold",
+            "type": "number"
+          },
+          "monthly_limit": {
+            "default": 0,
+            "title": "Monthly Limit",
+            "type": "number"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "BudgetAddRuleParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Budget statuses + active-resource count for the digest.",
+      "display_name": "Spending digest",
+      "id": "budget.digest",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
       "description": "Create a budget enforcement rule (admin; modal submit confirms).",
       "display_name": "Set budget rule",
       "id": "budget.set-rule",
@@ -170,6 +225,156 @@
       "required_role": "viewer",
       "tags": [
         "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Current budget status per rule (CLI table).",
+      "display_name": "Budget status",
+      "id": "budget.status",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "BudgetStatusParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Cron entries registered for a repo.",
+      "display_name": "CI crons",
+      "id": "ci.crons",
+      "params_schema": {
+        "properties": {
+          "repo": {
+            "title": "Repo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ],
+        "title": "CiRepoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Recent Woodpecker pipelines for a repo.",
+      "display_name": "CI pipelines",
+      "id": "ci.pipelines",
+      "params_schema": {
+        "properties": {
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "repo": {
+            "title": "Repo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ],
+        "title": "CiPipelinesParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Idempotently create the cron entries the task pipelines expect.",
+      "display_name": "Register CI crons",
+      "id": "ci.register-crons",
+      "params_schema": {
+        "$defs": {
+          "CronSpec": {
+            "properties": {
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "schedule": {
+                "title": "Schedule",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "schedule"
+            ],
+            "title": "CronSpec",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "crons": {
+            "items": {
+              "$ref": "#/$defs/CronSpec"
+            },
+            "title": "Crons",
+            "type": "array"
+          },
+          "repo": {
+            "title": "Repo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ],
+        "title": "CiRegisterCronsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Woodpecker health, version, queue, and a repo's pipelines + crons.",
+      "display_name": "CI status",
+      "id": "ci.status",
+      "params_schema": {
+        "properties": {
+          "repo": {
+            "title": "Repo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ],
+        "title": "CiRepoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
         "native"
       ],
       "tier": 1
@@ -275,6 +480,468 @@
         "native"
       ],
       "tier": 2
+    },
+    {
+      "description": "Port collisions.",
+      "display_name": "Check port conflicts",
+      "id": "deployments.check-ports",
+      "params_schema": {
+        "properties": {
+          "target_inventory_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Target Inventory Id"
+          }
+        },
+        "title": "CheckPortsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Compose from registry.",
+      "display_name": "Generate compose",
+      "id": "deployments.compose",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "default": "dev",
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "template": {
+            "default": false,
+            "title": "Template",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "title": "ComposeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Port pool for a target.",
+      "display_name": "Create port pool",
+      "id": "deployments.create-pool",
+      "params_schema": {
+        "properties": {
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "is_default": {
+            "default": false,
+            "title": "Is Default",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "port_end": {
+            "title": "Port End",
+            "type": "integer"
+          },
+          "port_start": {
+            "title": "Port Start",
+            "type": "integer"
+          },
+          "target_inventory_id": {
+            "title": "Target Inventory Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_inventory_id",
+          "name",
+          "port_start",
+          "port_end"
+        ],
+        "title": "CreatePoolParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Deploy all reserved projects.",
+      "display_name": "Deploy all",
+      "id": "deployments.deploy-all",
+      "params_schema": {
+        "properties": {
+          "domain": {
+            "default": "",
+            "title": "Domain",
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "slot": {
+            "default": "default",
+            "title": "Slot",
+            "type": "string"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "env"
+        ],
+        "title": "DeployAllParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop a deployed project.",
+      "display_name": "Deploy down (CLI)",
+      "id": "deployments.down",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env"
+        ],
+        "title": "DownParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Allocation audit events.",
+      "display_name": "Registry events",
+      "id": "deployments.events",
+      "params_schema": {
+        "properties": {
+          "limit": {
+            "default": 20,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "EventsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Governed CI/CD app.",
+      "display_name": "Onboard CI/CD app",
+      "id": "deployments.onboard-cicd",
+      "params_schema": {
+        "properties": {
+          "actor": {
+            "default": "onboard-cicd",
+            "title": "Actor",
+            "type": "string"
+          },
+          "app": {
+            "title": "App",
+            "type": "string"
+          },
+          "pool_id": {
+            "title": "Pool Id",
+            "type": "string"
+          },
+          "target_id": {
+            "title": "Target Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_id",
+          "pool_id",
+          "app"
+        ],
+        "title": "OnboardCicdParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Configured port pools.",
+      "display_name": "List port pools",
+      "id": "deployments.pools",
+      "params_schema": {
+        "properties": {
+          "target_inventory_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Target Inventory Id"
+          }
+        },
+        "title": "PoolsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Sync target inventory.",
+      "display_name": "Sync targets",
+      "id": "deployments.sync-targets",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "SyncTargetsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Update a target.",
+      "display_name": "Configure target",
+      "id": "deployments.target-config",
+      "params_schema": {
+        "properties": {
+          "is_allocatable": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Is Allocatable"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Notes"
+          },
+          "public_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Public Address"
+          },
+          "target_id": {
+            "title": "Target Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_id"
+        ],
+        "title": "TargetConfigParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Deploy a governed project.",
+      "display_name": "Deploy up (CLI)",
+      "id": "deployments.up",
+      "params_schema": {
+        "properties": {
+          "domain": {
+            "default": "",
+            "title": "Domain",
+            "type": "string"
+          },
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env"
+        ],
+        "title": "UpParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Pre-deploy checks.",
+      "display_name": "Validate deployment",
+      "id": "deployments.validate",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "default": "dev",
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "default",
+            "title": "Slot",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "title": "ValidateParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
     },
     {
       "description": "Run a command across selected VMs (two-phase: preview then confirm).",
@@ -2124,6 +2791,214 @@
       "tier": 2
     },
     {
+      "description": "Install prerequisites and register a runner per repo (compat-only).",
+      "display_name": "Provision GitHub runners",
+      "id": "gh-runner.provision",
+      "params_schema": {
+        "properties": {
+          "host": {
+            "title": "Host",
+            "type": "string"
+          },
+          "labels": {
+            "default": "self-hosted,linux,x64,proxmox",
+            "title": "Labels",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "repos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Repos",
+            "type": "array"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          },
+          "version": {
+            "default": "2.322.0",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner",
+          "repos",
+          "host"
+        ],
+        "title": "GhRunnerProvisionParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Teardown then re-provision with fresh registration (compat-only).",
+      "display_name": "Re-provision GitHub runners",
+      "id": "gh-runner.reprovision",
+      "params_schema": {
+        "properties": {
+          "host": {
+            "title": "Host",
+            "type": "string"
+          },
+          "labels": {
+            "default": "self-hosted,linux,x64,proxmox",
+            "title": "Labels",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "repos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Repos",
+            "type": "array"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          },
+          "version": {
+            "default": "2.322.0",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner",
+          "repos",
+          "host"
+        ],
+        "title": "GhRunnerProvisionParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "systemd and GitHub API status per runner (compat-only).",
+      "display_name": "GitHub runner status",
+      "id": "gh-runner.status",
+      "params_schema": {
+        "properties": {
+          "host": {
+            "title": "Host",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "repos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Repos",
+            "type": "array"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner",
+          "repos",
+          "host"
+        ],
+        "title": "GhRunnerTargetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Stop services and unregister runners from GitHub (compat-only).",
+      "display_name": "Teardown GitHub runners",
+      "id": "gh-runner.teardown",
+      "params_schema": {
+        "properties": {
+          "host": {
+            "title": "Host",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "repos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Repos",
+            "type": "array"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner",
+          "repos",
+          "host"
+        ],
+        "title": "GhRunnerTargetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Resources, optionally filtered by provider type.",
       "display_name": "List resources",
       "id": "infra.resources",
@@ -2170,6 +3045,145 @@
       "tier": 1
     },
     {
+      "description": "Probe all services with health endpoints and store heartbeats.",
+      "display_name": "Run health checks",
+      "id": "monitoring.check",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Latest health status per monitored service port/endpoint.",
+      "display_name": "Service health dashboard",
+      "id": "monitoring.dashboard",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Most recent heartbeat records.",
+      "display_name": "Heartbeat history",
+      "id": "monitoring.history",
+      "params_schema": {
+        "properties": {
+          "limit": {
+            "default": 20,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "MonitoringHistoryParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Latest CPU/memory/disk metrics per Proxmox LXC/VM.",
+      "display_name": "Infrastructure telemetry",
+      "id": "monitoring.infra",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Trigger an immediate infra metrics collection (stores snapshots).",
+      "display_name": "Collect infra metrics",
+      "id": "monitoring.infra-collect",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Node-level resource summary from all Proxmox providers.",
+      "display_name": "Proxmox node resources",
+      "id": "monitoring.node",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "GitHub Actions self-hosted runner heartbeats + alerts.",
+      "display_name": "GitHub runner health",
+      "id": "monitoring.runners",
+      "params_schema": {
+        "properties": {
+          "host": {
+            "default": "",
+            "title": "Host",
+            "type": "string"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "title": "MonitoringRunnersParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
       "description": "CIDR allocations, optionally filtered by provider type.",
       "display_name": "Network allocations",
       "id": "network.allocations",
@@ -2197,6 +3211,375 @@
         "native"
       ],
       "tier": 1
+    },
+    {
+      "description": "CIDR allocations with lifecycle/conflict detail (CLI table).",
+      "display_name": "List allocations (detail)",
+      "id": "network.allocations.list",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status"
+          }
+        },
+        "title": "AllocationsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Register a CIDR allocation with lifecycle status (CLI).",
+      "display_name": "Register allocation",
+      "id": "network.allocations.register",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          },
+          "gateway_ip": {
+            "default": "",
+            "title": "Gateway Ip",
+            "type": "string"
+          },
+          "network_name": {
+            "default": "",
+            "title": "Network Name",
+            "type": "string"
+          },
+          "parent_allocation_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Parent Allocation Id"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "record_existing": {
+            "default": false,
+            "title": "Record Existing",
+            "type": "boolean"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          },
+          "site_label": {
+            "default": "",
+            "title": "Site Label",
+            "type": "string"
+          },
+          "status": {
+            "default": "active",
+            "title": "Status",
+            "type": "string"
+          },
+          "vlan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vlan Id"
+          }
+        },
+        "required": [
+          "provider_type",
+          "cidr_block"
+        ],
+        "title": "AllocationRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Block a CIDR range from all planning paths.",
+      "display_name": "Add blocklist entry",
+      "id": "network.blocklist.add",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cidr",
+          "reason"
+        ],
+        "title": "BlocklistAddParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "CIDR blocklist entries (optionally including removed).",
+      "display_name": "List blocklist entries",
+      "id": "network.blocklist.list",
+      "params_schema": {
+        "properties": {
+          "include_inactive": {
+            "default": false,
+            "title": "Include Inactive",
+            "type": "boolean"
+          }
+        },
+        "title": "BlocklistListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Soft-delete a blocklist entry by id or CIDR.",
+      "display_name": "Remove blocklist entry",
+      "id": "network.blocklist.remove",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "default": "",
+            "title": "Cidr",
+            "type": "string"
+          },
+          "entry_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entry Id"
+          }
+        },
+        "title": "BlocklistRemoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Seed the well-known public blocked-range catalog (idempotent).",
+      "display_name": "Seed blocklist",
+      "id": "network.blocklist.seed",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Allocate the next subnet from a provider's CIDR policy.",
+      "display_name": "Allocate subnet",
+      "id": "network.cidr.allocate",
+      "params_schema": {
+        "properties": {
+          "env_label": {
+            "default": "default",
+            "title": "Env Label",
+            "type": "string"
+          },
+          "prefix_override": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Prefix Override"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_type"
+        ],
+        "title": "CidrAllocateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Check a CIDR against allocations and the blocklist.",
+      "display_name": "Check CIDR",
+      "id": "network.cidr.check",
+      "params_schema": {
+        "properties": {
+          "cidr_block": {
+            "title": "Cidr Block",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cidr_block"
+        ],
+        "title": "CidrCheckParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Suggest the next available CIDR block.",
+      "display_name": "Suggest CIDR",
+      "id": "network.cidr.suggest",
+      "params_schema": {
+        "properties": {
+          "base": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Base"
+          },
+          "prefix_size": {
+            "default": 24,
+            "title": "Prefix Size",
+            "type": "integer"
+          }
+        },
+        "title": "CidrSuggestParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Allocations conflicting with the CIDR blocklist.",
+      "display_name": "List blocklist conflicts",
+      "id": "network.conflicts.list",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Recompute allocation/blocklist conflict flags.",
+      "display_name": "Rescan conflicts",
+      "id": "network.conflicts.rescan",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
     },
     {
       "description": "Toggle WARP exposure for a device (/32) or an allocation (whole VLAN).",
@@ -2260,6 +3643,28 @@
       "tier": 2
     },
     {
+      "description": "Registered LAN devices, optionally WARP-exposed only.",
+      "display_name": "List network devices",
+      "id": "network.device.list",
+      "params_schema": {
+        "properties": {
+          "exposed_only": {
+            "default": false,
+            "title": "Exposed Only",
+            "type": "boolean"
+          }
+        },
+        "title": "DeviceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "native",
+        "network"
+      ],
+      "tier": 1
+    },
+    {
       "description": "Set a device's tags/categories.",
       "display_name": "Tag network device",
       "id": "network.device.tag",
@@ -2314,6 +3719,181 @@
       "tier": 2
     },
     {
+      "description": "Next available host IP in an allocation.",
+      "display_name": "Next available IP",
+      "id": "network.fixed-ip.next",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "allocation_id"
+        ],
+        "title": "FixedIpNextParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Reserve a fixed IP inside a network allocation.",
+      "display_name": "Reserve fixed IP",
+      "id": "network.fixed-ip.reserve",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "type": "integer"
+          },
+          "ip_address": {
+            "title": "Ip Address",
+            "type": "string"
+          },
+          "label": {
+            "default": "",
+            "title": "Label",
+            "type": "string"
+          },
+          "mac_address": {
+            "default": "",
+            "title": "Mac Address",
+            "type": "string"
+          },
+          "source": {
+            "default": "manual",
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "allocation_id",
+          "ip_address"
+        ],
+        "title": "FixedIpReserveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Unified host listing across providers.",
+      "display_name": "List network hosts",
+      "id": "network.hosts.list",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          },
+          "static_only": {
+            "default": false,
+            "title": "Static Only",
+            "type": "boolean"
+          },
+          "vlan": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vlan"
+          }
+        },
+        "title": "HostsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Hosts grouped by subnet.",
+      "display_name": "Network map",
+      "id": "network.hosts.map",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Upsert a provider config after CLI-side credential validation.",
+      "display_name": "Register onboarded provider",
+      "id": "network.onboard.register-provider",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "instance_index": {
+            "default": 1,
+            "title": "Instance Index",
+            "type": "integer"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_type",
+          "display_name"
+        ],
+        "title": "OnboardRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
       "description": "CIDR allocation tree.",
       "display_name": "Network plan",
       "id": "network.plan",
@@ -2329,6 +3909,252 @@
         "native"
       ],
       "tier": 1
+    },
+    {
+      "description": "Mark an allocation as decommissioning.",
+      "display_name": "Decommission allocation",
+      "id": "network.plan.decommission",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "allocation_id"
+        ],
+        "title": "PlanDecommissionParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Compare planned allocations against active ones.",
+      "display_name": "Plan diff",
+      "id": "network.plan.diff",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Promote a planned allocation to a new lifecycle status.",
+      "display_name": "Promote allocation",
+      "id": "network.plan.promote",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "title": "Allocation Id",
+            "type": "integer"
+          },
+          "to_status": {
+            "default": "active",
+            "title": "To Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "allocation_id"
+        ],
+        "title": "PlanPromoteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Planned-topology CIDR tree with the resolved base range (CLI).",
+      "display_name": "Plan tree",
+      "id": "network.plan.tree",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status"
+          }
+        },
+        "title": "PlanTreeParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Per-provider CIDR policies (CLI table).",
+      "display_name": "List CIDR policies",
+      "id": "network.policies.list",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider"
+          }
+        },
+        "title": "PoliciesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create or update a provider/tenancy CIDR policy.",
+      "display_name": "Set CIDR policy",
+      "id": "network.policies.set",
+      "params_schema": {
+        "properties": {
+          "base_cidr": {
+            "title": "Base Cidr",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "env_subnet_prefix": {
+            "default": 24,
+            "title": "Env Subnet Prefix",
+            "type": "integer"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "title": "Tenancy Alias",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_type",
+          "base_cidr"
+        ],
+        "title": "PolicySetParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Carve a base block into the standard VLAN layout (registry-side).",
+      "display_name": "Provision home VLANs",
+      "id": "network.provision.home",
+      "params_schema": {
+        "properties": {
+          "base_cidr": {
+            "title": "Base Cidr",
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "title": "Dry Run",
+            "type": "boolean"
+          },
+          "provider_type": {
+            "default": "unifi",
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "site_label": {
+            "title": "Site Label",
+            "type": "string"
+          },
+          "vlan_prefix": {
+            "default": 26,
+            "title": "Vlan Prefix",
+            "type": "integer"
+          },
+          "vlans": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Vlans",
+            "type": "array"
+          }
+        },
+        "required": [
+          "site_label",
+          "base_cidr",
+          "vlans"
+        ],
+        "title": "ProvisionHomeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
     },
     {
       "description": "Register a CIDR allocation (admin; modal submit confirms).",
@@ -2509,6 +4335,160 @@
       "tags": [
         "native",
         "network"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Add an allocation or provider type to the resolution scope.",
+      "display_name": "Add scope entry",
+      "id": "network.scope.add",
+      "params_schema": {
+        "properties": {
+          "allocation_id": {
+            "default": 0,
+            "title": "Allocation Id",
+            "type": "integer"
+          },
+          "note": {
+            "default": "",
+            "title": "Note",
+            "type": "string"
+          },
+          "provider_type": {
+            "default": "",
+            "title": "Provider Type",
+            "type": "string"
+          }
+        },
+        "title": "ScopeAddParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Resolution scope entries and the resolved network count.",
+      "display_name": "List scope entries",
+      "id": "network.scope.list",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Remove a resolution scope entry by id.",
+      "display_name": "Remove scope entry",
+      "id": "network.scope.remove",
+      "params_schema": {
+        "properties": {
+          "scope_id": {
+            "title": "Scope Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "scope_id"
+        ],
+        "title": "ScopeRemoveParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Enrich or register one home/lab VLAN allocation (idempotent seed).",
+      "display_name": "Seed VLAN entry",
+      "id": "network.seed.entry",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "external_id": {
+            "default": "",
+            "title": "External Id",
+            "type": "string"
+          },
+          "gateway_ip": {
+            "default": "",
+            "title": "Gateway Ip",
+            "type": "string"
+          },
+          "network_name": {
+            "default": "",
+            "title": "Network Name",
+            "type": "string"
+          },
+          "notes": {
+            "default": "",
+            "title": "Notes",
+            "type": "string"
+          },
+          "parent_cidr": {
+            "default": "",
+            "title": "Parent Cidr",
+            "type": "string"
+          },
+          "provider_type": {
+            "default": "unifi",
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          },
+          "site_label": {
+            "default": "",
+            "title": "Site Label",
+            "type": "string"
+          },
+          "status": {
+            "default": "active",
+            "title": "Status",
+            "type": "string"
+          },
+          "vlan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Vlan Id"
+          }
+        },
+        "required": [
+          "cidr"
+        ],
+        "title": "SeedEntryParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
       ],
       "tier": 2
     },
@@ -5758,6 +7738,177 @@
       "tier": 1
     },
     {
+      "description": "Update DNS to failover to a new IP.",
+      "display_name": "DNS failover",
+      "id": "orchestrate.dns-failover",
+      "params_schema": {
+        "properties": {
+          "dns_provider": {
+            "title": "Dns Provider",
+            "type": "string"
+          },
+          "new_ip": {
+            "title": "New Ip",
+            "type": "string"
+          },
+          "record_id": {
+            "title": "Record Id",
+            "type": "string"
+          },
+          "record_name": {
+            "title": "Record Name",
+            "type": "string"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "dns_provider",
+          "zone_id",
+          "record_id",
+          "new_ip",
+          "record_name"
+        ],
+        "title": "OrchestrateDnsFailoverParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Stop all non-critical resources for a provider.",
+      "display_name": "Emergency lockdown",
+      "id": "orchestrate.lockdown",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "OrchestrateLockdownParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Provision a VM and create a DNS record pointing to it.",
+      "display_name": "Provision VM with DNS",
+      "id": "orchestrate.vm-dns",
+      "params_schema": {
+        "properties": {
+          "dns_provider": {
+            "title": "Dns Provider",
+            "type": "string"
+          },
+          "record_name": {
+            "title": "Record Name",
+            "type": "string"
+          },
+          "vm_name": {
+            "title": "Vm Name",
+            "type": "string"
+          },
+          "vm_provider": {
+            "title": "Vm Provider",
+            "type": "string"
+          },
+          "vm_type": {
+            "default": "instance",
+            "title": "Vm Type",
+            "type": "string"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vm_provider",
+          "dns_provider",
+          "vm_name",
+          "zone_id",
+          "record_name"
+        ],
+        "title": "OrchestrateVmDnsParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Register a new provider in the registry.",
+      "display_name": "Register provider",
+      "id": "providers.add",
+      "params_schema": {
+        "properties": {
+          "credentials_path": {
+            "default": "",
+            "title": "Credentials Path",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "instance_index": {
+            "default": 0,
+            "title": "Instance Index",
+            "type": "integer"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "provider_type",
+          "display_name"
+        ],
+        "title": "ProvidersAddParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Registered cloud providers.",
       "display_name": "List providers",
       "id": "providers.list",
@@ -5773,6 +7924,101 @@
         "native"
       ],
       "tier": 1
+    },
+    {
+      "description": "Providers with credential source/configured status (CLI table).",
+      "display_name": "List providers (detail)",
+      "id": "providers.list-detail",
+      "params_schema": {
+        "properties": {
+          "active_only": {
+            "default": false,
+            "title": "Active Only",
+            "type": "boolean"
+          }
+        },
+        "title": "ProvidersListDetailParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Rename a provider id (CLI alias), re-pointing references.",
+      "display_name": "Rename provider",
+      "id": "providers.rename",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "new_id": {
+            "title": "New Id",
+            "type": "string"
+          },
+          "old_id": {
+            "title": "Old Id",
+            "type": "string"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          }
+        },
+        "required": [
+          "old_id",
+          "new_id"
+        ],
+        "title": "ProvidersRenameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Update a provider's display name and/or region.",
+      "display_name": "Update provider",
+      "id": "providers.update",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "default": "",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "region": {
+            "default": "",
+            "title": "Region",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "ProvidersUpdateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
     },
     {
       "description": "Clone an LXC template container (pve lxc clone).",
@@ -6601,6 +8847,11 @@
       "id": "registry.slots.reserve",
       "params_schema": {
         "properties": {
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
           "env_type": {
             "title": "Env Type",
             "type": "string"
@@ -6611,6 +8862,16 @@
           },
           "project_name": {
             "title": "Project Name",
+            "type": "string"
+          },
+          "public_base_url": {
+            "default": "",
+            "title": "Public Base Url",
+            "type": "string"
+          },
+          "repo_url": {
+            "default": "",
+            "title": "Repo Url",
             "type": "string"
           },
           "requested_by": {
@@ -6681,6 +8942,248 @@
         "registry"
       ],
       "tier": 1
+    },
+    {
+      "description": "start/stop/terminate many.",
+      "display_name": "Batch action",
+      "id": "resources.batch-action",
+      "params_schema": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "resource_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Resource Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "action",
+          "resource_ids"
+        ],
+        "title": "BatchActionParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "Track a resource.",
+      "display_name": "Create resource",
+      "id": "resources.create",
+      "params_schema": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "protection_level": {
+            "default": "none",
+            "title": "Protection Level",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resource_type": {
+            "title": "Resource Type",
+            "type": "string"
+          },
+          "status": {
+            "default": "running",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "resource_type",
+          "display_name"
+        ],
+        "title": "ResourceCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a tracked resource.",
+      "display_name": "Delete resource",
+      "id": "resources.delete",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "ResourceDeleteParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "One tracked resource.",
+      "display_name": "Get resource",
+      "id": "resources.get",
+      "params_schema": {
+        "properties": {
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id"
+        ],
+        "title": "ResourceGetParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Tracked resources.",
+      "display_name": "List resources",
+      "id": "resources.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provider Id"
+          },
+          "resource_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Resource Type"
+          }
+        },
+        "title": "ResourcesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Provision a new resource on a cloud provider via its adapter.",
+      "display_name": "Provision resource",
+      "id": "resources.provision",
+      "params_schema": {
+        "properties": {
+          "config": {
+            "additionalProperties": true,
+            "title": "Config",
+            "type": "object"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "ResourcesProvisionParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Search by name/tags.",
+      "display_name": "Search resources",
+      "id": "resources.search",
+      "params_schema": {
+        "properties": {
+          "term": {
+            "title": "Term",
+            "type": "string"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "title": "SearchParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Sync from a provider.",
+      "display_name": "Sync resources",
+      "id": "resources.sync",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id"
+        ],
+        "title": "ResourceSyncParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
     },
     {
       "description": "Mark a finding dismissed (terminal-safe; promoted findings refused).",
@@ -6881,6 +9384,40 @@
         "native"
       ],
       "tier": 1
+    },
+    {
+      "description": "Fire a single attempt of a task immediately (HostExecutor).",
+      "display_name": "Run task",
+      "id": "tasks.run",
+      "params_schema": {
+        "properties": {
+          "actor": {
+            "default": "cli",
+            "title": "Actor",
+            "type": "string"
+          },
+          "invoked_by": {
+            "default": "cli",
+            "title": "Invoked By",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "TaskRunParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
     },
     {
       "description": "Status snapshot for one scheduled task.",
