@@ -1,0 +1,27 @@
+# Publish ghcr.io/czhaoca/nimbus-docs on main pushes (#252): the backend
+# repo's workstation compose pulls this image by tag. Serves on internal
+# port 8080 (registry assigns governed host ports).
+when:
+  event: push
+  branch: main
+
+depends_on: [build]
+
+steps:
+  - name: prepare-tags
+    image: alpine:3
+    commands:
+      - printf 'latest\n%s\n' "$(echo "$CI_COMMIT_SHA" | cut -c1-7)" > .tags
+
+  - name: publish-image
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      registry: ghcr.io
+      repo: ghcr.io/czhaoca/nimbus-docs
+      dockerfile: Dockerfile
+      context: .
+      tags_file: .tags
+      username: czhaoca
+      password:
+        from_secret: ghcr_token
+      platforms: linux/amd64
