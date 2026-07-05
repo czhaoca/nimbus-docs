@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin plugins"
 sidebar:
-  order: 13
+  order: 11
 ---
 
 Manage CLI plugins.

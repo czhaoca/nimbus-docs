@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin network"
 sidebar:
-  order: 11
+  order: 9
 ---
 
 Operator network residue: discovery sync and provider onboarding.

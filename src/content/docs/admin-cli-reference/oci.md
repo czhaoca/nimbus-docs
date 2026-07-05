@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin oci"
 sidebar:
-  order: 12
+  order: 10
 ---
 
 Manage Oracle Cloud Infrastructure resources.

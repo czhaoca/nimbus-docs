@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin completion"
 sidebar:
-  order: 3
+  order: 2
 ---
 
 Generate shell completion scripts.

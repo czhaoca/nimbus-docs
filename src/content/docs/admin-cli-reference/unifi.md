@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin unifi"
 sidebar:
-  order: 20
+  order: 15
 ---
 
 Manage UniFi network infrastructure.

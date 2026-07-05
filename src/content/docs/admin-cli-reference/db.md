@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin db"
 sidebar:
-  order: 5
+  order: 4
 ---
 
 Database migration and diagnostics.

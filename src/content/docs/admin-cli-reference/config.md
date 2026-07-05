@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin config"
 sidebar:
-  order: 4
+  order: 3
 ---
 
 Configuration import/export.

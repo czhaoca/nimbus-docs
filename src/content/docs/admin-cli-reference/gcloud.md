@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin gcloud"
 sidebar:
-  order: 10
+  order: 8
 ---
 
 Manage GCP resources (residual in-engine commands).

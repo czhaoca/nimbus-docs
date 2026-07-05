@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin pve"
 sidebar:
-  order: 14
+  order: 12
 ---
 
 Manage Proxmox VE resources (residual in-engine commands).

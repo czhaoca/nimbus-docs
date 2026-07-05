@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin secrets"
 sidebar:
-  order: 15
+  order: 13
 ---
 
 Write secrets into the Infisical vault.

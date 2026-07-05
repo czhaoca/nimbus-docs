@@ -3648,7 +3648,7 @@
     },
     "/api/health/bots": {
       "get": {
-        "description": "Health check for chatbot platform connections.\n\nReturns status of each configured bot platform: connected state,\nrestart count, last error, and token configuration status.\nSIEM-agnostic \u2014 scrape this endpoint from any monitoring tool.",
+        "description": "Health check for chatbot platform connections.\n\nContract-stable proxy since #258: the bot supervisors run in the\nextracted nimbus-chatbot runtime, so this endpoint resolves the runtime\n(CHATBOT_RUNTIME_URL env override, else the environment-registry\nmanaged-app endpoint), GETs its /health and passes the payload through.\nUnregistered or unreachable runtime degrades instead of erroring.\nSIEM-agnostic \u2014 scrape this endpoint from any monitoring tool.",
         "operationId": "bot_health_api_health_bots_get",
         "responses": {
           "200": {
@@ -6573,119 +6573,27 @@
         ]
       }
     },
-    "/api/v1/chatbot/synology/webhook": {
-      "post": {
-        "description": "Handle a Synology Chat outgoing-webhook POST; reply as JSON ``{\"text\": \u2026}``.",
-        "operationId": "receive_api_v1_chatbot_synology_webhook_post",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Receive",
-        "tags": [
-          "chatbot-synology"
-        ]
-      }
-    },
-    "/api/v1/chatbot/telegram/webhook": {
+    "/api/v1/chatbot/{platform}/{path}": {
       "get": {
-        "description": "Health check / info endpoint for the Telegram webhook.",
-        "operationId": "telegram_webhook_info_api_v1_chatbot_telegram_webhook_get",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Telegram Webhook Info Api V1 Chatbot Telegram Webhook Get",
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Telegram Webhook Info",
-        "tags": [
-          "chatbot-telegram"
-        ]
-      },
-      "post": {
-        "description": "Handle incoming Telegram Update via webhook.",
-        "operationId": "telegram_webhook_api_v1_chatbot_telegram_webhook_post",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            },
-            "description": "Successful Response"
-          }
-        },
-        "summary": "Telegram Webhook",
-        "tags": [
-          "chatbot-telegram"
-        ]
-      }
-    },
-    "/api/v1/chatbot/whatsapp/webhook": {
-      "get": {
-        "description": "Handle Meta webhook verification challenge.",
-        "operationId": "verify_webhook_api_v1_chatbot_whatsapp_webhook_get",
+        "description": "Forward a platform webhook byte-faithfully to the chatbot runtime.",
+        "operationId": "relay_chatbot_webhook_api_v1_chatbot__platform___path__post",
         "parameters": [
           {
-            "in": "query",
-            "name": "hub.mode",
-            "required": false,
+            "in": "path",
+            "name": "platform",
+            "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Hub.Mode"
+              "title": "Platform",
+              "type": "string"
             }
           },
           {
-            "in": "query",
-            "name": "hub.challenge",
-            "required": false,
+            "in": "path",
+            "name": "path",
+            "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Hub.Challenge"
-            }
-          },
-          {
-            "in": "query",
-            "name": "hub.verify_token",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Hub.Verify Token"
+              "title": "Path",
+              "type": "string"
             }
           }
         ],
@@ -6709,14 +6617,34 @@
             "description": "Validation Error"
           }
         },
-        "summary": "Verify Webhook",
+        "summary": "Relay Chatbot Webhook",
         "tags": [
-          "chatbot-whatsapp"
+          "chatbot-relay"
         ]
       },
       "post": {
-        "description": "Handle incoming WhatsApp messages (text commands + interactive replies).",
-        "operationId": "receive_message_api_v1_chatbot_whatsapp_webhook_post",
+        "description": "Forward a platform webhook byte-faithfully to the chatbot runtime.",
+        "operationId": "relay_chatbot_webhook_api_v1_chatbot__platform___path__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "path",
+            "required": true,
+            "schema": {
+              "title": "Path",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -6725,11 +6653,21 @@
               }
             },
             "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
           }
         },
-        "summary": "Receive Message",
+        "summary": "Relay Chatbot Webhook",
         "tags": [
-          "chatbot-whatsapp"
+          "chatbot-relay"
         ]
       }
     },

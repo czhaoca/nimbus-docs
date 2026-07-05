@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin deploy"
 sidebar:
-  order: 6
+  order: 5
 ---
 
 Operator deploy residue: AGENTS.md registry validation.

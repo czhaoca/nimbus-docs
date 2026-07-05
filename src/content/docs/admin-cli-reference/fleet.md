@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin fleet"
 sidebar:
-  order: 9
+  order: 7
 ---
 
 Cross-provider VM fleet operations.

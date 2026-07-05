@@ -1,7 +1,7 @@
 ---
 title: "nimbus-admin environments"
 sidebar:
-  order: 8
+  order: 6
 ---
 
 Legacy environment config commands. Prefer 'nimbus deploy'.
