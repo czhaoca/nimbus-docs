@@ -242,6 +242,54 @@
         "title": "AllocationEventOut",
         "type": "object"
       },
+      "ApprovalCreate": {
+        "description": "POST body staging a pending approval for a dangerous operation.",
+        "properties": {
+          "operation": {
+            "title": "Operation",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "title": "Payload",
+            "type": "object"
+          },
+          "requested_by": {
+            "title": "Requested By",
+            "type": "string"
+          },
+          "ttl_seconds": {
+            "default": 3600,
+            "title": "Ttl Seconds",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "operation",
+          "requested_by"
+        ],
+        "title": "ApprovalCreate",
+        "type": "object"
+      },
+      "ApprovalDecision": {
+        "description": "POST body identifying the PLATFORM user pressing approve/deny.",
+        "properties": {
+          "platform": {
+            "title": "Platform",
+            "type": "string"
+          },
+          "platform_user_id": {
+            "title": "Platform User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "platform_user_id"
+        ],
+        "title": "ApprovalDecision",
+        "type": "object"
+      },
       "AssignVMRequest": {
         "properties": {
           "proxmox_provider_id": {
@@ -6183,9 +6231,207 @@
         ]
       }
     },
+    "/api/v1/chat/approvals": {
+      "get": {
+        "description": "List approvals by status (default ``pending``), oldest first.",
+        "operationId": "list_approvals_api_v1_chat_approvals_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "default": "pending",
+              "title": "Status",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Approvals Api V1 Chat Approvals Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Approvals",
+        "tags": [
+          "chat"
+        ]
+      },
+      "post": {
+        "description": "Stage a pending approval \u2014 bridge_approvals.create_approval_request envelope.",
+        "operationId": "stage_approval_api_v1_chat_approvals_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Stage Approval Api V1 Chat Approvals Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Stage Approval",
+        "tags": [
+          "chat"
+        ]
+      }
+    },
+    "/api/v1/chat/approvals/{approval_id}/approve": {
+      "post": {
+        "description": "Approve a pending request (dual-gated); executor runs server-side.",
+        "operationId": "approve_approval_api_v1_chat_approvals__approval_id__approve_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_id",
+            "required": true,
+            "schema": {
+              "title": "Approval Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalDecision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Approve Approval Api V1 Chat Approvals  Approval Id  Approve Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Approve Approval",
+        "tags": [
+          "chat"
+        ]
+      }
+    },
+    "/api/v1/chat/approvals/{approval_id}/deny": {
+      "post": {
+        "description": "Deny a pending request (dual-gated) \u2014 no execution, no audit row.",
+        "operationId": "deny_approval_api_v1_chat_approvals__approval_id__deny_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_id",
+            "required": true,
+            "schema": {
+              "title": "Approval Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalDecision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Deny Approval Api V1 Chat Approvals  Approval Id  Deny Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Deny Approval",
+        "tags": [
+          "chat"
+        ]
+      }
+    },
     "/api/v1/chat/channels/{platform}": {
       "get": {
-        "description": "Channel mappings for ``platform`` (discord, slack, telegram, \u2026).",
+        "description": "Channel mappings for ``platform`` (discord, slack, telegram, \u2026).\n\nRead posture matches the op surface: any principal (including the\nopen-mode anonymous VIEWER) may read; ids are non-secret routing config.",
         "operationId": "get_chat_channels_api_v1_chat_channels__platform__get",
         "parameters": [
           {
@@ -6224,7 +6470,7 @@
         ]
       },
       "put": {
-        "description": "Upsert the singleton channel mapping row for ``platform``.",
+        "description": "Upsert the singleton channel mapping row for ``platform`` (ADMIN only).",
         "operationId": "update_chat_channels_api_v1_chat_channels__platform__put",
         "parameters": [
           {
@@ -6268,6 +6514,60 @@
           }
         },
         "summary": "Update Chat Channels",
+        "tags": [
+          "chat"
+        ]
+      }
+    },
+    "/api/v1/chat/roles/{platform}/{platform_user_id}": {
+      "get": {
+        "description": "Resolve one chat user's Nimbus role (``viewer``/``operator``/``admin``).",
+        "operationId": "get_chat_role_api_v1_chat_roles__platform___platform_user_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "schema": {
+              "title": "Platform",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "platform_user_id",
+            "required": true,
+            "schema": {
+              "title": "Platform User Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Get Chat Role Api V1 Chat Roles  Platform   Platform User Id  Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Chat Role",
         "tags": [
           "chat"
         ]
@@ -7802,7 +8102,7 @@
       },
       "put": {
         "deprecated": true,
-        "description": "Deprecated \u2014 use ``PUT /api/chat/channels/discord``.",
+        "description": "Deprecated \u2014 use ``PUT /api/chat/channels/discord`` (same ADMIN gate).",
         "operationId": "update_discord_channels_api_v1_discord_channels_put",
         "requestBody": {
           "content": {
