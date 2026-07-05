@@ -9680,6 +9680,126 @@
         ]
       }
     },
+    "/api/v1/ops/{op_id}/confirm": {
+      "post": {
+        "description": "Apply a pending dryrun (#265): mirrors registry.execute_confirm \u2014\nrejects non-pending rows exactly like in-process.",
+        "operationId": "confirm_op_api_v1_ops__op_id__confirm_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "op_id",
+            "required": true,
+            "schema": {
+              "title": "Op Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Confirm Op Api V1 Ops  Op Id  Confirm Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Confirm Op",
+        "tags": [
+          "ops"
+        ]
+      }
+    },
+    "/api/v1/ops/{op_id}/dryrun": {
+      "post": {
+        "description": "Tier-2 preview (#265): mirrors registry.execute_dryrun \u2014 the pending\nActionLog id in the response is the confirm token.",
+        "operationId": "dryrun_op_api_v1_ops__op_id__dryrun_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "op_id",
+            "required": true,
+            "schema": {
+              "title": "Op Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Dryrun Op Api V1 Ops  Op Id  Dryrun Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Dryrun Op",
+        "tags": [
+          "ops"
+        ]
+      }
+    },
     "/api/v1/orchestrate/dns-failover": {
       "post": {
         "description": "Update DNS record for failover to a new IP.",
