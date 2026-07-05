@@ -4937,6 +4937,901 @@
       "tier": 1
     },
     {
+      "description": "List enrolled WARP devices (cloudflare device list).",
+      "display_name": "List Cloudflare WARP devices",
+      "id": "cloudflare.device.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "DeviceListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a device posture rule (cloudflare device create-posture). The --config JSON parsing stays CLI-side.",
+      "display_name": "Create Cloudflare posture rule",
+      "id": "cloudflare.device.posture.create",
+      "params_schema": {
+        "properties": {
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "input_config": {
+            "additionalProperties": true,
+            "title": "Input Config",
+            "type": "object"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "rule_type": {
+            "title": "Rule Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "rule_type",
+          "input_config"
+        ],
+        "title": "PostureCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List device posture rules (cloudflare device posture).",
+      "display_name": "List Cloudflare posture rules",
+      "id": "cloudflare.device.posture.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "PostureListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Revoke an enrolled device (cloudflare device revoke). The --force confirmation prompt stays CLI-side.",
+      "display_name": "Revoke Cloudflare WARP device",
+      "id": "cloudflare.device.revoke",
+      "params_schema": {
+        "properties": {
+          "device_id": {
+            "title": "Device Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_id"
+        ],
+        "title": "DeviceRevokeParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show WARP device settings (cloudflare device settings).",
+      "display_name": "Show Cloudflare device settings",
+      "id": "cloudflare.device.settings.show",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "DeviceSettingsShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a DNS record (cloudflare dns create).",
+      "display_name": "Create Cloudflare DNS record",
+      "id": "cloudflare.dns.create",
+      "params_schema": {
+        "properties": {
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "proxied": {
+            "default": true,
+            "title": "Proxied",
+            "type": "boolean"
+          },
+          "record_type": {
+            "title": "Record Type",
+            "type": "string"
+          },
+          "ttl": {
+            "default": 1,
+            "title": "Ttl",
+            "type": "integer"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "zone_id",
+          "record_type",
+          "name",
+          "content"
+        ],
+        "title": "DnsCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a DNS record (cloudflare dns delete). The --force confirmation prompt stays CLI-side.",
+      "display_name": "Delete Cloudflare DNS record",
+      "id": "cloudflare.dns.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "record_id": {
+            "title": "Record Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "record_id"
+        ],
+        "title": "DnsDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List DNS records in a zone (cloudflare dns list).",
+      "display_name": "List Cloudflare DNS records",
+      "id": "cloudflare.dns.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "zone_id"
+        ],
+        "title": "DnsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Update a DNS record (cloudflare dns update).",
+      "display_name": "Update Cloudflare DNS record",
+      "id": "cloudflare.dns.update",
+      "params_schema": {
+        "properties": {
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "proxied": {
+            "default": true,
+            "title": "Proxied",
+            "type": "boolean"
+          },
+          "record_id": {
+            "title": "Record Id",
+            "type": "string"
+          },
+          "record_type": {
+            "title": "Record Type",
+            "type": "string"
+          },
+          "ttl": {
+            "default": 1,
+            "title": "Ttl",
+            "type": "integer"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "zone_id",
+          "record_id",
+          "record_type",
+          "name",
+          "content"
+        ],
+        "title": "DnsUpdateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a private network route for a CIDR block (cloudflare network add-route).",
+      "display_name": "Create Cloudflare private route",
+      "id": "cloudflare.network.routes.create",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "comment": {
+            "default": "",
+            "title": "Comment",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cidr",
+          "tunnel_id"
+        ],
+        "title": "RouteCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a private network route (cloudflare network remove-route).",
+      "display_name": "Delete Cloudflare private route",
+      "id": "cloudflare.network.routes.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "route_id": {
+            "title": "Route Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "route_id"
+        ],
+        "title": "RouteDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List private network CIDR routes (cloudflare network routes).",
+      "display_name": "List Cloudflare private routes",
+      "id": "cloudflare.network.routes.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "RoutesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Show WARP split tunnel include/exclude lists (cloudflare network split-tunnel).",
+      "display_name": "Show Cloudflare split tunnel",
+      "id": "cloudflare.network.split-tunnel.show",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "SplitTunnelShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List virtual networks (cloudflare network vnets).",
+      "display_name": "List Cloudflare virtual networks",
+      "id": "cloudflare.network.virtual-networks.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "VnetsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Install cloudflared on site connectors and create the private route (cloudflare site bootstrap).",
+      "display_name": "Bootstrap Cloudflare tunnel site",
+      "id": "cloudflare.site.bootstrap",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "ssh_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssh Key"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "SiteBootstrapParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List registered tunnel sites (cloudflare site list).",
+      "display_name": "List Cloudflare tunnel sites",
+      "id": "cloudflare.site.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "SiteListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Register a tunnel site: link the registry allocation, create the tunnel, persist the site row (cloudflare site register).",
+      "display_name": "Register Cloudflare tunnel site",
+      "id": "cloudflare.site.register",
+      "params_schema": {
+        "properties": {
+          "cidr": {
+            "title": "Cidr",
+            "type": "string"
+          },
+          "cost_tier": {
+            "default": "free",
+            "title": "Cost Tier",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "primary_host": {
+            "title": "Primary Host",
+            "type": "string"
+          },
+          "primary_type": {
+            "default": "vm",
+            "title": "Primary Type",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "secondary_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Secondary Cost"
+          },
+          "secondary_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Secondary Host"
+          },
+          "secondary_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Secondary Type"
+          },
+          "tunnel_name": {
+            "title": "Tunnel Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "cidr",
+          "tunnel_name",
+          "primary_host"
+        ],
+        "title": "SiteRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Deregister a tunnel site from the local registry \u2014 does not delete the CF tunnel (cloudflare site remove). The --force confirmation prompt stays CLI-side.",
+      "display_name": "Remove Cloudflare tunnel site",
+      "id": "cloudflare.site.remove",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "SiteNameParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Check connector health for a site (cloudflare site status).",
+      "display_name": "Cloudflare tunnel site status",
+      "id": "cloudflare.site.status",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "SiteNameParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a Zero Trust Access application (cloudflare zerotrust create-app).",
+      "display_name": "Create Cloudflare Access app",
+      "id": "cloudflare.zerotrust.access-apps.create",
+      "params_schema": {
+        "properties": {
+          "app_type": {
+            "default": "self_hosted",
+            "title": "App Type",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "domain"
+        ],
+        "title": "ZtAccessAppCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a Zero Trust Access application (cloudflare zerotrust delete-app). The --force confirmation prompt stays CLI-side.",
+      "display_name": "Delete Cloudflare Access app",
+      "id": "cloudflare.zerotrust.access-apps.delete",
+      "params_schema": {
+        "properties": {
+          "app_id": {
+            "title": "App Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_id"
+        ],
+        "title": "ZtAccessAppDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List Zero Trust Access applications (cloudflare zerotrust apps).",
+      "display_name": "List Cloudflare Access apps",
+      "id": "cloudflare.zerotrust.access-apps.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZtAccessAppsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List Access policies for an application (cloudflare zerotrust policies).",
+      "display_name": "List Cloudflare Access policies",
+      "id": "cloudflare.zerotrust.access-policies.list",
+      "params_schema": {
+        "properties": {
+          "app_id": {
+            "title": "App Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "app_id"
+        ],
+        "title": "ZtAccessPoliciesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Reconcile DB policies to the Cloudflare API (cloudflare zerotrust apply). The CLI keeps its own db.commit().",
+      "display_name": "Apply Cloudflare Zero Trust policies",
+      "id": "cloudflare.zerotrust.apply",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "prune": {
+            "default": false,
+            "title": "Prune",
+            "type": "boolean"
+          }
+        },
+        "title": "ZtApplyParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Show drift between DB policies and live Cloudflare state (cloudflare zerotrust diff).",
+      "display_name": "Diff Cloudflare Zero Trust policies",
+      "id": "cloudflare.zerotrust.diff",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZtDiffParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Export DB policies to YAML-ready data (cloudflare zerotrust export). DB-only: no adapter is resolved.",
+      "display_name": "Export Cloudflare Zero Trust policies",
+      "id": "cloudflare.zerotrust.export",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZtExportParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List Gateway network policy rules (cloudflare zerotrust gateway-rules).",
+      "display_name": "List Cloudflare Gateway rules",
+      "id": "cloudflare.zerotrust.gateway-rules.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZtGatewayRulesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List DNS zones (cloudflare zone list).",
+      "display_name": "List Cloudflare zones",
+      "id": "cloudflare.zone.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZoneListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
       "description": "Stop a governed deployment (two-phase: preview then confirm).",
       "display_name": "Deploy down",
       "id": "deploy.down",
