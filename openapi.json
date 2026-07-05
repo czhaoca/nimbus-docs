@@ -6576,7 +6576,7 @@
     "/api/v1/chatbot/{platform}/{path}": {
       "get": {
         "description": "Forward a platform webhook byte-faithfully to the chatbot runtime.",
-        "operationId": "relay_chatbot_webhook_api_v1_chatbot__platform___path__post",
+        "operationId": "relay_chatbot_webhook_get",
         "parameters": [
           {
             "in": "path",
@@ -6624,7 +6624,7 @@
       },
       "post": {
         "description": "Forward a platform webhook byte-faithfully to the chatbot runtime.",
-        "operationId": "relay_chatbot_webhook_api_v1_chatbot__platform___path__post",
+        "operationId": "relay_chatbot_webhook_post",
         "parameters": [
           {
             "in": "path",

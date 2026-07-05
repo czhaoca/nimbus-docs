@@ -14759,6 +14759,45 @@
       "tier": 2
     },
     {
+      "description": "Grow a container mount point's disk (pve lxc resize-disk).",
+      "display_name": "Resize LXC disk",
+      "id": "pve.lxc.resize-disk",
+      "params_schema": {
+        "properties": {
+          "disk": {
+            "default": "rootfs",
+            "title": "Disk",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid",
+          "size"
+        ],
+        "title": "LxcResizeDiskParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Set a static IP on a container NIC (pve lxc set-ip).",
       "display_name": "Set LXC static IP",
       "id": "pve.lxc.set-ip",
