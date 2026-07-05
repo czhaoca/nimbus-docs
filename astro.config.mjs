@@ -18,6 +18,7 @@ export default defineConfig({
 				{ label: 'Integrations', autogenerate: { directory: 'integrations' } },
 				{ label: 'Networking', autogenerate: { directory: 'networking' } },
 				{ label: 'CLI Reference', autogenerate: { directory: 'cli-reference' } },
+				{ label: 'Admin CLI Reference', autogenerate: { directory: 'admin-cli-reference' }, collapsed: true },
 				...openAPISidebarGroups,
 				{ label: 'Reference', autogenerate: { directory: 'reference' } },
 			],
