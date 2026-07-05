@@ -1,7 +1,7 @@
 ---
 title: "nimbus deploy"
 sidebar:
-  order: 11
+  order: 6
 ---
 
 Environment registry, target inventory, and access manifests.
@@ -230,15 +230,4 @@ Usage: `nimbus deploy validate [OPTIONS]`
 | `--project` | text | yes | - | Project name |
 | `--env` | text | no | `dev` | Env type: dev/prod |
 | `--slot` | text | no | `default` | Slot key |
-| `--json` | boolean | no | `False` | Output JSON |
-
-### validate-agents
-
-Validate AGENTS.md registry metadata for governed deployments.
-
-Usage: `nimbus deploy validate-agents [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--path`, `-p` | path | no | `()` | AGENTS.md path to validate. Repeatable. |
 | `--json` | boolean | no | `False` | Output JSON |

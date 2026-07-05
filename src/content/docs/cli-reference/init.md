@@ -1,7 +1,7 @@
 ---
 title: "nimbus init"
 sidebar:
-  order: 17
+  order: 10
 ---
 
 Declarative VM init profiles (cloud-init).

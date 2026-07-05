@@ -6,6 +6,8 @@ sidebar:
 
 Manage Azure resources (az-mirrored grammar).
 
+Native CLI equivalent: [https://learn.microsoft.com/en-us/cli/azure/](https://learn.microsoft.com/en-us/cli/azure/)
+
 ## Commands
 
 ### acr create
@@ -734,7 +736,7 @@ Usage: `nimbus az vm create [OPTIONS]`
 | `--resource-group`, `-g` | text | yes | - | Azure resource group |
 | `--provider`, `-p` | text | no | - | Azure provider ID (nimbus extension) |
 | `--name`, `-n` | text | no | - | VM name (required if no --label) |
-| `--label` | text | no | - | ICAO label. Expands via generate_name() into 'azure-{geo}-{type}-{label}'. |
+| `--label` | text | no | - | ICAO label (engine-side auto-naming; not supported over the API). |
 | `--location`, `-l` | text | no | `eastus` | Azure region |
 | `--size` | text | no | `Standard_B1s` | Azure VM size |
 

@@ -1,7 +1,7 @@
 ---
 title: "nimbus gcloud"
 sidebar:
-  order: 15
+  order: 8
 ---
 
 Manage GCP resources (gcloud-mirrored grammar).
@@ -446,44 +446,6 @@ Usage: `nimbus gcloud container node-pools list [OPTIONS]`
 | `--provider`, `-p` | text | no | - | GCP provider ID (nimbus extension) |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
 
-### context clear
-
-Clear the active GCP provider context.
-
-Usage: `nimbus gcloud context clear [OPTIONS]`
-
-_No options._
-
-### context set
-
-Set the active GCP provider context.
-
-Usage: `nimbus gcloud context set [OPTIONS] PROVIDER_ID`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `provider_id` | text | yes | - | GCP provider ID to activate |
-
-### context show
-
-Show the current active GCP provider context.
-
-Usage: `nimbus gcloud context show [OPTIONS]`
-
-_No options._
-
-### cost current
-
-Show GCP spending for the current or requested billing period.
-
-Usage: `nimbus gcloud cost current [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-| `--period` | text | no | - | Billing period in YYYY-MM format |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
 ### freetier show
 
 Show the current free tier spec for this provider.
@@ -493,66 +455,6 @@ Usage: `nimbus gcloud freetier show [OPTIONS]`
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### instance create
-
-Create a GCP instance. Provide either --name (literal) or --label (generated).
-
-Usage: `nimbus gcloud instance create [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--zone` | text | yes | - | GCP zone |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-| `--name` | text | no | - | Instance name (required if no --label) |
-| `--label` | text | no | - | ICAO label. Expands via generate_name() into 'gcp-{geo}-{type}-{label}'. |
-| `--machine-type` | text | no | `e2-micro` | GCP machine type |
-
-### instance get
-
-Get details for a GCP instance.
-
-Usage: `nimbus gcloud instance get [OPTIONS] RESOURCE_ID`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `resource_id` | text | yes | - | GCP instance name or ID |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### instance list
-
-List GCP instances.
-
-Usage: `nimbus gcloud instance list [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### instance stop
-
-Stop a GCP instance.
-
-Usage: `nimbus gcloud instance stop [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | GCP instance name or ID |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-
-### instance terminate
-
-Terminate a GCP instance.
-
-Usage: `nimbus gcloud instance terminate [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | GCP instance name or ID |
-| `--provider`, `-p` | text | no | - | GCP provider ID |
-| `--force` | boolean | no | `False` | Skip confirmation |
 
 ### sql databases create
 

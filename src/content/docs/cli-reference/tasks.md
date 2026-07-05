@@ -1,7 +1,7 @@
 ---
 title: "nimbus tasks"
 sidebar:
-  order: 30
+  order: 19
 ---
 
 Scheduled / on-demand task management.

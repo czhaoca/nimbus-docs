@@ -1,7 +1,7 @@
 ---
 title: "nimbus ci"
 sidebar:
-  order: 6
+  order: 4
 ---
 
 Woodpecker CI status and administration.

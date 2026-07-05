@@ -1,7 +1,7 @@
 ---
 title: "nimbus providers"
 sidebar:
-  order: 23
+  order: 15
 ---
 
 Manage cloud providers.

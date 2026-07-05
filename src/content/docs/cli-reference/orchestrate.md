@@ -1,7 +1,7 @@
 ---
 title: "nimbus orchestrate"
 sidebar:
-  order: 21
+  order: 14
 ---
 
 Cross-cloud orchestration workflows.

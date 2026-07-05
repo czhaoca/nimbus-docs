@@ -1,7 +1,7 @@
 ---
 title: "nimbus gh-runner"
 sidebar:
-  order: 16
+  order: 9
 ---
 
 Compatibility-only GitHub Actions runner lifecycle on Proxmox LXC.

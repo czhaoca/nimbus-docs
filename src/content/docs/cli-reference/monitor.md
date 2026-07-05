@@ -1,7 +1,7 @@
 ---
 title: "nimbus monitor"
 sidebar:
-  order: 18
+  order: 11
 ---
 
 Health monitoring and heartbeat tracking.

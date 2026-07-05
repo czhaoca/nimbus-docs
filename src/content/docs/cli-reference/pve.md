@@ -1,38 +1,12 @@
 ---
 title: "nimbus pve"
 sidebar:
-  order: 24
+  order: 16
 ---
 
 Manage Proxmox VE resources (containers, VMs, nodes).
 
 ## Commands
-
-### context clear
-
-Clear the active Proxmox provider context.
-
-Usage: `nimbus pve context clear [OPTIONS]`
-
-_No options._
-
-### context set
-
-Set the active Proxmox provider context.
-
-Usage: `nimbus pve context set [OPTIONS] PROVIDER_ID`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `provider_id` | text | yes | - | Proxmox provider ID to activate |
-
-### context show
-
-Show the current active Proxmox provider context.
-
-Usage: `nimbus pve context show [OPTIONS]`
-
-_No options._
 
 ### ct clone
 
@@ -64,15 +38,14 @@ Usage: `nimbus pve ct config [OPTIONS] VMID`
 
 ### ct create
 
-Create a new LXC container. Provide either --hostname or --label.
+Create a new LXC container.
 
 Usage: `nimbus pve ct create [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--template` | text | yes | - | OS template volid |
-| `--hostname`, `-n` | text | no | - | Container hostname (required if no --label) |
-| `--label` | text | no | - | ICAO label. Expands via generate_name() into 'proxmox-{geo}-ct-{label}'. |
+| `--hostname`, `-n` | text | no | - | Container hostname (required) |
 | `--ip` | text | no | `dhcp` | IP config (dhcp or \<ip>/\<prefix>) |
 | `--gw` | text | no | `` | Gateway IP |
 | `--cores` | integer | no | `1` | CPU cores |
@@ -227,15 +200,14 @@ Usage: `nimbus pve lxc config [OPTIONS] VMID`
 
 ### lxc create
 
-Create a new LXC container. Provide either --hostname or --label.
+Create a new LXC container.
 
 Usage: `nimbus pve lxc create [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--template` | text | yes | - | OS template volid |
-| `--hostname`, `-n` | text | no | - | Container hostname (required if no --label) |
-| `--label` | text | no | - | ICAO label. Expands via generate_name() into 'proxmox-{geo}-ct-{label}'. |
+| `--hostname`, `-n` | text | no | - | Container hostname (required) |
 | `--ip` | text | no | `dhcp` | IP config (dhcp or \<ip>/\<prefix>) |
 | `--gw` | text | no | `` | Gateway IP |
 | `--cores` | integer | no | `1` | CPU cores |
@@ -450,69 +422,6 @@ Usage: `nimbus pve node templates [OPTIONS]`
 | `--node` | text | no | - | Target node (defaults to the provider's node) |
 | `--provider`, `-p` | text | no | - | Proxmox provider ID |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### ops layout-apply
-
-Apply declared LXC layout to Proxmox — rename, resize, and create containers.
-
-Usage: `nimbus pve ops layout-apply [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--config` | text | yes | - | Path to lxc-layout.yml |
-| `--provider`, `-p` | text | no | - | Proxmox provider ID |
-| `--ostemplate` | text | no | `` | OS template for new containers |
-| `--storage` | text | no | `local-zfs` | Storage pool |
-| `--ssh-key` | text | no | `` | Path to SSH public key file |
-| `--force` | boolean | no | `False` | Skip confirmation |
-
-### ops layout-diff
-
-Show drift between declared LXC layout and actual Proxmox state.
-
-Usage: `nimbus pve ops layout-diff [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--config` | text | yes | - | Path to lxc-layout.yml |
-| `--provider`, `-p` | text | no | - | Proxmox provider ID |
-
-### ops reprovision
-
-Reprovision a container: stop → destroy → create with same config → start.
-
-Usage: `nimbus pve ops reprovision [OPTIONS] VMID`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `vmid` | integer | yes | - | Container VMID to reprovision |
-| `--template` | text | yes | - | OS template volid |
-| `--ssh-key` | text | no | `` | Path to SSH public key file |
-| `--storage` | text | no | `local-zfs` | Storage pool |
-| `--provider`, `-p` | text | no | - | Proxmox provider ID |
-
-### ops show-all
-
-Show all containers and VMs with their status.
-
-Usage: `nimbus pve ops show-all [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--provider`, `-p` | text | no | - | Proxmox provider ID |
-| `--format`, `-f` | text | no | `table` | Output format |
-
-### ops wg-init
-
-Deploy WireGuard mesh overlay across all running LXCs.
-
-Usage: `nimbus pve ops wg-init [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--subnet` | text | yes | - | Overlay subnet CIDR (required) |
-| `--ssh-key` | text | no | `` | SSH private key path |
-| `--provider`, `-p` | text | no | - | Proxmox provider ID |
 
 ### storage list
 

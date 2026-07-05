@@ -1,7 +1,7 @@
 ---
 title: "nimbus budget"
 sidebar:
-  order: 4
+  order: 3
 ---
 
 Manage budget rules and spending.

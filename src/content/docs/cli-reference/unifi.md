@@ -1,7 +1,7 @@
 ---
 title: "nimbus unifi"
 sidebar:
-  order: 32
+  order: 20
 ---
 
 Manage UniFi network infrastructure.
@@ -45,56 +45,6 @@ Usage: `nimbus unifi network clients list-fixed-ips [OPTIONS]`
 | `--controller`, `-c` | text | no | - |  |
 | `--format`, `-f` | text | no | `table` |  |
 
-### network clients set-fixed-ip
-
-Pin a client's DHCP fixed IP (and optionally its VLAN).
-
-Usage: `nimbus unifi network clients set-fixed-ip [OPTIONS] MAC`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `mac` | text | yes | - | Client MAC address (as known to the controller) |
-| `--ip` | text | yes | - | Fixed IP inside the VLAN's allocation CIDR |
-| `--network` | integer | no | - | Target VLAN ID (moves the client to that network) |
-| `--label` | text | no | `` | Reservation label |
-| `--controller`, `-c` | text | no | - |  |
-
-### network clients sync
-
-Sync connected clients into the network topology graph.
-
-Usage: `nimbus unifi network clients sync [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--controller`, `-c` | text | no | - |  |
-
-### network context clear
-
-Clear the active controller context.
-
-Usage: `nimbus unifi network context clear [OPTIONS]`
-
-_No options._
-
-### network context set
-
-Set the active UniFi controller context.
-
-Usage: `nimbus unifi network context set [OPTIONS] ALIAS`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `alias` | text | yes | - | Controller alias to activate |
-
-### network context show
-
-Show the current active controller context.
-
-Usage: `nimbus unifi network context show [OPTIONS]`
-
-_No options._
-
 ### network devices describe
 
 Get details for a specific device by MAC address.
@@ -118,19 +68,6 @@ Usage: `nimbus unifi network devices list [OPTIONS]`
 | `--controller`, `-c` | text | no | - |  |
 | `--type` | text | no | - | Filter: usw/uap/ugw |
 | `--format`, `-f` | text | no | `table` |  |
-
-### network firewall audit
-
-Audit firewall drift between the controller and the Nimbus registry.
-
-Usage: `nimbus unifi network firewall audit [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--controller`, `-c` | text | no | - |  |
-| `--format`, `-f` | text | no | `table` |  |
-| `--severity` | text | no | - | Filter: critical/warning/info |
-| `--show-reconcile` | boolean | no | `False` | Propose registry reconcile statements |
 
 ### network firewall rules create
 
@@ -207,29 +144,16 @@ Usage: `nimbus unifi network port-profiles list [OPTIONS]`
 | `--controller`, `-c` | text | no | - |  |
 | `--format`, `-f` | text | no | `table` |  |
 
-### network security audit
-
-Run a security audit of the UniFi network.
-
-Usage: `nimbus unifi network security audit [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--controller`, `-c` | text | no | - |  |
-| `--format`, `-f` | text | no | `table` |  |
-| `--severity` | text | no | - | Filter: critical/warning/info |
-
 ### network vlans create
 
-Create a VLAN network. Provide either --name or --label.
+Create a VLAN network.
 
 Usage: `nimbus unifi network vlans create [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--id` | integer | yes | - | VLAN ID (e.g. 10, 20, 30) |
-| `--name`, `-n` | text | no | - | VLAN name (required if no --label) |
-| `--label` | text | no | - | ICAO label. Expands via generate_name() into 'unifi-{geo}-vlan-{label}'. |
+| `--name`, `-n` | text | no | - | VLAN name (required) |
 | `--subnet` | text | no | `` | CIDR (format: \<gateway-ip>/\<prefix>) |
 | `--dhcp`, `--no-dhcp` | boolean | no | `False` |  |
 | `--controller`, `-c` | text | no | - |  |
@@ -279,7 +203,7 @@ Usage: `nimbus unifi network wlans create [OPTIONS]`
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--ssid` | text | yes | - | WiFi SSID (network name) |
-| `--passphrase` | text | yes | - | WPA passphrase — inject from Infisical, not a literal |
+| `--passphrase` | text | yes | - | WPA passphrase — inject from the vault, not a literal |
 | `--network` | integer | no | - | VLAN ID to bind the SSID to |
 | `--band` | text | no | `both` | WiFi band: both\|2g\|5g |
 | `--enabled`, `--disabled` | boolean | no | `True` |  |

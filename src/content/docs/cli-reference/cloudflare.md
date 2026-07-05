@@ -1,7 +1,7 @@
 ---
 title: "nimbus cloudflare"
 sidebar:
-  order: 7
+  order: 5
 ---
 
 Manage Cloudflare DNS, tunnels, Zero Trust, and network resources.

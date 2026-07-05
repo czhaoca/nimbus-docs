@@ -1,7 +1,7 @@
 ---
 title: "nimbus oci"
 sidebar:
-  order: 20
+  order: 13
 ---
 
 Manage Oracle Cloud Infrastructure resources.
@@ -244,24 +244,6 @@ Usage: `nimbus oci compute instance get [OPTIONS]`
 | `--instance-id` | text | yes | - | Instance OCID |
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### compute instance launch
-
-Launch a compute instance (mirrors `oci compute instance launch`).
-
-Usage: `nimbus oci compute instance launch [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--subnet-id` | text | yes | - | Target subnet OCID |
-| `--display-name` | text | yes | - | Instance label (expanded via the Nimbus naming convention) |
-| `--availability-domain` | text | no | - | AD (resolved from the registered tenancy when omitted; must match if given) |
-| `--compartment-id`, `-c` | text | no | - | Compartment OCID (resolved from the registered tenancy; must match if given) |
-| `--shape` | text | no | `VM.Standard.A1.Flex` | Compute shape |
-| `--shape-config` | text | no | - | Shape config JSON, e.g. {"ocpus": 2, "memoryInGBs": 12} |
-| `--image-id` | text | no | - | Boot image OCID (latest OS image if omitted) |
-| `--ssh-authorized-keys-file` | text | no | - | Path to an SSH public key file |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
 
 ### compute instance list
 
@@ -717,20 +699,6 @@ Usage: `nimbus oci freetier status [OPTIONS]`
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
 
-### harden run
-
-Audit and remediate OCI network security findings.
-
-Usage: `nimbus oci harden run [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-| `--min-severity` | text | no | `MEDIUM` | Min severity (CRITICAL/HIGH/MEDIUM) |
-| `--apply` | boolean | no | `False` | Execute fixes (dry-run by default) |
-| `--force` | boolean | no | `False` | Skip confirmation |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
 ### ip assign
 
 Assign a secondary private IP to a VNIC.
@@ -778,32 +746,6 @@ Usage: `nimbus oci ip unassign [OPTIONS]`
 | --- | --- | --- | --- | --- |
 | `--id` | text | yes | - | Private IP OCID |
 | `--tenancy`, `-t` | text | no | - |  |
-| `--force` | boolean | no | `False` |  |
-
-### migrate cidr
-
-Add new CIDR to VCN, create subnet, attach secondary VNICs with planned IPs.
-
-Usage: `nimbus oci migrate cidr [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--cidr` | text | no | `` | New CIDR block (required) |
-| `--subnet-name` | text | no | - | Override subnet display name |
-| `--dry-run` | boolean | no | `False` |  |
-| `--format`, `-f` | text | no | `table` |  |
-
-### migrate cleanup-old
-
-Remove old CIDR and subnet after migration. Requires manual VNIC detach first.
-
-Usage: `nimbus oci migrate cleanup-old [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--old-cidr` | text | no | `` | CIDR block to remove (required) |
 | `--force` | boolean | no | `False` |  |
 
 ### mysql db-system create
@@ -881,67 +823,6 @@ Usage: `nimbus oci mysql db-system stop [OPTIONS]`
 | `--db-system-id`, `--id` | text | yes | - | MySQL DB System OCID |
 | `--tenancy`, `-t` | text | no | - |  |
 | `--shutdown-type` | text | no | `FAST` | FAST (default; native oci requires this flag), SLOW, or IMMEDIATE |
-
-### network create-subnet
-
-> ⚠️ **Deprecated.**
-
-Create a subnet within a VCN with CIDR collision checking.
-
-Usage: `nimbus oci network create-subnet [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--label`, `-l` | text | yes | - | Subnet label (e.g. app, db) |
-| `--vcn` | text | yes | - | VCN OCID to create subnet in |
-| `--cidr` | text | yes | - | Subnet CIDR (format: \<ip>/\<prefix>) |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-| `--private`, `--public` | boolean | no | `True` | Prohibit public IPs (default: private) |
-| `--dns-label` | text | no | - | DNS label |
-| `--dry-run` | boolean | no | `False` | Show what would happen |
-
-### network create-vcn
-
-> ⚠️ **Deprecated.**
-
-Create an OCI VCN with CIDR collision checking.
-
-Usage: `nimbus oci network create-vcn [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--label`, `-l` | text | yes | - | VCN label (e.g. main, dev) |
-| `--cidr` | text | yes | - | CIDR block (format: \<ip>/\<prefix>) |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-| `--dns-label` | text | no | - | DNS label for VCN |
-| `--dry-run` | boolean | no | `False` | Show what would happen |
-
-### network list-subnets
-
-> ⚠️ **Deprecated.**
-
-List subnets, optionally filtered by VCN.
-
-Usage: `nimbus oci network list-subnets [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
-| `--vcn` | text | no | - | Filter by VCN OCID |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### network list-vcns
-
-> ⚠️ **Deprecated.**
-
-List all VCNs in the tenancy.
-
-Usage: `nimbus oci network list-vcns [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
 
 ### network nsg create
 
@@ -1106,97 +987,6 @@ Usage: `nimbus oci network vcn list [OPTIONS]`
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
 
-### nsg add-rule
-
-Add a security rule to an NSG.
-
-Usage: `nimbus oci nsg add-rule [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | NSG OCID |
-| `--direction`, `-d` | text | yes | - | ingress or egress |
-| `--protocol`, `-p` | text | yes | - | tcp/udp/icmp/all |
-| `--source` | text | no | - |  |
-| `--destination` | text | no | - |  |
-| `--port` | integer | no | - |  |
-| `--port-max` | integer | no | - |  |
-| `--desc` | text | no | `` |  |
-| `--tenancy`, `-t` | text | no | - |  |
-
-### nsg attach
-
-Attach an NSG to a VNIC.
-
-Usage: `nimbus oci nsg attach [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | NSG OCID |
-| `--vnic-id` | text | yes | - | VNIC OCID |
-| `--tenancy`, `-t` | text | no | - |  |
-
-### nsg create
-
-Create a Network Security Group with ICAO naming.
-
-Usage: `nimbus oci nsg create [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--label`, `-l` | text | yes | - | ICAO label |
-| `--vcn` | text | yes | - | VCN OCID |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--dry-run` | boolean | no | `False` |  |
-
-### nsg delete
-
-Delete a Network Security Group.
-
-Usage: `nimbus oci nsg delete [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | NSG OCID |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--force` | boolean | no | `False` |  |
-
-### nsg list
-
-List Network Security Groups.
-
-Usage: `nimbus oci nsg list [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--vcn` | text | no | - | VCN OCID (auto-detected) |
-| `--format`, `-f` | text | no | `table` |  |
-
-### nsg remove-rule
-
-Remove a security rule from an NSG by its OCID.
-
-Usage: `nimbus oci nsg remove-rule [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | NSG OCID |
-| `--rule-id` | text | yes | - | Rule OCID to remove |
-| `--tenancy`, `-t` | text | no | - |  |
-
-### nsg rules
-
-Show security rules in an NSG.
-
-Usage: `nimbus oci nsg rules [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | NSG OCID |
-| `--tenancy`, `-t` | text | no | - |  |
-| `--format`, `-f` | text | no | `table` |  |
-
 ### os bucket create
 
 Create a bucket (mirrors `oci os bucket create`).
@@ -1327,39 +1117,6 @@ Usage: `nimbus oci prefs set [OPTIONS] KEY VALUE`
 | `value` | text | yes | - | Preference value |
 | `--tenancy`, `-t` | text | no | - | Tenancy alias |
 
-### rename apply
-
-Apply ICAO naming convention to all OCI resources. Destructive — requires --tenancy.
-
-Usage: `nimbus oci rename apply [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-| `--force` | boolean | no | `False` | Skip confirmation |
-
-### rename audit
-
-Scan all OCI resources and show ICAO rename plan. No changes made.
-
-Usage: `nimbus oci rename audit [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### rename set-label
-
-Manually set a resource label. Survives future auto-renames.
-
-Usage: `nimbus oci rename set-label [OPTIONS] EXTERNAL_ID LABEL`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `external_id` | text | yes | - | Resource OCID |
-| `label` | text | yes | - | Custom label to set |
-
 ### seclist add-route
 
 Add a route rule to a route table.
@@ -1443,29 +1200,6 @@ Usage: `nimbus oci seclist show [OPTIONS]`
 | `--tenancy`, `-t` | text | no | - |  |
 | `--format`, `-f` | text | no | `table` |  |
 
-### security audit
-
-Audit OCI network security: security lists, subnets, gateways, routes.
-
-Usage: `nimbus oci security audit [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
-| `--severity` | text | no | - | Filter by min severity (CRITICAL/HIGH/MEDIUM/LOW/INFO) |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### security protection-audit
-
-Show all protected resources, their policies, and enforcement history.
-
-Usage: `nimbus oci security protection-audit [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
 ### sync resources
 
 Fetch all OCI resources with IPs and persist to CloudResource table.
@@ -1476,28 +1210,6 @@ Usage: `nimbus oci sync resources [OPTIONS]`
 | --- | --- | --- | --- | --- |
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### vm create
-
-Provision a new OCI compute instance (destructive, requires --tenancy).
-
-Usage: `nimbus oci vm create [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--label`, `-l` | text | yes | - | Resource label (e.g. web01) |
-| `--subnet` | text | yes | - | Subnet OCID |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-| `--shape` | text | no | `VM.Standard.A1.Flex` | VM shape |
-| `--os` | text | no | `Canonical Ubuntu` | OS family for image lookup |
-| `--image` | text | no | - | Explicit image OCID; omit to use latest |
-| `--ocpus` | float | no | `1` | OCPUs (for flex shapes) |
-| `--memory-gbs` | float | no | `6` | Memory GB (for flex shapes) |
-| `--boot-volume-gbs` | integer | no | `50` | Boot volume size GB (>= 50) |
-| `--block-volume-gbs` | integer | no | `0` | Attached block volume size GB |
-| `--ssh-key` | text | no | `` | SSH public key contents |
-| `--cloud-init` | text | no | - | Comma-separated cloud-init addons |
-| `--dry-run` | boolean | no | `False` | Show what would happen |
 
 ### vm get
 
@@ -1534,28 +1246,6 @@ Usage: `nimbus oci vm list [OPTIONS]`
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias |
 | `--format`, `-f` | text | no | `table` | Output format (table/json) |
 
-### vm provision arm
-
-Provision an OCI ARM VM with composed cloud-init (single attempt).
-
-Usage: `nimbus oci vm provision arm [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--config` | text | no | `` | Path to provision config JSON (default: engine/scripts/arm_poller_config.json) |
-| `--dry-run` | boolean | no | `False` | Show cloud-init without launching |
-
-### vm provision x86
-
-Provision an OCI x86 Micro VM with composed cloud-init.
-
-Usage: `nimbus oci vm provision x86 [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--config` | text | no | `` | Path to provision config JSON (default: engine/scripts/arm_poller_config.json) |
-| `--dry-run` | boolean | no | `False` | Show cloud-init without launching |
-
 ### vm reinstall
 
 Reinstall OS with latest FULL Ubuntu. Replaces boot volume.
@@ -1569,17 +1259,6 @@ Usage: `nimbus oci vm reinstall [OPTIONS]`
 | `--preserve-old-bv`, `--no-preserve-old-bv` | boolean | no | `True` | Keep old boot volume |
 | `--force` | boolean | no | `False` | Skip confirmation (x86 only) |
 | `--dry-run` | boolean | no | `False` | Show what would happen |
-
-### vm set-bastion
-
-Designate a VM as the bastion SSH endpoint. Adds protection policy.
-
-Usage: `nimbus oci vm set-bastion [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | Instance OCID |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
 
 ### vm start
 
@@ -1616,36 +1295,3 @@ Usage: `nimbus oci vm terminate [OPTIONS]`
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED for destructive ops) |
 | `--force` | boolean | no | `False` | Skip confirmation |
 | `--dry-run` | boolean | no | `False` | Show what would happen |
-
-### vm unset-bastion
-
-Remove bastion designation from a VM. Requires typed confirmation.
-
-Usage: `nimbus oci vm unset-bastion [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--id` | text | yes | - | Instance OCID |
-| `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
-
-### volume list
-
-List OCI boot and block volumes.
-
-Usage: `nimbus oci volume list [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--provider`, `-p` | text | yes | - | OCI provider ID |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |
-
-### volume quota
-
-Check storage quota against OCI Always Free tier limit (200 GB).
-
-Usage: `nimbus oci volume quota [OPTIONS]`
-
-| Flag | Type | Required | Default | Help |
-| --- | --- | --- | --- | --- |
-| `--provider`, `-p` | text | yes | - | OCI provider ID |
-| `--format`, `-f` | text | no | `table` | Output format (table/json) |

@@ -550,7 +550,7 @@ Usage: `nimbus aws instance create [OPTIONS]`
 | `--image-id` | text | yes | - | AMI ID |
 | `--provider`, `-p` | text | no | - | AWS provider ID |
 | `--instance-type` | text | no | `t3.micro` | EC2 instance type |
-| `--label` | text | no | - | ICAO label (e.g. 'alpha'). Expands via generate_name() into 'aws-{geo}-{type}-{label}'. |
+| `--label` | text | no | - | ICAO label (engine-side auto-naming; not supported over the API). |
 | `--key-name` | text | no | - | SSH key pair name |
 | `--security-group` | text | no | - | Security group ID (repeatable) |
 

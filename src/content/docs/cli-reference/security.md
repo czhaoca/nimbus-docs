@@ -1,7 +1,7 @@
 ---
 title: "nimbus security"
 sidebar:
-  order: 27
+  order: 18
 ---
 
 Cross-cutting security surfaces.

@@ -1,7 +1,7 @@
 ---
 title: "nimbus resources"
 sidebar:
-  order: 25
+  order: 17
 ---
 
 Manage cloud resources.
