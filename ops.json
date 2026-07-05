@@ -5598,6 +5598,227 @@
       "tier": 1
     },
     {
+      "description": "Create a Cloudflare tunnel (cloudflare tunnel create).",
+      "display_name": "Create Cloudflare tunnel",
+      "id": "cloudflare.tunnel.create",
+      "params_schema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "TunnelCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a Cloudflare tunnel (cloudflare tunnel delete). The --force confirmation prompt stays CLI-side.",
+      "display_name": "Delete Cloudflare tunnel",
+      "id": "cloudflare.tunnel.delete",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tunnel_id"
+        ],
+        "title": "TunnelDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Create a DNS CNAME pointing at a tunnel (cloudflare tunnel dns).",
+      "display_name": "Create Cloudflare tunnel DNS record",
+      "id": "cloudflare.tunnel.dns.create",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          },
+          "zone_id": {
+            "title": "Zone Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tunnel_id",
+          "zone_id",
+          "hostname"
+        ],
+        "title": "TunnelDnsCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List Cloudflare tunnels (cloudflare tunnel list).",
+      "display_name": "List Cloudflare tunnels",
+      "id": "cloudflare.tunnel.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "TunnelListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Add a public-hostname route to a tunnel (cloudflare tunnel add-route).",
+      "display_name": "Add Cloudflare tunnel route",
+      "id": "cloudflare.tunnel.routes.create",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tunnel_id",
+          "hostname",
+          "service"
+        ],
+        "title": "TunnelRouteCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Remove a public-hostname route from a tunnel (cloudflare tunnel remove-route).",
+      "display_name": "Remove Cloudflare tunnel route",
+      "id": "cloudflare.tunnel.routes.delete",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tunnel_id",
+          "hostname"
+        ],
+        "title": "TunnelRouteDeleteParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "List routes for a tunnel (cloudflare tunnel routes).",
+      "display_name": "List Cloudflare tunnel routes",
+      "id": "cloudflare.tunnel.routes.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tunnel_id"
+        ],
+        "title": "TunnelRoutesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
       "description": "Create a Zero Trust Access application (cloudflare zerotrust create-app).",
       "display_name": "Create Cloudflare Access app",
       "id": "cloudflare.zerotrust.access-apps.create",
@@ -8756,6 +8977,55 @@
       "required_role": "viewer",
       "tags": [
         "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "List available declarative init profiles.",
+      "display_name": "List init profiles",
+      "id": "init.profile-list",
+      "params_schema": {
+        "description": "No arguments \u2014 listing is filesystem-backed (ADR-0002).",
+        "properties": {},
+        "title": "InitProfileListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "init",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Render a declarative init profile to a cloud-init document.",
+      "display_name": "Render init profile",
+      "id": "init.render",
+      "params_schema": {
+        "description": "Params for rendering an init profile to a cloud-init document.",
+        "properties": {
+          "profile": {
+            "default": "default",
+            "title": "Profile",
+            "type": "string"
+          },
+          "variables": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Variables",
+            "type": "object"
+          }
+        },
+        "title": "InitRenderParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "init",
         "native"
       ],
       "tier": 1
@@ -14597,6 +14867,7 @@
             "type": "string"
           },
           "node": {
+            "default": "",
             "title": "Node",
             "type": "string"
           },
@@ -14606,9 +14877,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "node"
-        ],
         "title": "BridgeCheckParams",
         "type": "object"
       },
@@ -14631,6 +14899,7 @@
             "type": "string"
           },
           "node": {
+            "default": "",
             "title": "Node",
             "type": "string"
           },
@@ -14649,7 +14918,6 @@
           }
         },
         "required": [
-          "node",
           "vmid",
           "vlan_id"
         ],
@@ -14714,6 +14982,7 @@
       "params_schema": {
         "properties": {
           "node": {
+            "default": "",
             "title": "Node",
             "type": "string"
           },
@@ -14723,9 +14992,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "node"
-        ],
         "title": "StorageListParams",
         "type": "object"
       },
@@ -14743,6 +15009,7 @@
       "params_schema": {
         "properties": {
           "node": {
+            "default": "",
             "title": "Node",
             "type": "string"
           },
@@ -14757,9 +15024,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "node"
-        ],
         "title": "TemplatesListParams",
         "type": "object"
       },
