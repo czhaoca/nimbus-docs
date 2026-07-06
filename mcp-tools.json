@@ -1,0 +1,4422 @@
+{
+  "contract_version": "1.0.0",
+  "schema_version": 1,
+  "tools": [
+    {
+      "kind": "dryrun",
+      "name": "alerts_silence",
+      "op_id": "alerts.silence",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "alerts_silence_confirm",
+      "op_id": "alerts.silence",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "alerts_test",
+      "op_id": "alerts.test",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "alerts_test_confirm",
+      "op_id": "alerts.test",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_context_clear",
+      "op_id": "aws.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_context_clear_confirm",
+      "op_id": "aws.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_context_set",
+      "op_id": "aws.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_context_set_confirm",
+      "op_id": "aws.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_context_show",
+      "op_id": "aws.context.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_cost_current",
+      "op_id": "aws.cost.current",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_images_describe",
+      "op_id": "aws.ec2.images.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_instances_describe",
+      "op_id": "aws.ec2.instances.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_instances_reboot",
+      "op_id": "aws.ec2.instances.reboot",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_instances_reboot_confirm",
+      "op_id": "aws.ec2.instances.reboot",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_instances_run",
+      "op_id": "aws.ec2.instances.run",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_instances_run_confirm",
+      "op_id": "aws.ec2.instances.run",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_instances_start",
+      "op_id": "aws.ec2.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_instances_start_confirm",
+      "op_id": "aws.ec2.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_instances_stop",
+      "op_id": "aws.ec2.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_instances_stop_confirm",
+      "op_id": "aws.ec2.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_instances_terminate",
+      "op_id": "aws.ec2.instances.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_instances_terminate_confirm",
+      "op_id": "aws.ec2.instances.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_internet-gateways_attach",
+      "op_id": "aws.ec2.internet-gateways.attach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_internet-gateways_attach_confirm",
+      "op_id": "aws.ec2.internet-gateways.attach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_internet-gateways_create",
+      "op_id": "aws.ec2.internet-gateways.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_internet-gateways_create_confirm",
+      "op_id": "aws.ec2.internet-gateways.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_internet-gateways_delete",
+      "op_id": "aws.ec2.internet-gateways.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_internet-gateways_delete_confirm",
+      "op_id": "aws.ec2.internet-gateways.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_internet-gateways_describe",
+      "op_id": "aws.ec2.internet-gateways.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_internet-gateways_detach",
+      "op_id": "aws.ec2.internet-gateways.detach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_internet-gateways_detach_confirm",
+      "op_id": "aws.ec2.internet-gateways.detach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_security-groups_authorize-ingress",
+      "op_id": "aws.ec2.security-groups.authorize-ingress",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_security-groups_authorize-ingress_confirm",
+      "op_id": "aws.ec2.security-groups.authorize-ingress",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_security-groups_create",
+      "op_id": "aws.ec2.security-groups.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_security-groups_create_confirm",
+      "op_id": "aws.ec2.security-groups.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_security-groups_delete",
+      "op_id": "aws.ec2.security-groups.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_security-groups_delete_confirm",
+      "op_id": "aws.ec2.security-groups.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_security-groups_describe",
+      "op_id": "aws.ec2.security-groups.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_security-groups_revoke-ingress",
+      "op_id": "aws.ec2.security-groups.revoke-ingress",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_security-groups_revoke-ingress_confirm",
+      "op_id": "aws.ec2.security-groups.revoke-ingress",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_subnets_create",
+      "op_id": "aws.ec2.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_subnets_create_confirm",
+      "op_id": "aws.ec2.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_subnets_delete",
+      "op_id": "aws.ec2.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_subnets_delete_confirm",
+      "op_id": "aws.ec2.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_subnets_describe",
+      "op_id": "aws.ec2.subnets.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_volumes_attach",
+      "op_id": "aws.ec2.volumes.attach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_volumes_attach_confirm",
+      "op_id": "aws.ec2.volumes.attach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_volumes_create",
+      "op_id": "aws.ec2.volumes.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_volumes_create_confirm",
+      "op_id": "aws.ec2.volumes.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_volumes_delete",
+      "op_id": "aws.ec2.volumes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_volumes_delete_confirm",
+      "op_id": "aws.ec2.volumes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_volumes_describe",
+      "op_id": "aws.ec2.volumes.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_volumes_detach",
+      "op_id": "aws.ec2.volumes.detach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_volumes_detach_confirm",
+      "op_id": "aws.ec2.volumes.detach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_vpcs_create",
+      "op_id": "aws.ec2.vpcs.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_vpcs_create_confirm",
+      "op_id": "aws.ec2.vpcs.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ec2_vpcs_delete",
+      "op_id": "aws.ec2.vpcs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ec2_vpcs_delete_confirm",
+      "op_id": "aws.ec2.vpcs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ec2_vpcs_describe",
+      "op_id": "aws.ec2.vpcs.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecr_repositories_create",
+      "op_id": "aws.ecr.repositories.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecr_repositories_create_confirm",
+      "op_id": "aws.ecr.repositories.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecr_repositories_delete",
+      "op_id": "aws.ecr.repositories.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecr_repositories_delete_confirm",
+      "op_id": "aws.ecr.repositories.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ecr_repositories_describe",
+      "op_id": "aws.ecr.repositories.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecs_clusters_create",
+      "op_id": "aws.ecs.clusters.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecs_clusters_create_confirm",
+      "op_id": "aws.ecs.clusters.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecs_clusters_delete",
+      "op_id": "aws.ecs.clusters.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecs_clusters_delete_confirm",
+      "op_id": "aws.ecs.clusters.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ecs_clusters_list",
+      "op_id": "aws.ecs.clusters.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecs_task-definitions_register",
+      "op_id": "aws.ecs.task-definitions.register",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecs_task-definitions_register_confirm",
+      "op_id": "aws.ecs.task-definitions.register",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ecs_tasks_describe",
+      "op_id": "aws.ecs.tasks.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_ecs_tasks_list",
+      "op_id": "aws.ecs.tasks.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecs_tasks_run",
+      "op_id": "aws.ecs.tasks.run",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecs_tasks_run_confirm",
+      "op_id": "aws.ecs.tasks.run",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_ecs_tasks_stop",
+      "op_id": "aws.ecs.tasks.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_ecs_tasks_stop_confirm",
+      "op_id": "aws.ecs.tasks.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_instance_create",
+      "op_id": "aws.instance.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_instance_create_confirm",
+      "op_id": "aws.instance.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_instance_get",
+      "op_id": "aws.instance.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_instance_list",
+      "op_id": "aws.instance.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_instance_stop",
+      "op_id": "aws.instance.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_instance_stop_confirm",
+      "op_id": "aws.instance.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_instance_terminate",
+      "op_id": "aws.instance.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_instance_terminate_confirm",
+      "op_id": "aws.instance.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_instances_create",
+      "op_id": "aws.rds.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_instances_create_confirm",
+      "op_id": "aws.rds.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_instances_delete",
+      "op_id": "aws.rds.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_instances_delete_confirm",
+      "op_id": "aws.rds.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_rds_instances_describe",
+      "op_id": "aws.rds.instances.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_instances_modify",
+      "op_id": "aws.rds.instances.modify",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_instances_modify_confirm",
+      "op_id": "aws.rds.instances.modify",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_instances_start",
+      "op_id": "aws.rds.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_instances_start_confirm",
+      "op_id": "aws.rds.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_instances_stop",
+      "op_id": "aws.rds.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_instances_stop_confirm",
+      "op_id": "aws.rds.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_rds_snapshots_create",
+      "op_id": "aws.rds.snapshots.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_rds_snapshots_create_confirm",
+      "op_id": "aws.rds.snapshots.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_rds_snapshots_describe",
+      "op_id": "aws.rds.snapshots.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "aws_s3_buckets_list",
+      "op_id": "aws.s3.buckets.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_s3_buckets_mb",
+      "op_id": "aws.s3.buckets.mb",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_s3_buckets_mb_confirm",
+      "op_id": "aws.s3.buckets.mb",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_s3_buckets_rb",
+      "op_id": "aws.s3.buckets.rb",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_s3_buckets_rb_confirm",
+      "op_id": "aws.s3.buckets.rb",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_s3_objects_cp",
+      "op_id": "aws.s3.objects.cp",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_s3_objects_cp_confirm",
+      "op_id": "aws.s3.objects.cp",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "aws_s3_objects_list",
+      "op_id": "aws.s3.objects.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "aws_s3_objects_rm",
+      "op_id": "aws.s3.objects.rm",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "aws_s3_objects_rm_confirm",
+      "op_id": "aws.s3.objects.rm",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_acr_credentials_show",
+      "op_id": "az.acr.credentials.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_acr_registries_create",
+      "op_id": "az.acr.registries.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_acr_registries_create_confirm",
+      "op_id": "az.acr.registries.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_acr_registries_delete",
+      "op_id": "az.acr.registries.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_acr_registries_delete_confirm",
+      "op_id": "az.acr.registries.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_acr_registries_list",
+      "op_id": "az.acr.registries.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_acr_registries_show",
+      "op_id": "az.acr.registries.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_container_create",
+      "op_id": "az.container.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_container_create_confirm",
+      "op_id": "az.container.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_container_delete",
+      "op_id": "az.container.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_container_delete_confirm",
+      "op_id": "az.container.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_container_list",
+      "op_id": "az.container.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_container_logs",
+      "op_id": "az.container.logs",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_container_show",
+      "op_id": "az.container.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_context_clear",
+      "op_id": "az.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_context_clear_confirm",
+      "op_id": "az.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_context_set",
+      "op_id": "az.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_context_set_confirm",
+      "op_id": "az.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_context_show",
+      "op_id": "az.context.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_cost_current",
+      "op_id": "az.cost.current",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_disk_create",
+      "op_id": "az.disk.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_disk_create_confirm",
+      "op_id": "az.disk.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_disk_delete",
+      "op_id": "az.disk.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_disk_delete_confirm",
+      "op_id": "az.disk.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_disk_list",
+      "op_id": "az.disk.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_nsgs_create",
+      "op_id": "az.network.nsgs.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_nsgs_create_confirm",
+      "op_id": "az.network.nsgs.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_nsgs_delete",
+      "op_id": "az.network.nsgs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_nsgs_delete_confirm",
+      "op_id": "az.network.nsgs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_nsgs_list",
+      "op_id": "az.network.nsgs.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_nsgs_rules_create",
+      "op_id": "az.network.nsgs.rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_nsgs_rules_create_confirm",
+      "op_id": "az.network.nsgs.rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_nsgs_rules_delete",
+      "op_id": "az.network.nsgs.rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_nsgs_rules_delete_confirm",
+      "op_id": "az.network.nsgs.rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_nsgs_rules_list",
+      "op_id": "az.network.nsgs.rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_public-ips_create",
+      "op_id": "az.network.public-ips.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_public-ips_create_confirm",
+      "op_id": "az.network.public-ips.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_public-ips_delete",
+      "op_id": "az.network.public-ips.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_public-ips_delete_confirm",
+      "op_id": "az.network.public-ips.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_public-ips_list",
+      "op_id": "az.network.public-ips.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_vnets_create",
+      "op_id": "az.network.vnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_vnets_create_confirm",
+      "op_id": "az.network.vnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_vnets_delete",
+      "op_id": "az.network.vnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_vnets_delete_confirm",
+      "op_id": "az.network.vnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_vnets_list",
+      "op_id": "az.network.vnets.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_vnets_show",
+      "op_id": "az.network.vnets.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_vnets_subnets_create",
+      "op_id": "az.network.vnets.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_vnets_subnets_create_confirm",
+      "op_id": "az.network.vnets.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_network_vnets_subnets_delete",
+      "op_id": "az.network.vnets.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_network_vnets_subnets_delete_confirm",
+      "op_id": "az.network.vnets.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_network_vnets_subnets_list",
+      "op_id": "az.network.vnets.subnets.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_sql_dbs_create",
+      "op_id": "az.sql.dbs.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_sql_dbs_create_confirm",
+      "op_id": "az.sql.dbs.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_sql_dbs_delete",
+      "op_id": "az.sql.dbs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_sql_dbs_delete_confirm",
+      "op_id": "az.sql.dbs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_sql_dbs_list",
+      "op_id": "az.sql.dbs.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_sql_dbs_show",
+      "op_id": "az.sql.dbs.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_sql_firewall-rules_create",
+      "op_id": "az.sql.firewall-rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_sql_firewall-rules_create_confirm",
+      "op_id": "az.sql.firewall-rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_sql_firewall-rules_list",
+      "op_id": "az.sql.firewall-rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_sql_servers_create",
+      "op_id": "az.sql.servers.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_sql_servers_create_confirm",
+      "op_id": "az.sql.servers.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_sql_servers_delete",
+      "op_id": "az.sql.servers.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_sql_servers_delete_confirm",
+      "op_id": "az.sql.servers.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_sql_servers_list",
+      "op_id": "az.sql.servers.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_sql_servers_show",
+      "op_id": "az.sql.servers.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_accounts_create",
+      "op_id": "az.storage.accounts.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_accounts_create_confirm",
+      "op_id": "az.storage.accounts.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_accounts_delete",
+      "op_id": "az.storage.accounts.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_accounts_delete_confirm",
+      "op_id": "az.storage.accounts.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_storage_accounts_list",
+      "op_id": "az.storage.accounts.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_blobs_delete",
+      "op_id": "az.storage.blobs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_blobs_delete_confirm",
+      "op_id": "az.storage.blobs.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_storage_blobs_download",
+      "op_id": "az.storage.blobs.download",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_storage_blobs_list",
+      "op_id": "az.storage.blobs.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_blobs_upload",
+      "op_id": "az.storage.blobs.upload",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_blobs_upload_confirm",
+      "op_id": "az.storage.blobs.upload",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_containers_create",
+      "op_id": "az.storage.containers.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_containers_create_confirm",
+      "op_id": "az.storage.containers.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_storage_containers_delete",
+      "op_id": "az.storage.containers.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_storage_containers_delete_confirm",
+      "op_id": "az.storage.containers.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_storage_containers_list",
+      "op_id": "az.storage.containers.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_create",
+      "op_id": "az.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_create_confirm",
+      "op_id": "az.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_deallocate",
+      "op_id": "az.vm.deallocate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_deallocate_confirm",
+      "op_id": "az.vm.deallocate",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_delete",
+      "op_id": "az.vm.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_delete_confirm",
+      "op_id": "az.vm.delete",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_disk_attach",
+      "op_id": "az.vm.disk.attach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_disk_attach_confirm",
+      "op_id": "az.vm.disk.attach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_disk_detach",
+      "op_id": "az.vm.disk.detach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_disk_detach_confirm",
+      "op_id": "az.vm.disk.detach",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_vm_list",
+      "op_id": "az.vm.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "az_vm_list-sizes",
+      "op_id": "az.vm.list-sizes",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_restart",
+      "op_id": "az.vm.restart",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_restart_confirm",
+      "op_id": "az.vm.restart",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "az_vm_show",
+      "op_id": "az.vm.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "az_vm_start",
+      "op_id": "az.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "az_vm_start_confirm",
+      "op_id": "az.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "briefing_compose",
+      "op_id": "briefing.compose",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "budget_add-rule",
+      "op_id": "budget.add-rule",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "budget_add-rule_confirm",
+      "op_id": "budget.add-rule",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "budget_digest",
+      "op_id": "budget.digest",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "budget_spending",
+      "op_id": "budget.spending",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "budget_status",
+      "op_id": "budget.status",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "ci_crons",
+      "op_id": "ci.crons",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "ci_pipelines",
+      "op_id": "ci.pipelines",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "ci_register-crons",
+      "op_id": "ci.register-crons",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "ci_register-crons_confirm",
+      "op_id": "ci.register-crons",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "ci_status",
+      "op_id": "ci.status",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_device_list",
+      "op_id": "cloudflare.device.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_device_posture_create",
+      "op_id": "cloudflare.device.posture.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_device_posture_create_confirm",
+      "op_id": "cloudflare.device.posture.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_device_posture_list",
+      "op_id": "cloudflare.device.posture.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_device_revoke",
+      "op_id": "cloudflare.device.revoke",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_device_revoke_confirm",
+      "op_id": "cloudflare.device.revoke",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_device_settings_show",
+      "op_id": "cloudflare.device.settings.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_dns_create",
+      "op_id": "cloudflare.dns.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_dns_create_confirm",
+      "op_id": "cloudflare.dns.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_dns_delete",
+      "op_id": "cloudflare.dns.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_dns_delete_confirm",
+      "op_id": "cloudflare.dns.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_dns_list",
+      "op_id": "cloudflare.dns.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_dns_update",
+      "op_id": "cloudflare.dns.update",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_dns_update_confirm",
+      "op_id": "cloudflare.dns.update",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_network_routes_create",
+      "op_id": "cloudflare.network.routes.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_network_routes_create_confirm",
+      "op_id": "cloudflare.network.routes.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_network_routes_delete",
+      "op_id": "cloudflare.network.routes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_network_routes_delete_confirm",
+      "op_id": "cloudflare.network.routes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_network_routes_list",
+      "op_id": "cloudflare.network.routes.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_network_split-tunnel_show",
+      "op_id": "cloudflare.network.split-tunnel.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_network_virtual-networks_list",
+      "op_id": "cloudflare.network.virtual-networks.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_site_bootstrap",
+      "op_id": "cloudflare.site.bootstrap",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_site_bootstrap_confirm",
+      "op_id": "cloudflare.site.bootstrap",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_site_list",
+      "op_id": "cloudflare.site.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_site_register",
+      "op_id": "cloudflare.site.register",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_site_register_confirm",
+      "op_id": "cloudflare.site.register",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_site_remove",
+      "op_id": "cloudflare.site.remove",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_site_remove_confirm",
+      "op_id": "cloudflare.site.remove",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_site_status",
+      "op_id": "cloudflare.site.status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_tunnel_create",
+      "op_id": "cloudflare.tunnel.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_tunnel_create_confirm",
+      "op_id": "cloudflare.tunnel.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_tunnel_delete",
+      "op_id": "cloudflare.tunnel.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_tunnel_delete_confirm",
+      "op_id": "cloudflare.tunnel.delete",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_tunnel_dns_create",
+      "op_id": "cloudflare.tunnel.dns.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_tunnel_dns_create_confirm",
+      "op_id": "cloudflare.tunnel.dns.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_tunnel_list",
+      "op_id": "cloudflare.tunnel.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_tunnel_routes_create",
+      "op_id": "cloudflare.tunnel.routes.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_tunnel_routes_create_confirm",
+      "op_id": "cloudflare.tunnel.routes.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_tunnel_routes_delete",
+      "op_id": "cloudflare.tunnel.routes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_tunnel_routes_delete_confirm",
+      "op_id": "cloudflare.tunnel.routes.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_tunnel_routes_list",
+      "op_id": "cloudflare.tunnel.routes.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_zerotrust_access-apps_create",
+      "op_id": "cloudflare.zerotrust.access-apps.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_zerotrust_access-apps_create_confirm",
+      "op_id": "cloudflare.zerotrust.access-apps.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_zerotrust_access-apps_delete",
+      "op_id": "cloudflare.zerotrust.access-apps.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_zerotrust_access-apps_delete_confirm",
+      "op_id": "cloudflare.zerotrust.access-apps.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_access-apps_list",
+      "op_id": "cloudflare.zerotrust.access-apps.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_access-policies_list",
+      "op_id": "cloudflare.zerotrust.access-policies.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_zerotrust_apply",
+      "op_id": "cloudflare.zerotrust.apply",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_zerotrust_apply_confirm",
+      "op_id": "cloudflare.zerotrust.apply",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_diff",
+      "op_id": "cloudflare.zerotrust.diff",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_export",
+      "op_id": "cloudflare.zerotrust.export",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_gateway-rules_list",
+      "op_id": "cloudflare.zerotrust.gateway-rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zone_list",
+      "op_id": "cloudflare.zone.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "deploy_down",
+      "op_id": "deploy.down",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deploy_down_confirm",
+      "op_id": "deploy.down",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deploy_status",
+      "op_id": "deploy.status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "deploy_up",
+      "op_id": "deploy.up",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deploy_up_confirm",
+      "op_id": "deploy.up",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_check-ports",
+      "op_id": "deployments.check-ports",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_compose",
+      "op_id": "deployments.compose",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_create-pool",
+      "op_id": "deployments.create-pool",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_create-pool_confirm",
+      "op_id": "deployments.create-pool",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_deploy-all",
+      "op_id": "deployments.deploy-all",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_deploy-all_confirm",
+      "op_id": "deployments.deploy-all",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_down",
+      "op_id": "deployments.down",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_down_confirm",
+      "op_id": "deployments.down",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_events",
+      "op_id": "deployments.events",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_onboard-cicd",
+      "op_id": "deployments.onboard-cicd",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_onboard-cicd_confirm",
+      "op_id": "deployments.onboard-cicd",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_pools",
+      "op_id": "deployments.pools",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_sync-targets",
+      "op_id": "deployments.sync-targets",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_sync-targets_confirm",
+      "op_id": "deployments.sync-targets",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_target-config",
+      "op_id": "deployments.target-config",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_target-config_confirm",
+      "op_id": "deployments.target-config",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_up",
+      "op_id": "deployments.up",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_up_confirm",
+      "op_id": "deployments.up",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_validate",
+      "op_id": "deployments.validate",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "fleet_exec",
+      "op_id": "fleet.exec",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "fleet_exec_confirm",
+      "op_id": "fleet.exec",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "fleet_install",
+      "op_id": "fleet.install",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "fleet_install_confirm",
+      "op_id": "fleet.install",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_disks_create",
+      "op_id": "gcloud.compute.disks.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_disks_create_confirm",
+      "op_id": "gcloud.compute.disks.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_disks_delete",
+      "op_id": "gcloud.compute.disks.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_disks_delete_confirm",
+      "op_id": "gcloud.compute.disks.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_disks_describe",
+      "op_id": "gcloud.compute.disks.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_disks_list",
+      "op_id": "gcloud.compute.disks.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_firewall-rules_create",
+      "op_id": "gcloud.compute.firewall-rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_firewall-rules_create_confirm",
+      "op_id": "gcloud.compute.firewall-rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_firewall-rules_delete",
+      "op_id": "gcloud.compute.firewall-rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_firewall-rules_delete_confirm",
+      "op_id": "gcloud.compute.firewall-rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_firewall-rules_describe",
+      "op_id": "gcloud.compute.firewall-rules.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_firewall-rules_list",
+      "op_id": "gcloud.compute.firewall-rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_firewall-rules_update",
+      "op_id": "gcloud.compute.firewall-rules.update",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_firewall-rules_update_confirm",
+      "op_id": "gcloud.compute.firewall-rules.update",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_attach-disk",
+      "op_id": "gcloud.compute.instances.attach-disk",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_attach-disk_confirm",
+      "op_id": "gcloud.compute.instances.attach-disk",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_create",
+      "op_id": "gcloud.compute.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_create_confirm",
+      "op_id": "gcloud.compute.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_delete",
+      "op_id": "gcloud.compute.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_delete_confirm",
+      "op_id": "gcloud.compute.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_instances_describe",
+      "op_id": "gcloud.compute.instances.describe",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_detach-disk",
+      "op_id": "gcloud.compute.instances.detach-disk",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_detach-disk_confirm",
+      "op_id": "gcloud.compute.instances.detach-disk",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_instances_list",
+      "op_id": "gcloud.compute.instances.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_start",
+      "op_id": "gcloud.compute.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_start_confirm",
+      "op_id": "gcloud.compute.instances.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_instances_stop",
+      "op_id": "gcloud.compute.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_instances_stop_confirm",
+      "op_id": "gcloud.compute.instances.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_networks_create",
+      "op_id": "gcloud.compute.networks.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_networks_create_confirm",
+      "op_id": "gcloud.compute.networks.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_networks_delete",
+      "op_id": "gcloud.compute.networks.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_networks_delete_confirm",
+      "op_id": "gcloud.compute.networks.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_networks_describe",
+      "op_id": "gcloud.compute.networks.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_networks_list",
+      "op_id": "gcloud.compute.networks.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_networks_subnets_create",
+      "op_id": "gcloud.compute.networks.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_networks_subnets_create_confirm",
+      "op_id": "gcloud.compute.networks.subnets.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_compute_networks_subnets_delete",
+      "op_id": "gcloud.compute.networks.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_compute_networks_subnets_delete_confirm",
+      "op_id": "gcloud.compute.networks.subnets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_networks_subnets_describe",
+      "op_id": "gcloud.compute.networks.subnets.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_compute_networks_subnets_list",
+      "op_id": "gcloud.compute.networks.subnets.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_container_clusters_create",
+      "op_id": "gcloud.container.clusters.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_container_clusters_create_confirm",
+      "op_id": "gcloud.container.clusters.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_container_clusters_delete",
+      "op_id": "gcloud.container.clusters.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_container_clusters_delete_confirm",
+      "op_id": "gcloud.container.clusters.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_container_clusters_describe",
+      "op_id": "gcloud.container.clusters.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_container_clusters_list",
+      "op_id": "gcloud.container.clusters.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_container_clusters_resize",
+      "op_id": "gcloud.container.clusters.resize",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_container_clusters_resize_confirm",
+      "op_id": "gcloud.container.clusters.resize",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_container_node-pools_create",
+      "op_id": "gcloud.container.node-pools.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_container_node-pools_create_confirm",
+      "op_id": "gcloud.container.node-pools.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_container_node-pools_delete",
+      "op_id": "gcloud.container.node-pools.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_container_node-pools_delete_confirm",
+      "op_id": "gcloud.container.node-pools.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_container_node-pools_list",
+      "op_id": "gcloud.container.node-pools.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_databases_create",
+      "op_id": "gcloud.sql.databases.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_databases_create_confirm",
+      "op_id": "gcloud.sql.databases.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_databases_delete",
+      "op_id": "gcloud.sql.databases.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_databases_delete_confirm",
+      "op_id": "gcloud.sql.databases.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_sql_databases_list",
+      "op_id": "gcloud.sql.databases.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_instances_create",
+      "op_id": "gcloud.sql.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_instances_create_confirm",
+      "op_id": "gcloud.sql.instances.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_instances_delete",
+      "op_id": "gcloud.sql.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_instances_delete_confirm",
+      "op_id": "gcloud.sql.instances.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_sql_instances_describe",
+      "op_id": "gcloud.sql.instances.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_sql_instances_list",
+      "op_id": "gcloud.sql.instances.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_instances_patch",
+      "op_id": "gcloud.sql.instances.patch",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_instances_patch_confirm",
+      "op_id": "gcloud.sql.instances.patch",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_instances_restart",
+      "op_id": "gcloud.sql.instances.restart",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_instances_restart_confirm",
+      "op_id": "gcloud.sql.instances.restart",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_sql_users_create",
+      "op_id": "gcloud.sql.users.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_sql_users_create_confirm",
+      "op_id": "gcloud.sql.users.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_sql_users_list",
+      "op_id": "gcloud.sql.users.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_storage_buckets_create",
+      "op_id": "gcloud.storage.buckets.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_storage_buckets_create_confirm",
+      "op_id": "gcloud.storage.buckets.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_storage_buckets_delete",
+      "op_id": "gcloud.storage.buckets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_storage_buckets_delete_confirm",
+      "op_id": "gcloud.storage.buckets.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_storage_buckets_describe",
+      "op_id": "gcloud.storage.buckets.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_storage_buckets_list",
+      "op_id": "gcloud.storage.buckets.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_storage_cp_download",
+      "op_id": "gcloud.storage.cp.download",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_storage_cp_download_confirm",
+      "op_id": "gcloud.storage.cp.download",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_storage_cp_upload",
+      "op_id": "gcloud.storage.cp.upload",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_storage_cp_upload_confirm",
+      "op_id": "gcloud.storage.cp.upload",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gcloud_storage_ls",
+      "op_id": "gcloud.storage.ls",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gcloud_storage_rm",
+      "op_id": "gcloud.storage.rm",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gcloud_storage_rm_confirm",
+      "op_id": "gcloud.storage.rm",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gh-runner_provision",
+      "op_id": "gh-runner.provision",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gh-runner_provision_confirm",
+      "op_id": "gh-runner.provision",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "gh-runner_reprovision",
+      "op_id": "gh-runner.reprovision",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gh-runner_reprovision_confirm",
+      "op_id": "gh-runner.reprovision",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "gh-runner_status",
+      "op_id": "gh-runner.status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "gh-runner_teardown",
+      "op_id": "gh-runner.teardown",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "gh-runner_teardown_confirm",
+      "op_id": "gh-runner.teardown",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "infra_resources",
+      "op_id": "infra.resources",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "infra_status",
+      "op_id": "infra.status",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "init_profile-list",
+      "op_id": "init.profile-list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "init_render",
+      "op_id": "init.render",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "monitoring_check",
+      "op_id": "monitoring.check",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "monitoring_check_confirm",
+      "op_id": "monitoring.check",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_dashboard",
+      "op_id": "monitoring.dashboard",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_history",
+      "op_id": "monitoring.history",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_infra",
+      "op_id": "monitoring.infra",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "monitoring_infra-collect",
+      "op_id": "monitoring.infra-collect",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "monitoring_infra-collect_confirm",
+      "op_id": "monitoring.infra-collect",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_node",
+      "op_id": "monitoring.node",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_runners",
+      "op_id": "monitoring.runners",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_allocations",
+      "op_id": "network.allocations",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_allocations_list",
+      "op_id": "network.allocations.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_allocations_register",
+      "op_id": "network.allocations.register",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_allocations_register_confirm",
+      "op_id": "network.allocations.register",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_blocklist_add",
+      "op_id": "network.blocklist.add",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_blocklist_add_confirm",
+      "op_id": "network.blocklist.add",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_blocklist_list",
+      "op_id": "network.blocklist.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_blocklist_remove",
+      "op_id": "network.blocklist.remove",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_blocklist_remove_confirm",
+      "op_id": "network.blocklist.remove",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_blocklist_seed",
+      "op_id": "network.blocklist.seed",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_blocklist_seed_confirm",
+      "op_id": "network.blocklist.seed",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_cidr_allocate",
+      "op_id": "network.cidr.allocate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_cidr_allocate_confirm",
+      "op_id": "network.cidr.allocate",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_cidr_check",
+      "op_id": "network.cidr.check",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_cidr_suggest",
+      "op_id": "network.cidr.suggest",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_conflicts_list",
+      "op_id": "network.conflicts.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_conflicts_rescan",
+      "op_id": "network.conflicts.rescan",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_conflicts_rescan_confirm",
+      "op_id": "network.conflicts.rescan",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_device_expose",
+      "op_id": "network.device.expose",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_device_expose_confirm",
+      "op_id": "network.device.expose",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_device_list",
+      "op_id": "network.device.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_device_tag",
+      "op_id": "network.device.tag",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_device_tag_confirm",
+      "op_id": "network.device.tag",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_fixed-ip_next",
+      "op_id": "network.fixed-ip.next",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_fixed-ip_reserve",
+      "op_id": "network.fixed-ip.reserve",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_fixed-ip_reserve_confirm",
+      "op_id": "network.fixed-ip.reserve",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_hosts_list",
+      "op_id": "network.hosts.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_hosts_map",
+      "op_id": "network.hosts.map",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_onboard_register-provider",
+      "op_id": "network.onboard.register-provider",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_onboard_register-provider_confirm",
+      "op_id": "network.onboard.register-provider",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_plan",
+      "op_id": "network.plan",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_plan_decommission",
+      "op_id": "network.plan.decommission",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_plan_decommission_confirm",
+      "op_id": "network.plan.decommission",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_plan_diff",
+      "op_id": "network.plan.diff",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_plan_promote",
+      "op_id": "network.plan.promote",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_plan_promote_confirm",
+      "op_id": "network.plan.promote",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_plan_tree",
+      "op_id": "network.plan.tree",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_policies_list",
+      "op_id": "network.policies.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_policies_set",
+      "op_id": "network.policies.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_policies_set_confirm",
+      "op_id": "network.policies.set",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_provision_home",
+      "op_id": "network.provision.home",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_provision_home_confirm",
+      "op_id": "network.provision.home",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_resolution_apply",
+      "op_id": "network.resolution.apply",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_resolution_apply_confirm",
+      "op_id": "network.resolution.apply",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_resolution_approve",
+      "op_id": "network.resolution.approve",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_resolution_approve_confirm",
+      "op_id": "network.resolution.approve",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_resolution_list",
+      "op_id": "network.resolution.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_resolution_plan",
+      "op_id": "network.resolution.plan",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_resolution_plan_confirm",
+      "op_id": "network.resolution.plan",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_resolution_reject",
+      "op_id": "network.resolution.reject",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_resolution_reject_confirm",
+      "op_id": "network.resolution.reject",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_scope_add",
+      "op_id": "network.scope.add",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_scope_add_confirm",
+      "op_id": "network.scope.add",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_scope_list",
+      "op_id": "network.scope.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_scope_remove",
+      "op_id": "network.scope.remove",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_scope_remove_confirm",
+      "op_id": "network.scope.remove",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_seed_entry",
+      "op_id": "network.seed.entry",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_seed_entry_confirm",
+      "op_id": "network.seed.entry",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "network_tunnel_apply",
+      "op_id": "network.tunnel.apply",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "network_tunnel_apply_confirm",
+      "op_id": "network.tunnel.apply",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "network_tunnel_drift",
+      "op_id": "network.tunnel.drift",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_tunnel_plan",
+      "op_id": "network.tunnel.plan",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "network_tunnel_status",
+      "op_id": "network.tunnel.status",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_admin_compartments",
+      "op_id": "oci.admin.compartments",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_admin_info",
+      "op_id": "oci.admin.info",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_admin_limits",
+      "op_id": "oci.admin.limits",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_alias_list",
+      "op_id": "oci.alias.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_alias_rename",
+      "op_id": "oci.alias.rename",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_alias_rename_confirm",
+      "op_id": "oci.alias.rename",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_alias_set-default-compartment",
+      "op_id": "oci.alias.set-default-compartment",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_alias_set-default-compartment_confirm",
+      "op_id": "oci.alias.set-default-compartment",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_arm_status",
+      "op_id": "oci.arm_status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_bv_attachment_attach",
+      "op_id": "oci.bv.attachment.attach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_bv_attachment_attach_confirm",
+      "op_id": "oci.bv.attachment.attach",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_bv_attachment_detach",
+      "op_id": "oci.bv.attachment.detach",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_bv_attachment_detach_confirm",
+      "op_id": "oci.bv.attachment.detach",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_bv_attachment_list",
+      "op_id": "oci.bv.attachment.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_bv_volume_create",
+      "op_id": "oci.bv.volume.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_bv_volume_create_confirm",
+      "op_id": "oci.bv.volume.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_bv_volume_delete",
+      "op_id": "oci.bv.volume.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_bv_volume_delete_confirm",
+      "op_id": "oci.bv.volume.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_bv_volume_get",
+      "op_id": "oci.bv.volume.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_bv_volume_list",
+      "op_id": "oci.bv.volume.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_ce_cluster_create",
+      "op_id": "oci.ce.cluster.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_ce_cluster_create_confirm",
+      "op_id": "oci.ce.cluster.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_ce_cluster_delete",
+      "op_id": "oci.ce.cluster.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_ce_cluster_delete_confirm",
+      "op_id": "oci.ce.cluster.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_ce_cluster_list",
+      "op_id": "oci.ce.cluster.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_ce_nodepool_create",
+      "op_id": "oci.ce.nodepool.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_ce_nodepool_create_confirm",
+      "op_id": "oci.ce.nodepool.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_ce_nodepool_delete",
+      "op_id": "oci.ce.nodepool.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_ce_nodepool_delete_confirm",
+      "op_id": "oci.ce.nodepool.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_ce_nodepool_get",
+      "op_id": "oci.ce.nodepool.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_ce_nodepool_list",
+      "op_id": "oci.ce.nodepool.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_compute_images_list",
+      "op_id": "oci.compute.images.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_compute_instances_action",
+      "op_id": "oci.compute.instances.action",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_compute_instances_action_confirm",
+      "op_id": "oci.compute.instances.action",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_compute_instances_get",
+      "op_id": "oci.compute.instances.get",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_compute_instances_launch",
+      "op_id": "oci.compute.instances.launch",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_compute_instances_launch_confirm",
+      "op_id": "oci.compute.instances.launch",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_compute_instances_list",
+      "op_id": "oci.compute.instances.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_compute_instances_terminate",
+      "op_id": "oci.compute.instances.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_compute_instances_terminate_confirm",
+      "op_id": "oci.compute.instances.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_compute_shapes_list",
+      "op_id": "oci.compute.shapes.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_container_instance_create",
+      "op_id": "oci.container.instance.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_container_instance_create_confirm",
+      "op_id": "oci.container.instance.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_container_instance_delete",
+      "op_id": "oci.container.instance.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_container_instance_delete_confirm",
+      "op_id": "oci.container.instance.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_container_instance_get",
+      "op_id": "oci.container.instance.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_container_instance_list",
+      "op_id": "oci.container.instance.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_container_instance_restart",
+      "op_id": "oci.container.instance.restart",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_container_instance_restart_confirm",
+      "op_id": "oci.container.instance.restart",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_container_instance_start",
+      "op_id": "oci.container.instance.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_container_instance_start_confirm",
+      "op_id": "oci.container.instance.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_container_instance_stop",
+      "op_id": "oci.container.instance.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_container_instance_stop_confirm",
+      "op_id": "oci.container.instance.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_context_clear",
+      "op_id": "oci.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_context_clear_confirm",
+      "op_id": "oci.context.clear",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_context_set",
+      "op_id": "oci.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_context_set_confirm",
+      "op_id": "oci.context.set",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_context_show",
+      "op_id": "oci.context.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_cost_current",
+      "op_id": "oci.cost.current",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_cost_history",
+      "op_id": "oci.cost.history",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_adb_create",
+      "op_id": "oci.db.adb.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_adb_create_confirm",
+      "op_id": "oci.db.adb.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_adb_delete",
+      "op_id": "oci.db.adb.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_adb_delete_confirm",
+      "op_id": "oci.db.adb.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_db_adb_get",
+      "op_id": "oci.db.adb.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_db_adb_list",
+      "op_id": "oci.db.adb.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_adb_start",
+      "op_id": "oci.db.adb.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_adb_start_confirm",
+      "op_id": "oci.db.adb.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_adb_stop",
+      "op_id": "oci.db.adb.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_adb_stop_confirm",
+      "op_id": "oci.db.adb.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_mysql_create",
+      "op_id": "oci.db.mysql.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_mysql_create_confirm",
+      "op_id": "oci.db.mysql.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_mysql_delete",
+      "op_id": "oci.db.mysql.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_mysql_delete_confirm",
+      "op_id": "oci.db.mysql.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_db_mysql_get",
+      "op_id": "oci.db.mysql.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_db_mysql_list",
+      "op_id": "oci.db.mysql.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_mysql_start",
+      "op_id": "oci.db.mysql.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_mysql_start_confirm",
+      "op_id": "oci.db.mysql.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_db_mysql_stop",
+      "op_id": "oci.db.mysql.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_db_mysql_stop_confirm",
+      "op_id": "oci.db.mysql.stop",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_freetier_status",
+      "op_id": "oci.freetier.status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_ip_assign",
+      "op_id": "oci.network.ip.assign",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_ip_assign_confirm",
+      "op_id": "oci.network.ip.assign",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_ip_list",
+      "op_id": "oci.network.ip.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_ip_move",
+      "op_id": "oci.network.ip.move",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_ip_move_confirm",
+      "op_id": "oci.network.ip.move",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_ip_unassign",
+      "op_id": "oci.network.ip.unassign",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_ip_unassign_confirm",
+      "op_id": "oci.network.ip.unassign",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_nsg_create",
+      "op_id": "oci.network.nsg.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_nsg_create_confirm",
+      "op_id": "oci.network.nsg.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_nsg_delete",
+      "op_id": "oci.network.nsg.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_nsg_delete_confirm",
+      "op_id": "oci.network.nsg.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_nsg_list",
+      "op_id": "oci.network.nsg.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_nsg_rules_add",
+      "op_id": "oci.network.nsg.rules.add",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_nsg_rules_add_confirm",
+      "op_id": "oci.network.nsg.rules.add",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_nsg_rules_list",
+      "op_id": "oci.network.nsg.rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_nsg_rules_remove",
+      "op_id": "oci.network.nsg.rules.remove",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_nsg_rules_remove_confirm",
+      "op_id": "oci.network.nsg.rules.remove",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_seclist_add_rule",
+      "op_id": "oci.network.seclist.add_rule",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_seclist_add_rule_confirm",
+      "op_id": "oci.network.seclist.add_rule",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_seclist_remove_rule",
+      "op_id": "oci.network.seclist.remove_rule",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_seclist_remove_rule_confirm",
+      "op_id": "oci.network.seclist.remove_rule",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_seclist_routes_add",
+      "op_id": "oci.network.seclist.routes.add",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_seclist_routes_add_confirm",
+      "op_id": "oci.network.seclist.routes.add",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_seclist_routes_remove",
+      "op_id": "oci.network.seclist.routes.remove",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_seclist_routes_remove_confirm",
+      "op_id": "oci.network.seclist.routes.remove",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_seclist_routes_show",
+      "op_id": "oci.network.seclist.routes.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_seclist_show",
+      "op_id": "oci.network.seclist.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_subnet_create",
+      "op_id": "oci.network.subnet.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_subnet_create_confirm",
+      "op_id": "oci.network.subnet.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_subnet_delete",
+      "op_id": "oci.network.subnet.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_subnet_delete_confirm",
+      "op_id": "oci.network.subnet.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_subnet_list",
+      "op_id": "oci.network.subnet.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_vcn_create",
+      "op_id": "oci.network.vcn.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_vcn_create_confirm",
+      "op_id": "oci.network.vcn.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_network_vcn_delete",
+      "op_id": "oci.network.vcn.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_network_vcn_delete_confirm",
+      "op_id": "oci.network.vcn.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_vcn_get",
+      "op_id": "oci.network.vcn.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_network_vcn_list",
+      "op_id": "oci.network.vcn.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_os_bucket_create",
+      "op_id": "oci.os.bucket.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_os_bucket_create_confirm",
+      "op_id": "oci.os.bucket.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_os_bucket_delete",
+      "op_id": "oci.os.bucket.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_os_bucket_delete_confirm",
+      "op_id": "oci.os.bucket.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_os_bucket_list",
+      "op_id": "oci.os.bucket.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_os_object_delete",
+      "op_id": "oci.os.object.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_os_object_delete_confirm",
+      "op_id": "oci.os.object.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_os_object_get",
+      "op_id": "oci.os.object.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_os_object_list",
+      "op_id": "oci.os.object.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_os_object_put",
+      "op_id": "oci.os.object.put",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_os_object_put_confirm",
+      "op_id": "oci.os.object.put",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_prefs_get",
+      "op_id": "oci.prefs.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_prefs_list",
+      "op_id": "oci.prefs.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_prefs_set",
+      "op_id": "oci.prefs.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_prefs_set_confirm",
+      "op_id": "oci.prefs.set",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_sync_resources",
+      "op_id": "oci.sync.resources",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_vm_create",
+      "op_id": "oci.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_vm_create_confirm",
+      "op_id": "oci.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_vm_get",
+      "op_id": "oci.vm.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_vm_health",
+      "op_id": "oci.vm.health",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "oci_vm_list",
+      "op_id": "oci.vm.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_vm_reinstall",
+      "op_id": "oci.vm.reinstall",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_vm_reinstall_confirm",
+      "op_id": "oci.vm.reinstall",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_vm_start",
+      "op_id": "oci.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_vm_start_confirm",
+      "op_id": "oci.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_vm_stop",
+      "op_id": "oci.vm.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_vm_stop_confirm",
+      "op_id": "oci.vm.stop",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "oci_vm_terminate",
+      "op_id": "oci.vm.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "oci_vm_terminate_confirm",
+      "op_id": "oci.vm.terminate",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "oci_vms",
+      "op_id": "oci.vms",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "orchestrate_dns-failover",
+      "op_id": "orchestrate.dns-failover",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "orchestrate_dns-failover_confirm",
+      "op_id": "orchestrate.dns-failover",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "orchestrate_lockdown",
+      "op_id": "orchestrate.lockdown",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "orchestrate_lockdown_confirm",
+      "op_id": "orchestrate.lockdown",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "orchestrate_vm-dns",
+      "op_id": "orchestrate.vm-dns",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "orchestrate_vm-dns_confirm",
+      "op_id": "orchestrate.vm-dns",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "providers_add",
+      "op_id": "providers.add",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "providers_add_confirm",
+      "op_id": "providers.add",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "providers_list",
+      "op_id": "providers.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "providers_list-detail",
+      "op_id": "providers.list-detail",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "providers_rename",
+      "op_id": "providers.rename",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "providers_rename_confirm",
+      "op_id": "providers.rename",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "providers_update",
+      "op_id": "providers.update",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "providers_update_confirm",
+      "op_id": "providers.update",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_clone",
+      "op_id": "pve.lxc.clone",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_clone_confirm",
+      "op_id": "pve.lxc.clone",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_lxc_config",
+      "op_id": "pve.lxc.config",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_create",
+      "op_id": "pve.lxc.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_create_confirm",
+      "op_id": "pve.lxc.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_delete",
+      "op_id": "pve.lxc.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_delete_confirm",
+      "op_id": "pve.lxc.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_lxc_describe",
+      "op_id": "pve.lxc.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "pve_lxc_list",
+      "op_id": "pve.lxc.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_resize",
+      "op_id": "pve.lxc.resize",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_resize-disk",
+      "op_id": "pve.lxc.resize-disk",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_resize-disk_confirm",
+      "op_id": "pve.lxc.resize-disk",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_resize_confirm",
+      "op_id": "pve.lxc.resize",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_set-ip",
+      "op_id": "pve.lxc.set-ip",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_set-ip_confirm",
+      "op_id": "pve.lxc.set-ip",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_start",
+      "op_id": "pve.lxc.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_start_confirm",
+      "op_id": "pve.lxc.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_lxc_stop",
+      "op_id": "pve.lxc.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_stop_confirm",
+      "op_id": "pve.lxc.stop",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_network_bridge_check",
+      "op_id": "pve.network.bridge.check",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_network_vlan_set",
+      "op_id": "pve.network.vlan.set",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_network_vlan_set_confirm",
+      "op_id": "pve.network.vlan.set",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_node_describe",
+      "op_id": "pve.node.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "pve_node_list",
+      "op_id": "pve.node.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "pve_storage_list",
+      "op_id": "pve.storage.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "pve_storage_templates_list",
+      "op_id": "pve.storage.templates.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_vm_create",
+      "op_id": "pve.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_vm_create_confirm",
+      "op_id": "pve.vm.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_vm_delete",
+      "op_id": "pve.vm.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_vm_delete_confirm",
+      "op_id": "pve.vm.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_vm_describe",
+      "op_id": "pve.vm.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "pve_vm_list",
+      "op_id": "pve.vm.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_vm_start",
+      "op_id": "pve.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_vm_start_confirm",
+      "op_id": "pve.vm.start",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "pve_vm_stop",
+      "op_id": "pve.vm.stop",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_vm_stop_confirm",
+      "op_id": "pve.vm.stop",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "registry_cidr_check",
+      "op_id": "registry.cidr.check",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "registry_manifest_get",
+      "op_id": "registry.manifest.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "registry_projects_list",
+      "op_id": "registry.projects.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "registry_projects_register",
+      "op_id": "registry.projects.register",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "registry_projects_register_confirm",
+      "op_id": "registry.projects.register",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "registry_slots_list",
+      "op_id": "registry.slots.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "registry_slots_release",
+      "op_id": "registry.slots.release",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "registry_slots_release_confirm",
+      "op_id": "registry.slots.release",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "registry_slots_reserve",
+      "op_id": "registry.slots.reserve",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "registry_slots_reserve_confirm",
+      "op_id": "registry.slots.reserve",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "registry_targets_list",
+      "op_id": "registry.targets.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "resources_create",
+      "op_id": "resources.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "resources_create_confirm",
+      "op_id": "resources.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "resources_get",
+      "op_id": "resources.get",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "resources_list",
+      "op_id": "resources.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "resources_provision",
+      "op_id": "resources.provision",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "resources_provision_confirm",
+      "op_id": "resources.provision",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "resources_search",
+      "op_id": "resources.search",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "resources_sync",
+      "op_id": "resources.sync",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "resources_sync_confirm",
+      "op_id": "resources.sync",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "security_review_dismiss",
+      "op_id": "security.review.dismiss",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "security_review_dismiss_confirm",
+      "op_id": "security.review.dismiss",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "security_review_list",
+      "op_id": "security.review.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "security_review_promote",
+      "op_id": "security.review.promote",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "security_review_promote_confirm",
+      "op_id": "security.review.promote",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "security_review_run",
+      "op_id": "security.review.run",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "security_review_run_confirm",
+      "op_id": "security.review.run",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "security_review_show",
+      "op_id": "security.review.show",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "tasks_list",
+      "op_id": "tasks.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "tasks_run",
+      "op_id": "tasks.run",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "tasks_run_confirm",
+      "op_id": "tasks.run",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "tasks_status",
+      "op_id": "tasks.status",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "tunnel_publish",
+      "op_id": "tunnel.publish",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "tunnel_publish_confirm",
+      "op_id": "tunnel.publish",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "tunnel_unpublish",
+      "op_id": "tunnel.unpublish",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "tunnel_unpublish_confirm",
+      "op_id": "tunnel.unpublish",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_clients_clear-fixed-ips",
+      "op_id": "unifi.network.clients.clear-fixed-ips",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_clients_clear-fixed-ips_confirm",
+      "op_id": "unifi.network.clients.clear-fixed-ips",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_clients_list",
+      "op_id": "unifi.network.clients.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_clients_list-fixed-ips",
+      "op_id": "unifi.network.clients.list-fixed-ips",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_devices_describe",
+      "op_id": "unifi.network.devices.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_devices_list",
+      "op_id": "unifi.network.devices.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_firewall_rules_create",
+      "op_id": "unifi.network.firewall.rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_firewall_rules_create_confirm",
+      "op_id": "unifi.network.firewall.rules.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_firewall_rules_delete",
+      "op_id": "unifi.network.firewall.rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_firewall_rules_delete_confirm",
+      "op_id": "unifi.network.firewall.rules.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_firewall_rules_list",
+      "op_id": "unifi.network.firewall.rules.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_port-profiles_assign",
+      "op_id": "unifi.network.port-profiles.assign",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_port-profiles_assign_confirm",
+      "op_id": "unifi.network.port-profiles.assign",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_port-profiles_create",
+      "op_id": "unifi.network.port-profiles.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_port-profiles_create_confirm",
+      "op_id": "unifi.network.port-profiles.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_port-profiles_list",
+      "op_id": "unifi.network.port-profiles.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_vlans_create",
+      "op_id": "unifi.network.vlans.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_vlans_create_confirm",
+      "op_id": "unifi.network.vlans.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_vlans_delete",
+      "op_id": "unifi.network.vlans.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_vlans_delete_confirm",
+      "op_id": "unifi.network.vlans.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_vlans_describe",
+      "op_id": "unifi.network.vlans.describe",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_vlans_list",
+      "op_id": "unifi.network.vlans.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_wlans_create",
+      "op_id": "unifi.network.wlans.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_wlans_create_confirm",
+      "op_id": "unifi.network.wlans.create",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "unifi_network_wlans_delete",
+      "op_id": "unifi.network.wlans.delete",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "unifi_network_wlans_delete_confirm",
+      "op_id": "unifi.network.wlans.delete",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "unifi_network_wlans_list",
+      "op_id": "unifi.network.wlans.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "warp_dns_reconcile",
+      "op_id": "warp.dns.reconcile",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "warp_dns_reconcile_confirm",
+      "op_id": "warp.dns.reconcile",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "warp_policy_apply",
+      "op_id": "warp.policy.apply",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "warp_policy_apply_confirm",
+      "op_id": "warp.policy.apply",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "warp_reconcile",
+      "op_id": "warp.reconcile",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "warp_reconcile_confirm",
+      "op_id": "warp.reconcile",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "warp_status",
+      "op_id": "warp.status",
+      "tier": 1
+    }
+  ]
+}

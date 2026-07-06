@@ -14870,8 +14870,26 @@
     },
     "/api/v1/services/sonarqube/start": {
       "post": {
-        "description": "Start the on-demand scanner (idempotent \u2014 running/starting is a 200 no-op).",
+        "description": "Start the on-demand scanner (idempotent \u2014 running/starting is a 200 no-op).\n\n``holder`` registers a lifecycle lease (ADR-0009); holder-less callers get\nan anonymous legacy lease. Additive: the request body is unchanged.",
         "operationId": "sonarqube_start_api_v1_services_sonarqube_start_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "holder",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Holder"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -14977,8 +14995,36 @@
     },
     "/api/v1/services/sonarqube/stop": {
       "post": {
-        "description": "Stop the scanner container on its registry-assigned target.",
+        "description": "Lease-gated stop \u2014 truly stops only at zero live leases (ADR-0009).\n\n``holder`` releases that caller's lease; may return ``state: \"up\"`` with\nthe live ``holders`` count when others still hold. ``force=true`` clears\nall leases and stops unconditionally (admin escape hatch).",
         "operationId": "sonarqube_stop_api_v1_services_sonarqube_stop_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "holder",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Holder"
+            }
+          },
+          {
+            "in": "query",
+            "name": "force",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Force",
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
