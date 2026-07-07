@@ -14939,7 +14939,7 @@
     },
     "/api/v1/services/sonarqube/status": {
       "get": {
-        "description": "stopped | starting | up \u2014 'up' proxies SonarQube's /api/system/status.",
+        "description": "stopped | starting | up | crashed \u2014 'up' proxies SonarQube's\n/api/system/status; 'crashed' means the container exists but is\nexited/dead while the probe is down, with best-effort exit detail (#291).",
         "operationId": "sonarqube_status_api_v1_services_sonarqube_status_get",
         "parameters": [
           {
