@@ -6450,6 +6450,79 @@
       "tier": 1
     },
     {
+      "description": "Vault-brokered sha-pinned image refresh (#297).",
+      "display_name": "Refresh image",
+      "id": "deployments.refresh",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          },
+          "ssh_key": {
+            "default": "",
+            "title": "Ssh Key",
+            "type": "string"
+          },
+          "ssh_user": {
+            "default": "root",
+            "title": "Ssh User",
+            "type": "string"
+          },
+          "tag": {
+            "title": "Tag",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env",
+          "tag"
+        ],
+        "title": "RefreshParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Re-store a repo-less project's compose contract from the repo file.",
+      "display_name": "Refresh compose contract",
+      "id": "deployments.refresh-compose-contract",
+      "params_schema": {
+        "properties": {
+          "project": {
+            "title": "Project",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "title": "RefreshComposeContractParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Sync target inventory.",
       "display_name": "Sync targets",
       "id": "deployments.sync-targets",

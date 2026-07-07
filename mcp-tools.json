@@ -1738,6 +1738,30 @@
     },
     {
       "kind": "dryrun",
+      "name": "deployments_refresh",
+      "op_id": "deployments.refresh",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "deployments_refresh-compose-contract",
+      "op_id": "deployments.refresh-compose-contract",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_refresh-compose-contract_confirm",
+      "op_id": "deployments.refresh-compose-contract",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "deployments_refresh_confirm",
+      "op_id": "deployments.refresh",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
       "name": "deployments_sync-targets",
       "op_id": "deployments.sync-targets",
       "tier": 2
