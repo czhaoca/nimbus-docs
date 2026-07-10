@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.1.0",
+  "contract_version": "1.2.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -15401,6 +15401,55 @@
           "name"
         ],
         "title": "ProjectRegisterParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "native",
+        "registry"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Set or clear an endpoint's health path without re-reserving (two-phase).",
+      "display_name": "Update a service endpoint",
+      "id": "registry.services.update",
+      "params_schema": {
+        "properties": {
+          "actor": {
+            "default": "mcp-agent",
+            "title": "Actor",
+            "type": "string"
+          },
+          "env_type": {
+            "title": "Env Type",
+            "type": "string"
+          },
+          "health_endpoint": {
+            "default": "",
+            "title": "Health Endpoint",
+            "type": "string"
+          },
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "service_name": {
+            "title": "Service Name",
+            "type": "string"
+          },
+          "slot_key": {
+            "default": "default",
+            "title": "Slot Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_name",
+          "env_type",
+          "service_name"
+        ],
+        "title": "ServiceUpdateParams",
         "type": "object"
       },
       "required_role": "operator",
