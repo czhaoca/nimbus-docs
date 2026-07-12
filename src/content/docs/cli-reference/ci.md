@@ -38,6 +38,7 @@ Usage: `nimbus ci register-crons [OPTIONS]`
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--repo` | text | no | - | owner/name |
+| `--cron` | text | no | - | name=schedule (repeatable). Overrides the default backend EXPECTED_CRONS set — use for consumer-repo crons such as the nightly contract-currency runs (czhaoca/nimbus#306). |
 
 ### status
 
