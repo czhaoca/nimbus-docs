@@ -1,35 +1,49 @@
 #!/usr/bin/env bash
-# check-staleness.sh — ADVISORY drift check: compare the vendored contract
-# version (openapi.json info.version) against the backend repo's latest v*
-# tag. Warns on mismatch; always exits 0 (delivery lag is expected between a
-# backend tag and the next bot delivery). Needs GITHUB_TOKEN while the
-# backend repo is private.
+# check-staleness.sh — contract staleness gate (czhaoca/nimbus#307): compare
+# the delivered contract stamp (package.json nimbusContract) against the
+# backend's latest contract-vX.Y.Z release tag.
+#
+# Exit semantics:
+#   token present + latest release known + mismatch -> exit 1 (stale: the bot
+#     delivery is behind a cut release — check the backend contract-delivery
+#     pipeline)
+#   match -> exit 0
+#   GITHUB_TOKEN missing / API unreachable / no contract-v* releases yet
+#     -> advisory, exit 0 (public forks and tokenless local runs never go red)
+#
+# Legacy v1.0.0–v1.3.0 tags are frozen pre-scheme milestones and are ignored
+# by design — only contract-v* names carry the release invariant (see the
+# backend's design/shared/api-versioning.md §Contract release tags).
 set -uo pipefail
 
-vendored=$(python3 -c "import json; print(json.load(open('openapi.json'))['info']['version'])" 2>/dev/null)
+vendored=$(python3 -c "import json; print(json.load(open('package.json')).get('nimbusContract',''))" 2>/dev/null)
 if [ -z "${vendored:-}" ]; then
-  echo "advisory: could not read vendored contract version"; exit 0
+  echo "advisory: could not read package.json nimbusContract"; exit 0
 fi
 
-auth=()
-[ -n "${GITHUB_TOKEN:-}" ] && auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
-latest=$(curl -sS "${auth[@]}" \
-  "https://api.github.com/repos/czhaoca/nimbus/tags?per_page=20" 2>/dev/null \
+if [ -z "${GITHUB_TOKEN:-}" ]; then
+  echo "advisory: GITHUB_TOKEN not set — staleness not verifiable (delivered contract: $vendored)"; exit 0
+fi
+
+latest=$(curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" \
+  "https://api.github.com/repos/czhaoca/nimbus/tags?per_page=100" 2>/dev/null \
   | python3 -c "
 import json, sys
 try:
-    tags = [t['name'] for t in json.load(sys.stdin) if t['name'].startswith('v')]
-    print(tags[0] if tags else '')
+    names = [t['name'] for t in json.load(sys.stdin) if t['name'].startswith('contract-v')]
+    names.sort(key=lambda n: [int(x) for x in n[len('contract-v'):].split('.')])
+    print(names[-1] if names else '')
 except Exception:
     print('')")
 
 if [ -z "$latest" ]; then
-  echo "advisory: could not list backend tags (token missing or API unreachable)"; exit 0
+  echo "advisory: no contract-v* release tags found (pre-first-release, or API unreachable)"; exit 0
 fi
 
-if [ "v$vendored" = "$latest" ]; then
-  echo "contract fresh: vendored v$vendored == backend $latest"
-else
-  echo "ADVISORY: vendored contract v$vendored != backend latest tag $latest — a delivery may be pending"
+if [ "contract-v$vendored" = "$latest" ]; then
+  echo "contract fresh: delivered $vendored == backend latest $latest"
+  exit 0
 fi
-exit 0
+
+echo "STALE: delivered contract $vendored != backend latest release $latest — check the backend contract-delivery pipeline" >&2
+exit 1

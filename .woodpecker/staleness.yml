@@ -1,9 +1,13 @@
-# Nightly ADVISORY contract-staleness check (#251). Separate workflow so a
-# missing secret can never break push CI (Woodpecker hard-errors a workflow
-# whose from_secret is unstaged — ADR-0007 rule 4 in the backend repo).
+# Nightly contract-staleness check (#251; made fail-real by
+# czhaoca/nimbus#307). Separate workflow so a missing secret can never break
+# push CI (Woodpecker hard-errors a workflow whose from_secret is unstaged —
+# ADR-0007 rule 4 in the backend repo).
 # Activation (owner): stage the read token as secret `github_token`
 # (cron-only events), then register the cron:
 #   nimbus-docs nightly → branch main, workflow this file.
+# A red run means the delivered contract stamp is behind the backend's
+# latest contract-v* release — check the backend contract-delivery pipeline.
+# (Tokenless/pre-first-release runs stay advisory-green inside the script.)
 when:
   event: cron
 
@@ -16,4 +20,3 @@ steps:
     commands:
       - apk add --no-cache python3 bash >/dev/null
       - bash scripts/check-staleness.sh
-    failure: ignore

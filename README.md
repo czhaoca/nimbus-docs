@@ -29,11 +29,16 @@ pnpm dev        # local dev server
 pnpm build      # production build (the CI gate)
 ```
 
-## Contract staleness (advisory)
+## Contract staleness
 
-`scripts/check-staleness.sh` compares the vendored contract version against
-the backend's latest `v*` tag and warns on drift. It runs as an advisory
-nightly cron in CI once a read token is staged; it never fails the build.
+`scripts/check-staleness.sh` compares the delivered contract stamp
+(`package.json` → `nimbusContract`) against the backend's latest
+`contract-vX.Y.Z` release tag and **fails (exit 1)** on a mismatch — a red
+nightly run means the bot delivery is behind a cut release
+(czhaoca/nimbus#307). Legacy `v*` tags are ignored by design (frozen
+pre-scheme milestones). Tokenless or pre-first-release runs stay
+advisory-green; the nightly cron activates once the owner stages the
+`github_token` read secret and registers the cron (czhaoca/nimbus#308).
 
 ## Versioning
 
