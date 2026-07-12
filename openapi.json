@@ -67,6 +67,217 @@
         "title": "ActionRequest",
         "type": "object"
       },
+      "ActivityFeedOut": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ActivityItemOut"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "per_page": {
+            "title": "Per Page",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total",
+          "page",
+          "per_page",
+          "items"
+        ],
+        "title": "ActivityFeedOut",
+        "type": "object"
+      },
+      "ActivityItemOut": {
+        "description": "One feed item; ``details`` keys differ by source (audit vs webhook).",
+        "properties": {
+          "details": {
+            "additionalProperties": true,
+            "title": "Details",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "summary",
+          "timestamp",
+          "source",
+          "details"
+        ],
+        "title": "ActivityItemOut",
+        "type": "object"
+      },
+      "AlertConfigOut": {
+        "description": "GET /alerts/config shape \u2014 ``smtp_host``/``smtp_port`` keys.",
+        "properties": {
+          "discord_webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Discord Webhooks",
+            "type": "array"
+          },
+          "email_from": {
+            "title": "Email From",
+            "type": "string"
+          },
+          "email_to": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Email To",
+            "type": "array"
+          },
+          "enabled_channels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Enabled Channels",
+            "type": "array"
+          },
+          "slack_webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Slack Webhooks",
+            "type": "array"
+          },
+          "smtp_host": {
+            "title": "Smtp Host",
+            "type": "string"
+          },
+          "smtp_port": {
+            "title": "Smtp Port",
+            "type": "integer"
+          },
+          "webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Webhooks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "webhooks",
+          "slack_webhooks",
+          "discord_webhooks",
+          "email_to",
+          "email_from",
+          "smtp_host",
+          "smtp_port",
+          "enabled_channels"
+        ],
+        "title": "AlertConfigOut",
+        "type": "object"
+      },
+      "AlertConfigSavedOut": {
+        "description": "PUT echo \u2014 the file-format keys (``email_smtp_*``), transcribed as-is;\nrenaming them to match the GET would be a breaking change.",
+        "properties": {
+          "discord_webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Discord Webhooks",
+            "type": "array"
+          },
+          "email_from": {
+            "title": "Email From",
+            "type": "string"
+          },
+          "email_smtp_host": {
+            "title": "Email Smtp Host",
+            "type": "string"
+          },
+          "email_smtp_port": {
+            "title": "Email Smtp Port",
+            "type": "integer"
+          },
+          "email_to": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Email To",
+            "type": "array"
+          },
+          "enabled_channels": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Enabled Channels",
+            "type": "array"
+          },
+          "slack_webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Slack Webhooks",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "webhooks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Webhooks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "webhooks",
+          "slack_webhooks",
+          "discord_webhooks",
+          "email_to",
+          "email_from",
+          "email_smtp_host",
+          "email_smtp_port",
+          "enabled_channels"
+        ],
+        "title": "AlertConfigSavedOut",
+        "type": "object"
+      },
       "AlertConfigUpdate": {
         "properties": {
           "discord_webhooks": {
@@ -754,6 +965,218 @@
         "title": "ChannelCreate",
         "type": "object"
       },
+      "ChatApprovalOut": {
+        "description": "One approval \u2014 mirrors ``_item`` exactly (``approval_id`` + legacy ``id``).",
+        "properties": {
+          "approval_id": {
+            "title": "Approval Id",
+            "type": "string"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "operation": {
+            "title": "Operation",
+            "type": "string"
+          },
+          "requested_by": {
+            "title": "Requested By",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "approval_id",
+          "operation",
+          "requested_by",
+          "created_at",
+          "expires_at",
+          "status"
+        ],
+        "title": "ChatApprovalOut",
+        "type": "object"
+      },
+      "ChatApprovalsListOut": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ChatApprovalOut"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ChatApprovalsListOut",
+        "type": "object"
+      },
+      "ChatChannelsOut": {
+        "description": "``_serialize`` shape \u2014 nulls/empty strings mean unconfigured, not error.",
+        "properties": {
+          "approvals_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approvals Channel Id"
+          },
+          "briefing_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Briefing Channel Id"
+          },
+          "env_filter": {
+            "title": "Env Filter",
+            "type": "string"
+          },
+          "feed_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feed Channel Id"
+          },
+          "incidents_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Incidents Channel Id"
+          },
+          "provider_filter": {
+            "title": "Provider Filter",
+            "type": "string"
+          }
+        },
+        "required": [
+          "feed_channel_id",
+          "briefing_channel_id",
+          "incidents_channel_id",
+          "approvals_channel_id",
+          "provider_filter",
+          "env_filter"
+        ],
+        "title": "ChatChannelsOut",
+        "type": "object"
+      },
+      "ChatChannelsSavedOut": {
+        "properties": {
+          "approvals_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approvals Channel Id"
+          },
+          "briefing_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Briefing Channel Id"
+          },
+          "env_filter": {
+            "title": "Env Filter",
+            "type": "string"
+          },
+          "feed_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feed Channel Id"
+          },
+          "incidents_channel_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Incidents Channel Id"
+          },
+          "provider_filter": {
+            "title": "Provider Filter",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "feed_channel_id",
+          "briefing_channel_id",
+          "incidents_channel_id",
+          "approvals_channel_id",
+          "provider_filter",
+          "env_filter",
+          "status"
+        ],
+        "title": "ChatChannelsSavedOut",
+        "type": "object"
+      },
       "ChatChannelsUpdate": {
         "description": "Full-body PUT payload; omitted fields reset to their defaults.",
         "properties": {
@@ -813,6 +1236,29 @@
           }
         },
         "title": "ChatChannelsUpdate",
+        "type": "object"
+      },
+      "ChatRoleOut": {
+        "properties": {
+          "platform": {
+            "title": "Platform",
+            "type": "string"
+          },
+          "platform_user_id": {
+            "title": "Platform User Id",
+            "type": "string"
+          },
+          "role": {
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform",
+          "platform_user_id",
+          "role"
+        ],
+        "title": "ChatRoleOut",
         "type": "object"
       },
       "CidrAllocationOut": {
@@ -1204,6 +1650,47 @@
         "title": "CreateVLANRequest",
         "type": "object"
       },
+      "DashboardPreferencesOut": {
+        "additionalProperties": true,
+        "description": "Stored dashboard layout; unknown saved keys survive (extra=\"allow\") \u2014\nthe PUT is a verbatim echo of client JSON (#309 enumeration).",
+        "properties": {
+          "widgets": {
+            "items": {
+              "$ref": "#/components/schemas/DashboardWidgetOut"
+            },
+            "title": "Widgets",
+            "type": "array"
+          }
+        },
+        "required": [
+          "widgets"
+        ],
+        "title": "DashboardPreferencesOut",
+        "type": "object"
+      },
+      "DashboardWidgetOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "order": {
+            "title": "Order",
+            "type": "integer"
+          },
+          "visible": {
+            "title": "Visible",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "visible",
+          "order"
+        ],
+        "title": "DashboardWidgetOut",
+        "type": "object"
+      },
       "DeliveryLogEntry": {
         "properties": {
           "event_type": {
@@ -1232,6 +1719,30 @@
         "title": "DeliveryLogEntry",
         "type": "object"
       },
+      "DependedByEdgeOut": {
+        "description": "Inbound dependency edge \u2014 carries ``source_id``, not ``target_id``.",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source_id",
+          "type"
+        ],
+        "title": "DependedByEdgeOut",
+        "type": "object"
+      },
       "DependencyCreate": {
         "properties": {
           "dependency_type": {
@@ -1248,6 +1759,30 @@
           "target_id"
         ],
         "title": "DependencyCreate",
+        "type": "object"
+      },
+      "DependsOnEdgeOut": {
+        "description": "Outbound dependency edge (crud.py::list_dependencies).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "target_id": {
+            "title": "Target Id",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "target_id",
+          "type"
+        ],
+        "title": "DependsOnEdgeOut",
         "type": "object"
       },
       "DeployRequest": {
@@ -1405,6 +1940,62 @@
           }
         },
         "title": "EnvironmentUpdate",
+        "type": "object"
+      },
+      "ErrorEntryOut": {
+        "description": "One tracked error (resilience.py::ErrorTracker.record).",
+        "properties": {
+          "context": {
+            "additionalProperties": true,
+            "title": "Context",
+            "type": "object"
+          },
+          "error_type": {
+            "title": "Error Type",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "timestamp": {
+            "title": "Timestamp",
+            "type": "number"
+          }
+        },
+        "required": [
+          "timestamp",
+          "source",
+          "error_type",
+          "message",
+          "context"
+        ],
+        "title": "ErrorEntryOut",
+        "type": "object"
+      },
+      "ErrorLogOut": {
+        "properties": {
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorEntryOut"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "errors",
+          "total"
+        ],
+        "title": "ErrorLogOut",
         "type": "object"
       },
       "GroupCreate": {
@@ -1877,6 +2468,70 @@
         "title": "ProjectOut",
         "type": "object"
       },
+      "ProviderComparisonItemOut": {
+        "properties": {
+          "cost_per_resource": {
+            "title": "Cost Per Resource",
+            "type": "number"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "latest_spending": {
+            "title": "Latest Spending",
+            "type": "number"
+          },
+          "monthly_cost_estimate": {
+            "title": "Monthly Cost Estimate",
+            "type": "number"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "resource_count": {
+            "title": "Resource Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_type",
+          "display_name",
+          "resource_count",
+          "monthly_cost_estimate",
+          "cost_per_resource",
+          "latest_spending",
+          "currency"
+        ],
+        "title": "ProviderComparisonItemOut",
+        "type": "object"
+      },
+      "ProviderComparisonOut": {
+        "properties": {
+          "providers": {
+            "items": {
+              "$ref": "#/components/schemas/ProviderComparisonItemOut"
+            },
+            "title": "Providers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "providers"
+        ],
+        "title": "ProviderComparisonOut",
+        "type": "object"
+      },
       "ProviderCreate": {
         "properties": {
           "credentials_path": {
@@ -1928,6 +2583,64 @@
           "display_name"
         ],
         "title": "ProviderCreate",
+        "type": "object"
+      },
+      "ProviderHealthOut": {
+        "description": "One live-probe result (core/services/health.py).",
+        "properties": {
+          "checked_at": {
+            "title": "Checked At",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_type",
+          "display_name",
+          "status",
+          "latency_ms",
+          "error",
+          "checked_at"
+        ],
+        "title": "ProviderHealthOut",
         "type": "object"
       },
       "ProviderImportPayload": {
@@ -2007,6 +2720,96 @@
           "updated_at"
         ],
         "title": "ProviderOut",
+        "type": "object"
+      },
+      "ProviderQuotaOut": {
+        "properties": {
+          "budget": {
+            "$ref": "#/components/schemas/QuotaBudgetOut"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "resources": {
+            "$ref": "#/components/schemas/QuotaResourcesOut"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "provider_id",
+          "resources",
+          "budget",
+          "warnings"
+        ],
+        "title": "ProviderQuotaOut",
+        "type": "object"
+      },
+      "ProviderResilienceItemOut": {
+        "description": "``circuit_breaker`` stays a dict: the adapter's breaker status and the\nno-adapter fallback carry different keys.",
+        "properties": {
+          "circuit_breaker": {
+            "additionalProperties": true,
+            "title": "Circuit Breaker",
+            "type": "object"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_type": {
+            "title": "Provider Type",
+            "type": "string"
+          },
+          "recent_errors": {
+            "title": "Recent Errors",
+            "type": "integer"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_type",
+          "display_name",
+          "circuit_breaker",
+          "recent_errors",
+          "status"
+        ],
+        "title": "ProviderResilienceItemOut",
+        "type": "object"
+      },
+      "ProviderResilienceOut": {
+        "properties": {
+          "providers": {
+            "items": {
+              "$ref": "#/components/schemas/ProviderResilienceItemOut"
+            },
+            "title": "Providers",
+            "type": "array"
+          },
+          "total_errors": {
+            "title": "Total Errors",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "providers",
+          "total_errors"
+        ],
+        "title": "ProviderResilienceOut",
         "type": "object"
       },
       "ProviderUpdate": {
@@ -2091,6 +2894,56 @@
           "resource_type"
         ],
         "title": "ProvisionRequest",
+        "type": "object"
+      },
+      "QuotaBudgetOut": {
+        "properties": {
+          "current_spend": {
+            "title": "Current Spend",
+            "type": "number"
+          },
+          "monthly_limit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Limit"
+          },
+          "utilization": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Utilization"
+          }
+        },
+        "required": [
+          "monthly_limit",
+          "current_spend",
+          "utilization"
+        ],
+        "title": "QuotaBudgetOut",
+        "type": "object"
+      },
+      "QuotaResourcesOut": {
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "count"
+        ],
+        "title": "QuotaResourcesOut",
         "type": "object"
       },
       "RateLimitConfig": {
@@ -2312,6 +3165,35 @@
           "resource_type"
         ],
         "title": "ResourceCreate",
+        "type": "object"
+      },
+      "ResourceDependenciesOut": {
+        "properties": {
+          "depended_by": {
+            "items": {
+              "$ref": "#/components/schemas/DependedByEdgeOut"
+            },
+            "title": "Depended By",
+            "type": "array"
+          },
+          "depends_on": {
+            "items": {
+              "$ref": "#/components/schemas/DependsOnEdgeOut"
+            },
+            "title": "Depends On",
+            "type": "array"
+          },
+          "resource_id": {
+            "title": "Resource Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_id",
+          "depends_on",
+          "depended_by"
+        ],
+        "title": "ResourceDependenciesOut",
         "type": "object"
       },
       "ResourceOut": {
@@ -2884,6 +3766,148 @@
           "port_pool_id"
         ],
         "title": "SlotReserveRequest",
+        "type": "object"
+      },
+      "SonarStatusOut": {
+        "description": "``detail`` is present only when crashed (#291) \u2014 the decorator's\n``response_model_exclude_none`` keeps the other states key-identical.",
+        "properties": {
+          "detail": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "holders": {
+            "title": "Holders",
+            "type": "integer"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "up",
+              "starting",
+              "crashed",
+              "stopped"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "service",
+          "state",
+          "holders"
+        ],
+        "title": "SonarStatusOut",
+        "type": "object"
+      },
+      "SpendingAnomaliesOut": {
+        "properties": {
+          "anomalies": {
+            "items": {
+              "$ref": "#/components/schemas/SpendingAnomalyOut"
+            },
+            "title": "Anomalies",
+            "type": "array"
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "anomalies",
+          "count"
+        ],
+        "title": "SpendingAnomaliesOut",
+        "type": "object"
+      },
+      "SpendingAnomalyOut": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "number"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "deviation": {
+            "title": "Deviation",
+            "type": "number"
+          },
+          "rolling_avg": {
+            "title": "Rolling Avg",
+            "type": "number"
+          },
+          "stddev": {
+            "title": "Stddev",
+            "type": "number"
+          },
+          "threshold": {
+            "title": "Threshold",
+            "type": "number"
+          }
+        },
+        "required": [
+          "date",
+          "amount",
+          "rolling_avg",
+          "stddev",
+          "threshold",
+          "deviation"
+        ],
+        "title": "SpendingAnomalyOut",
+        "type": "object"
+      },
+      "SpendingHistoryOut": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/SpendingHistoryPointOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "period_days": {
+            "title": "Period Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "period_days",
+          "data"
+        ],
+        "title": "SpendingHistoryOut",
+        "type": "object"
+      },
+      "SpendingHistoryPointOut": {
+        "additionalProperties": true,
+        "description": "One daily bucket; per-provider amounts ride as extra keys\n(services/analytics.py::get_spending_history).",
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "number"
+          }
+        },
+        "required": [
+          "date",
+          "total"
+        ],
+        "title": "SpendingHistoryPointOut",
         "type": "object"
       },
       "SpendingRecordOut": {
@@ -3548,7 +4572,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -3784,7 +4808,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityFeedOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -3856,7 +4882,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AlertConfigOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -3884,7 +4912,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/AlertConfigSavedOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -5652,7 +6682,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SpendingAnomaliesOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -5730,7 +6762,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderComparisonOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -6135,7 +7169,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SpendingHistoryOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -6252,9 +7288,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response List Approvals Api V1 Chat Approvals Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/ChatApprovalsListOut"
                 }
               }
             },
@@ -6448,7 +7482,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ChatChannelsOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -6497,7 +7533,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ChatChannelsSavedOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -6548,9 +7586,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Get Chat Role Api V1 Chat Roles  Platform   Platform User Id  Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/ChatRoleOut"
                 }
               }
             },
@@ -7753,7 +8789,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardPreferencesOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -8304,7 +9342,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorLogOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -10765,7 +11805,13 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderHealthOut"
+                  },
+                  "title": "Response Provider Health Check Api V1 Providers Health Check Get",
+                  "type": "array"
+                }
               }
             },
             "description": "Successful Response"
@@ -10835,7 +11881,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderResilienceOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -11277,7 +12325,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQuotaOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -13757,7 +14807,9 @@
           "200": {
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceDependenciesOut"
+                }
               }
             },
             "description": "Successful Response"
@@ -14968,9 +16020,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Sonarqube Status Api V1 Services Sonarqube Status Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/SonarStatusOut"
                 }
               }
             },
