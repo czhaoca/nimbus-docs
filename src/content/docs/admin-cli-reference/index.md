@@ -16,7 +16,7 @@ hand — run `scripts/gen-contracts.sh` and commit the result.
 | [`nimbus-admin completion`](./completion/) | group | 3 | Generate shell completion scripts. |
 | [`nimbus-admin config`](./config/) | group | 5 | Configuration import/export. |
 | [`nimbus-admin db`](./db/) | group | 4 | Database migration and diagnostics. |
-| [`nimbus-admin deploy`](./deploy/) | group | 1 | Operator deploy residue: AGENTS.md registry validation. |
+| [`nimbus-admin deploy`](./deploy/) | group | 2 | Operator deploy residue: AGENTS.md registry validation, image GC keep-list. |
 | [`nimbus-admin environments`](./environments/) | group | 3 | Legacy environment config commands. Prefer 'nimbus deploy'. |
 | [`nimbus-admin fleet`](./fleet/) | group | 1 | Cross-provider VM fleet operations. |
 | [`nimbus-admin gcloud`](./gcloud/) | group | 4 | Manage GCP resources (residual in-engine commands). |
