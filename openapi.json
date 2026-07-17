@@ -2243,6 +2243,72 @@
         "title": "NoteCreate",
         "type": "object"
       },
+      "NotificationFeedOut": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/NotificationItemOut"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "NotificationFeedOut",
+        "type": "object"
+      },
+      "NotificationItemOut": {
+        "description": "One feed item; ``source`` references the persisted row (store:id).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          },
+          "type": {
+            "enum": [
+              "incident",
+              "activity"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "severity",
+          "message",
+          "timestamp",
+          "source"
+        ],
+        "title": "NotificationItemOut",
+        "type": "object"
+      },
       "OrchestrationScheduleCreate": {
         "properties": {
           "action": {
@@ -4572,7 +4638,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -10498,6 +10564,52 @@
           }
         },
         "summary": "Delete Channel",
+        "tags": [
+          "notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/feed": {
+      "get": {
+        "description": "Persisted recent-events feed (incidents + activity), newest-first (GAP-037).",
+        "operationId": "notifications_feed_api_v1_notifications_feed_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationFeedOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Notifications Feed",
         "tags": [
           "notifications"
         ]

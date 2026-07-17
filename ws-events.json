@@ -1,6 +1,6 @@
 {
   "auth": "Bearer header or token query param (WebSocketAuthMiddleware; #241)",
-  "contract_version": "1.5.0",
+  "contract_version": "1.6.0",
   "endpoint": "/ws",
   "events": [
     {
@@ -51,6 +51,67 @@
         "type": "object"
       },
       "type": "incident"
+    },
+    {
+      "description": "A feed-worthy notification was recorded (GAP-037) \u2014 mirrors one item\nof ``GET /api/v1/notifications/feed``; ``id``/``source`` reference the\npersisted row.",
+      "schema": {
+        "additionalProperties": true,
+        "description": "A feed-worthy notification was recorded (GAP-037) \u2014 mirrors one item\nof ``GET /api/v1/notifications/feed``; ``id``/``source`` reference the\npersisted row.",
+        "properties": {
+          "category": {
+            "enum": [
+              "incident",
+              "activity"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "string"
+          },
+          "source": {
+            "default": "",
+            "title": "Source",
+            "type": "string"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Timestamp"
+          },
+          "type": {
+            "const": "notification",
+            "default": "notification",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "severity",
+          "message"
+        ],
+        "title": "WsNotificationEvent",
+        "type": "object"
+      },
+      "type": "notification"
     },
     {
       "description": "Reply to a client ``ping`` text frame.",
