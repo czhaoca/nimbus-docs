@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.6.0",
+  "contract_version": "2.0.0",
   "schema_version": 1,
   "tools": [
     {
@@ -124,18 +124,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "aws_ec2_instances_terminate",
-      "op_id": "aws.ec2.instances.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_instances_terminate_confirm",
-      "op_id": "aws.ec2.instances.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "aws_ec2_internet-gateways_attach",
       "op_id": "aws.ec2.internet-gateways.attach",
       "tier": 2
@@ -156,18 +144,6 @@
       "kind": "confirm",
       "name": "aws_ec2_internet-gateways_create_confirm",
       "op_id": "aws.ec2.internet-gateways.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "aws_ec2_internet-gateways_delete",
-      "op_id": "aws.ec2.internet-gateways.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_internet-gateways_delete_confirm",
-      "op_id": "aws.ec2.internet-gateways.delete",
       "tier": 2
     },
     {
@@ -213,18 +189,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "aws_ec2_security-groups_delete",
-      "op_id": "aws.ec2.security-groups.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_security-groups_delete_confirm",
-      "op_id": "aws.ec2.security-groups.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "aws_ec2_security-groups_describe",
       "op_id": "aws.ec2.security-groups.describe",
@@ -252,18 +216,6 @@
       "kind": "confirm",
       "name": "aws_ec2_subnets_create_confirm",
       "op_id": "aws.ec2.subnets.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "aws_ec2_subnets_delete",
-      "op_id": "aws.ec2.subnets.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_subnets_delete_confirm",
-      "op_id": "aws.ec2.subnets.delete",
       "tier": 2
     },
     {
@@ -297,18 +249,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "aws_ec2_volumes_delete",
-      "op_id": "aws.ec2.volumes.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_volumes_delete_confirm",
-      "op_id": "aws.ec2.volumes.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "aws_ec2_volumes_describe",
       "op_id": "aws.ec2.volumes.describe",
@@ -339,18 +279,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "aws_ec2_vpcs_delete",
-      "op_id": "aws.ec2.vpcs.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ec2_vpcs_delete_confirm",
-      "op_id": "aws.ec2.vpcs.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "aws_ec2_vpcs_describe",
       "op_id": "aws.ec2.vpcs.describe",
@@ -369,18 +297,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "aws_ecr_repositories_delete",
-      "op_id": "aws.ecr.repositories.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ecr_repositories_delete_confirm",
-      "op_id": "aws.ecr.repositories.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "aws_ecr_repositories_describe",
       "op_id": "aws.ecr.repositories.describe",
@@ -396,18 +312,6 @@
       "kind": "confirm",
       "name": "aws_ecs_clusters_create_confirm",
       "op_id": "aws.ecs.clusters.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "aws_ecs_clusters_delete",
-      "op_id": "aws.ecs.clusters.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_ecs_clusters_delete_confirm",
-      "op_id": "aws.ecs.clusters.delete",
       "tier": 2
     },
     {
@@ -502,18 +406,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "aws_instance_terminate",
-      "op_id": "aws.instance.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_instance_terminate_confirm",
-      "op_id": "aws.instance.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "aws_rds_instances_create",
       "op_id": "aws.rds.instances.create",
       "tier": 2
@@ -522,18 +414,6 @@
       "kind": "confirm",
       "name": "aws_rds_instances_create_confirm",
       "op_id": "aws.rds.instances.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "aws_rds_instances_delete",
-      "op_id": "aws.rds.instances.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_rds_instances_delete_confirm",
-      "op_id": "aws.rds.instances.delete",
       "tier": 2
     },
     {
@@ -616,18 +496,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "aws_s3_buckets_rb",
-      "op_id": "aws.s3.buckets.rb",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_s3_buckets_rb_confirm",
-      "op_id": "aws.s3.buckets.rb",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "aws_s3_objects_cp",
       "op_id": "aws.s3.objects.cp",
       "tier": 2
@@ -645,18 +513,6 @@
       "tier": 1
     },
     {
-      "kind": "dryrun",
-      "name": "aws_s3_objects_rm",
-      "op_id": "aws.s3.objects.rm",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "aws_s3_objects_rm_confirm",
-      "op_id": "aws.s3.objects.rm",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_acr_credentials_show",
       "op_id": "az.acr.credentials.show",
@@ -672,18 +528,6 @@
       "kind": "confirm",
       "name": "az_acr_registries_create_confirm",
       "op_id": "az.acr.registries.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_acr_registries_delete",
-      "op_id": "az.acr.registries.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_acr_registries_delete_confirm",
-      "op_id": "az.acr.registries.delete",
       "tier": 2
     },
     {
@@ -708,18 +552,6 @@
       "kind": "confirm",
       "name": "az_container_create_confirm",
       "op_id": "az.container.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_container_delete",
-      "op_id": "az.container.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_container_delete_confirm",
-      "op_id": "az.container.delete",
       "tier": 2
     },
     {
@@ -789,18 +621,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_disk_delete",
-      "op_id": "az.disk.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_disk_delete_confirm",
-      "op_id": "az.disk.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_disk_list",
       "op_id": "az.disk.list",
@@ -816,18 +636,6 @@
       "kind": "confirm",
       "name": "az_network_nsgs_create_confirm",
       "op_id": "az.network.nsgs.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_network_nsgs_delete",
-      "op_id": "az.network.nsgs.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_network_nsgs_delete_confirm",
-      "op_id": "az.network.nsgs.delete",
       "tier": 2
     },
     {
@@ -849,18 +657,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_network_nsgs_rules_delete",
-      "op_id": "az.network.nsgs.rules.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_network_nsgs_rules_delete_confirm",
-      "op_id": "az.network.nsgs.rules.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_network_nsgs_rules_list",
       "op_id": "az.network.nsgs.rules.list",
@@ -879,18 +675,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_network_public-ips_delete",
-      "op_id": "az.network.public-ips.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_network_public-ips_delete_confirm",
-      "op_id": "az.network.public-ips.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_network_public-ips_list",
       "op_id": "az.network.public-ips.list",
@@ -906,18 +690,6 @@
       "kind": "confirm",
       "name": "az_network_vnets_create_confirm",
       "op_id": "az.network.vnets.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_network_vnets_delete",
-      "op_id": "az.network.vnets.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_network_vnets_delete_confirm",
-      "op_id": "az.network.vnets.delete",
       "tier": 2
     },
     {
@@ -945,18 +717,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_network_vnets_subnets_delete",
-      "op_id": "az.network.vnets.subnets.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_network_vnets_subnets_delete_confirm",
-      "op_id": "az.network.vnets.subnets.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_network_vnets_subnets_list",
       "op_id": "az.network.vnets.subnets.list",
@@ -972,18 +732,6 @@
       "kind": "confirm",
       "name": "az_sql_dbs_create_confirm",
       "op_id": "az.sql.dbs.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_sql_dbs_delete",
-      "op_id": "az.sql.dbs.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_sql_dbs_delete_confirm",
-      "op_id": "az.sql.dbs.delete",
       "tier": 2
     },
     {
@@ -1029,18 +777,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_sql_servers_delete",
-      "op_id": "az.sql.servers.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_sql_servers_delete_confirm",
-      "op_id": "az.sql.servers.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_sql_servers_list",
       "op_id": "az.sql.servers.list",
@@ -1065,34 +801,10 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_storage_accounts_delete",
-      "op_id": "az.storage.accounts.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_storage_accounts_delete_confirm",
-      "op_id": "az.storage.accounts.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_storage_accounts_list",
       "op_id": "az.storage.accounts.list",
       "tier": 1
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_storage_blobs_delete",
-      "op_id": "az.storage.blobs.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_storage_blobs_delete_confirm",
-      "op_id": "az.storage.blobs.delete",
-      "tier": 2
     },
     {
       "kind": "execute",
@@ -1131,18 +843,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "az_storage_containers_delete",
-      "op_id": "az.storage.containers.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_storage_containers_delete_confirm",
-      "op_id": "az.storage.containers.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "az_storage_containers_list",
       "op_id": "az.storage.containers.list",
@@ -1170,18 +870,6 @@
       "kind": "confirm",
       "name": "az_vm_deallocate_confirm",
       "op_id": "az.vm.deallocate",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "az_vm_delete",
-      "op_id": "az.vm.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "az_vm_delete_confirm",
-      "op_id": "az.vm.delete",
       "tier": 2
     },
     {
@@ -1371,18 +1059,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "cloudflare_dns_delete",
-      "op_id": "cloudflare.dns.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_dns_delete_confirm",
-      "op_id": "cloudflare.dns.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "cloudflare_dns_list",
       "op_id": "cloudflare.dns.list",
@@ -1410,18 +1086,6 @@
       "kind": "confirm",
       "name": "cloudflare_network_routes_create_confirm",
       "op_id": "cloudflare.network.routes.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "cloudflare_network_routes_delete",
-      "op_id": "cloudflare.network.routes.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_network_routes_delete_confirm",
-      "op_id": "cloudflare.network.routes.delete",
       "tier": 2
     },
     {
@@ -1473,18 +1137,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "cloudflare_site_remove",
-      "op_id": "cloudflare.site.remove",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_site_remove_confirm",
-      "op_id": "cloudflare.site.remove",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "cloudflare_site_status",
       "op_id": "cloudflare.site.status",
@@ -1500,18 +1152,6 @@
       "kind": "confirm",
       "name": "cloudflare_tunnel_create_confirm",
       "op_id": "cloudflare.tunnel.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "cloudflare_tunnel_delete",
-      "op_id": "cloudflare.tunnel.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_tunnel_delete_confirm",
-      "op_id": "cloudflare.tunnel.delete",
       "tier": 2
     },
     {
@@ -1545,18 +1185,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "cloudflare_tunnel_routes_delete",
-      "op_id": "cloudflare.tunnel.routes.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_tunnel_routes_delete_confirm",
-      "op_id": "cloudflare.tunnel.routes.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "cloudflare_tunnel_routes_list",
       "op_id": "cloudflare.tunnel.routes.list",
@@ -1572,18 +1200,6 @@
       "kind": "confirm",
       "name": "cloudflare_zerotrust_access-apps_create_confirm",
       "op_id": "cloudflare.zerotrust.access-apps.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "cloudflare_zerotrust_access-apps_delete",
-      "op_id": "cloudflare.zerotrust.access-apps.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "cloudflare_zerotrust_access-apps_delete_confirm",
-      "op_id": "cloudflare.zerotrust.access-apps.delete",
       "tier": 2
     },
     {
@@ -1839,18 +1455,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_compute_disks_delete",
-      "op_id": "gcloud.compute.disks.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_compute_disks_delete_confirm",
-      "op_id": "gcloud.compute.disks.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_compute_disks_describe",
       "op_id": "gcloud.compute.disks.describe",
@@ -1872,18 +1476,6 @@
       "kind": "confirm",
       "name": "gcloud_compute_firewall-rules_create_confirm",
       "op_id": "gcloud.compute.firewall-rules.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "gcloud_compute_firewall-rules_delete",
-      "op_id": "gcloud.compute.firewall-rules.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_compute_firewall-rules_delete_confirm",
-      "op_id": "gcloud.compute.firewall-rules.delete",
       "tier": 2
     },
     {
@@ -1932,18 +1524,6 @@
       "kind": "confirm",
       "name": "gcloud_compute_instances_create_confirm",
       "op_id": "gcloud.compute.instances.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "gcloud_compute_instances_delete",
-      "op_id": "gcloud.compute.instances.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_compute_instances_delete_confirm",
-      "op_id": "gcloud.compute.instances.delete",
       "tier": 2
     },
     {
@@ -2007,18 +1587,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_compute_networks_delete",
-      "op_id": "gcloud.compute.networks.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_compute_networks_delete_confirm",
-      "op_id": "gcloud.compute.networks.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_compute_networks_describe",
       "op_id": "gcloud.compute.networks.describe",
@@ -2043,18 +1611,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_compute_networks_subnets_delete",
-      "op_id": "gcloud.compute.networks.subnets.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_compute_networks_subnets_delete_confirm",
-      "op_id": "gcloud.compute.networks.subnets.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_compute_networks_subnets_describe",
       "op_id": "gcloud.compute.networks.subnets.describe",
@@ -2076,18 +1632,6 @@
       "kind": "confirm",
       "name": "gcloud_container_clusters_create_confirm",
       "op_id": "gcloud.container.clusters.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "gcloud_container_clusters_delete",
-      "op_id": "gcloud.container.clusters.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_container_clusters_delete_confirm",
-      "op_id": "gcloud.container.clusters.delete",
       "tier": 2
     },
     {
@@ -2127,18 +1671,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_container_node-pools_delete",
-      "op_id": "gcloud.container.node-pools.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_container_node-pools_delete_confirm",
-      "op_id": "gcloud.container.node-pools.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_container_node-pools_list",
       "op_id": "gcloud.container.node-pools.list",
@@ -2157,18 +1689,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_sql_databases_delete",
-      "op_id": "gcloud.sql.databases.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_sql_databases_delete_confirm",
-      "op_id": "gcloud.sql.databases.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_sql_databases_list",
       "op_id": "gcloud.sql.databases.list",
@@ -2184,18 +1704,6 @@
       "kind": "confirm",
       "name": "gcloud_sql_instances_create_confirm",
       "op_id": "gcloud.sql.instances.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "gcloud_sql_instances_delete",
-      "op_id": "gcloud.sql.instances.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_sql_instances_delete_confirm",
-      "op_id": "gcloud.sql.instances.delete",
       "tier": 2
     },
     {
@@ -2265,18 +1773,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "gcloud_storage_buckets_delete",
-      "op_id": "gcloud.storage.buckets.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_storage_buckets_delete_confirm",
-      "op_id": "gcloud.storage.buckets.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "gcloud_storage_buckets_describe",
       "op_id": "gcloud.storage.buckets.describe",
@@ -2317,18 +1813,6 @@
       "name": "gcloud_storage_ls",
       "op_id": "gcloud.storage.ls",
       "tier": 1
-    },
-    {
-      "kind": "dryrun",
-      "name": "gcloud_storage_rm",
-      "op_id": "gcloud.storage.rm",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "gcloud_storage_rm_confirm",
-      "op_id": "gcloud.storage.rm",
-      "tier": 2
     },
     {
       "kind": "dryrun",
@@ -2491,18 +1975,6 @@
       "name": "network_blocklist_list",
       "op_id": "network.blocklist.list",
       "tier": 1
-    },
-    {
-      "kind": "dryrun",
-      "name": "network_blocklist_remove",
-      "op_id": "network.blocklist.remove",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "network_blocklist_remove_confirm",
-      "op_id": "network.blocklist.remove",
-      "tier": 2
     },
     {
       "kind": "dryrun",
@@ -2776,18 +2248,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "network_scope_remove",
-      "op_id": "network.scope.remove",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "network_scope_remove_confirm",
-      "op_id": "network.scope.remove",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "network_seed_entry",
       "op_id": "network.seed.entry",
       "tier": 2
@@ -2925,18 +2385,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_bv_volume_delete",
-      "op_id": "oci.bv.volume.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_bv_volume_delete_confirm",
-      "op_id": "oci.bv.volume.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_bv_volume_get",
       "op_id": "oci.bv.volume.get",
@@ -2961,18 +2409,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_ce_cluster_delete",
-      "op_id": "oci.ce.cluster.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_ce_cluster_delete_confirm",
-      "op_id": "oci.ce.cluster.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_ce_cluster_list",
       "op_id": "oci.ce.cluster.list",
@@ -2988,18 +2424,6 @@
       "kind": "confirm",
       "name": "oci_ce_nodepool_create_confirm",
       "op_id": "oci.ce.nodepool.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_ce_nodepool_delete",
-      "op_id": "oci.ce.nodepool.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_ce_nodepool_delete_confirm",
-      "op_id": "oci.ce.nodepool.delete",
       "tier": 2
     },
     {
@@ -3057,18 +2481,6 @@
       "tier": 1
     },
     {
-      "kind": "dryrun",
-      "name": "oci_compute_instances_terminate",
-      "op_id": "oci.compute.instances.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_compute_instances_terminate_confirm",
-      "op_id": "oci.compute.instances.terminate",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_compute_shapes_list",
       "op_id": "oci.compute.shapes.list",
@@ -3084,18 +2496,6 @@
       "kind": "confirm",
       "name": "oci_container_instance_create_confirm",
       "op_id": "oci.container.instance.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_container_instance_delete",
-      "op_id": "oci.container.instance.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_container_instance_delete_confirm",
-      "op_id": "oci.container.instance.delete",
       "tier": 2
     },
     {
@@ -3201,18 +2601,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_db_adb_delete",
-      "op_id": "oci.db.adb.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_db_adb_delete_confirm",
-      "op_id": "oci.db.adb.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_db_adb_get",
       "op_id": "oci.db.adb.get",
@@ -3258,18 +2646,6 @@
       "kind": "confirm",
       "name": "oci_db_mysql_create_confirm",
       "op_id": "oci.db.mysql.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_db_mysql_delete",
-      "op_id": "oci.db.mysql.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_db_mysql_delete_confirm",
-      "op_id": "oci.db.mysql.delete",
       "tier": 2
     },
     {
@@ -3369,18 +2745,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_network_nsg_delete",
-      "op_id": "oci.network.nsg.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_nsg_delete_confirm",
-      "op_id": "oci.network.nsg.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_network_nsg_list",
       "op_id": "oci.network.nsg.list",
@@ -3406,18 +2770,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "oci_network_nsg_rules_remove",
-      "op_id": "oci.network.nsg.rules.remove",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_nsg_rules_remove_confirm",
-      "op_id": "oci.network.nsg.rules.remove",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "oci_network_seclist_add_rule",
       "op_id": "oci.network.seclist.add_rule",
       "tier": 2
@@ -3430,18 +2782,6 @@
     },
     {
       "kind": "dryrun",
-      "name": "oci_network_seclist_remove_rule",
-      "op_id": "oci.network.seclist.remove_rule",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_seclist_remove_rule_confirm",
-      "op_id": "oci.network.seclist.remove_rule",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
       "name": "oci_network_seclist_routes_add",
       "op_id": "oci.network.seclist.routes.add",
       "tier": 2
@@ -3450,18 +2790,6 @@
       "kind": "confirm",
       "name": "oci_network_seclist_routes_add_confirm",
       "op_id": "oci.network.seclist.routes.add",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_network_seclist_routes_remove",
-      "op_id": "oci.network.seclist.routes.remove",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_seclist_routes_remove_confirm",
-      "op_id": "oci.network.seclist.routes.remove",
       "tier": 2
     },
     {
@@ -3489,18 +2817,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_network_subnet_delete",
-      "op_id": "oci.network.subnet.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_subnet_delete_confirm",
-      "op_id": "oci.network.subnet.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_network_subnet_list",
       "op_id": "oci.network.subnet.list",
@@ -3516,18 +2832,6 @@
       "kind": "confirm",
       "name": "oci_network_vcn_create_confirm",
       "op_id": "oci.network.vcn.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_network_vcn_delete",
-      "op_id": "oci.network.vcn.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_network_vcn_delete_confirm",
-      "op_id": "oci.network.vcn.delete",
       "tier": 2
     },
     {
@@ -3555,34 +2859,10 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_os_bucket_delete",
-      "op_id": "oci.os.bucket.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_os_bucket_delete_confirm",
-      "op_id": "oci.os.bucket.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_os_bucket_list",
       "op_id": "oci.os.bucket.list",
       "tier": 1
-    },
-    {
-      "kind": "dryrun",
-      "name": "oci_os_object_delete",
-      "op_id": "oci.os.object.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_os_object_delete_confirm",
-      "op_id": "oci.os.object.delete",
-      "tier": 2
     },
     {
       "kind": "execute",
@@ -3705,18 +2985,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "oci_vm_terminate",
-      "op_id": "oci.vm.terminate",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "oci_vm_terminate_confirm",
-      "op_id": "oci.vm.terminate",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "oci_vms",
       "op_id": "oci.vms",
@@ -3834,18 +3102,6 @@
       "kind": "confirm",
       "name": "pve_lxc_create_confirm",
       "op_id": "pve.lxc.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "pve_lxc_delete",
-      "op_id": "pve.lxc.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "pve_lxc_delete_confirm",
-      "op_id": "pve.lxc.delete",
       "tier": 2
     },
     {
@@ -3972,18 +3228,6 @@
       "kind": "confirm",
       "name": "pve_vm_create_confirm",
       "op_id": "pve.vm.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "pve_vm_delete",
-      "op_id": "pve.vm.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "pve_vm_delete_confirm",
-      "op_id": "pve.vm.delete",
       "tier": 2
     },
     {
@@ -4299,18 +3543,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "unifi_network_firewall_rules_delete",
-      "op_id": "unifi.network.firewall.rules.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "unifi_network_firewall_rules_delete_confirm",
-      "op_id": "unifi.network.firewall.rules.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "unifi_network_firewall_rules_list",
       "op_id": "unifi.network.firewall.rules.list",
@@ -4359,18 +3591,6 @@
       "tier": 2
     },
     {
-      "kind": "dryrun",
-      "name": "unifi_network_vlans_delete",
-      "op_id": "unifi.network.vlans.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "unifi_network_vlans_delete_confirm",
-      "op_id": "unifi.network.vlans.delete",
-      "tier": 2
-    },
-    {
       "kind": "execute",
       "name": "unifi_network_vlans_describe",
       "op_id": "unifi.network.vlans.describe",
@@ -4392,18 +3612,6 @@
       "kind": "confirm",
       "name": "unifi_network_wlans_create_confirm",
       "op_id": "unifi.network.wlans.create",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "unifi_network_wlans_delete",
-      "op_id": "unifi.network.wlans.delete",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "unifi_network_wlans_delete_confirm",
-      "op_id": "unifi.network.wlans.delete",
       "tier": 2
     },
     {

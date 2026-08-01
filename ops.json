@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.6.0",
+  "contract_version": "2.0.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -405,12 +405,12 @@
         "title": "InstanceIdsParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Attach an internet gateway to a VPC (aws ec2 attach-internet-gateway).",
@@ -494,12 +494,12 @@
         "title": "IgwIdParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List internet gateways (aws ec2 describe-internet-gateways).",
@@ -673,12 +673,12 @@
         "title": "SgIdParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List security groups (aws ec2 describe-security-groups).",
@@ -833,12 +833,12 @@
         "title": "SubnetIdParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List subnets (aws ec2 describe-subnets).",
@@ -966,12 +966,12 @@
         "title": "VolumeIdParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List EBS volumes (aws ec2 describe-volumes).",
@@ -1098,12 +1098,12 @@
         "title": "VpcIdParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List VPCs (aws ec2 describe-vpcs).",
@@ -1187,12 +1187,12 @@
         "title": "RepositoryDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List repositories (aws ecr describe-repositories).",
@@ -1287,12 +1287,12 @@
         "title": "ClusterDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List ECS clusters (aws ecs list-clusters).",
@@ -1745,12 +1745,12 @@
         "title": "VmRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Create a DB instance (aws rds create-db-instance).",
@@ -1845,12 +1845,12 @@
         "title": "DbInstanceDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List DB instances (aws rds describe-db-instances).",
@@ -2148,12 +2148,12 @@
         "title": "BucketDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Copy files to/from S3 (aws s3 cp; --recursive walks the tree).",
@@ -2270,12 +2270,12 @@
         "title": "ObjectRmParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "aws",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Show registry admin credentials (az acr credential show). SENSITIVE output \u2014 printed for manual copy, never logged.",
@@ -2382,12 +2382,12 @@
         "title": "RegistryRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List container registries (az acr list).",
@@ -2514,12 +2514,12 @@
         "title": "ContainerNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List container groups in a resource group (az container list).",
@@ -2779,12 +2779,12 @@
         "title": "DiskRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List managed disks in a resource group (az disk list).",
@@ -2881,12 +2881,12 @@
         "title": "NsgNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List network security groups (az network nsg list).",
@@ -3018,12 +3018,12 @@
         "title": "NsgRuleNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List NSG security rules (az network nsg rule list).",
@@ -3137,12 +3137,12 @@
         "title": "PublicIpNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List public IP addresses (az network public-ip list).",
@@ -3274,12 +3274,12 @@
         "title": "VnetNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List virtual networks (az network vnet list).",
@@ -3423,12 +3423,12 @@
         "title": "SubnetNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List subnets in a vnet (az network vnet subnet list).",
@@ -3584,12 +3584,12 @@
         "title": "DatabaseNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List databases on a SQL server (az sql db list).",
@@ -3823,12 +3823,12 @@
         "title": "ServerNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List SQL servers in a resource group (az sql server list).",
@@ -3969,12 +3969,12 @@
         "title": "AccountDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List storage accounts (az storage account list).",
@@ -4037,12 +4037,12 @@
         "title": "BlobDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Download a blob to a local path (az storage blob download).",
@@ -4227,12 +4227,12 @@
         "title": "ContainerParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List blob containers (az storage container list).",
@@ -4368,12 +4368,12 @@
         "title": "VmRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "azure",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Attach a managed disk to a VM (az vm disk attach).",
@@ -5152,12 +5152,12 @@
         "title": "DnsDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List DNS records in a zone (cloudflare dns list).",
@@ -5308,12 +5308,12 @@
         "title": "RouteDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List private network CIDR routes (cloudflare network routes).",
@@ -5561,12 +5561,12 @@
         "title": "SiteNameParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Check connector health for a site (cloudflare site status).",
@@ -5648,12 +5648,12 @@
         "title": "TunnelDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Create a DNS CNAME pointing at a tunnel (cloudflare tunnel dns).",
@@ -5782,12 +5782,12 @@
         "title": "TunnelRouteDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List routes for a tunnel (cloudflare tunnel routes).",
@@ -5879,12 +5879,12 @@
         "title": "ZtAccessAppDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cloudflare",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List Zero Trust Access applications (cloudflare zerotrust apps).",
@@ -6938,12 +6938,12 @@
         "title": "DiskRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one disk (gcloud compute disks describe).",
@@ -7109,12 +7109,12 @@
         "title": "FirewallRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one firewall rule (gcloud compute firewall-rules describe).",
@@ -7358,12 +7358,12 @@
         "title": "InstanceRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one GCE VM (gcloud compute instances describe).",
@@ -7596,12 +7596,12 @@
         "title": "NetworkRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one VPC network (gcloud compute networks describe).",
@@ -7725,12 +7725,12 @@
         "title": "SubnetRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one subnet (gcloud compute networks subnets describe).",
@@ -7883,12 +7883,12 @@
         "title": "ClusterRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one GKE cluster (gcloud container clusters describe).",
@@ -8076,12 +8076,12 @@
         "title": "NodePoolRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List node pools (gcloud container node-pools list).",
@@ -8202,12 +8202,12 @@
         "title": "DatabaseRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List databases in an instance (gcloud sql databases list).",
@@ -8290,12 +8290,12 @@
         "title": "InstanceRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one Cloud SQL instance (gcloud sql instances describe).",
@@ -8548,12 +8548,12 @@
         "title": "BucketRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one bucket (gcloud storage buckets describe).",
@@ -8793,12 +8793,12 @@
         "title": "ObjectRemoveParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "gcloud",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Install prerequisites and register a runner per repo (compat-only).",
@@ -9478,12 +9478,12 @@
         "title": "BlocklistRemoveParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cli",
         "native"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Seed the well-known public blocked-range catalog (idempotent).",
@@ -10463,12 +10463,12 @@
         "title": "ScopeRemoveParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cli",
         "native"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Enrich or register one home/lab VLAN allocation (idempotent seed).",
@@ -11077,12 +11077,12 @@
         "title": "VolumeDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Describe one block volume (oci bv volume get).",
@@ -11232,12 +11232,12 @@
         "title": "ClusterDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List OKE clusters (oci ce cluster list).",
@@ -11357,12 +11357,12 @@
         "title": "NodePoolDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Get one OKE node pool (oci ce node-pool get).",
@@ -11616,12 +11616,12 @@
         "title": "InstanceTerminateParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Terminate a registered OCI instance (two-phase: typed-name gated preview then confirm; the adapter's ARM protection is absolute).",
@@ -11778,12 +11778,12 @@
         "title": "CIRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Get one container instance (oci container-instances container-instance get).",
@@ -12162,12 +12162,12 @@
         "title": "AdbDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Get one Autonomous Database (oci db autonomous-database get).",
@@ -12384,12 +12384,12 @@
         "title": "MysqlDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Get one MySQL DB System (oci mysql db-system get).",
@@ -12746,13 +12746,13 @@
         "title": "NsgDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List Network Security Groups (oci network nsg list).",
@@ -12888,13 +12888,13 @@
         "title": "NsgRulesRemoveParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Add a rule to a security list (oci network seclist add-rule).",
@@ -13057,13 +13057,13 @@
         "title": "SeclistRemoveRuleParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Add a route rule to a route table (oci network seclist add-route).",
@@ -13132,13 +13132,13 @@
         "title": "RouteRemoveParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Show route rules in a route table (oci network seclist routes).",
@@ -13272,13 +13272,13 @@
         "title": "SubnetDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List subnets (oci network subnet list).",
@@ -13377,13 +13377,13 @@
         "title": "VcnDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "network",
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Get one VCN (oci network vcn get).",
@@ -13504,12 +13504,12 @@
         "title": "BucketDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List Object Storage buckets (oci os bucket list).",
@@ -13577,12 +13577,12 @@
         "title": "ObjectDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Download an Object Storage object to a file (oci os object get).",
@@ -14202,12 +14202,12 @@
         "title": "VmRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "oci",
         "provider"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "OCI compute instances.",
@@ -14708,12 +14708,12 @@
         "title": "LxcRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "provider",
         "pve"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Show container status (pve lxc describe).",
@@ -15198,12 +15198,12 @@
         "title": "VmRefParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "provider",
         "pve"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Show VM status (pve vm describe).",
@@ -16448,12 +16448,12 @@
         "title": "FirewallRuleDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "provider",
         "unifi"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List firewall rules (unifi network firewall rules list).",
@@ -16645,12 +16645,12 @@
         "title": "VlanDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "provider",
         "unifi"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Show one VLAN's detail (unifi network vlans describe).",
@@ -16779,12 +16779,12 @@
         "title": "WlanDeleteParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "provider",
         "unifi"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "List WiFi SSIDs (unifi network wlans list).",
