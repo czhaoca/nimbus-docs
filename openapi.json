@@ -4654,7 +4654,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "openapi": "3.1.0",
   "paths": {
