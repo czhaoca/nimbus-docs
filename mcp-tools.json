@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.1.0",
+  "contract_version": "2.2.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1206,6 +1206,24 @@
       "kind": "execute",
       "name": "cloudflare_zerotrust_access-apps_list",
       "op_id": "cloudflare.zerotrust.access-apps.list",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_zerotrust_access-groups_create",
+      "op_id": "cloudflare.zerotrust.access-groups.create",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_zerotrust_access-groups_create_confirm",
+      "op_id": "cloudflare.zerotrust.access-groups.create",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "cloudflare_zerotrust_access-groups_list",
+      "op_id": "cloudflare.zerotrust.access-groups.list",
       "tier": 1
     },
     {

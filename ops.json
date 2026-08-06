@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.1.0",
+  "contract_version": "2.2.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -5899,6 +5899,96 @@
           }
         },
         "title": "ZtAccessAppsListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Create a Zero Trust Access group from emails and/or email domains. Define membership once, then reference the group from every published hostname so adding a person is one edit.",
+      "display_name": "Create Cloudflare Access group",
+      "id": "cloudflare.zerotrust.access-groups.create",
+      "params_schema": {
+        "properties": {
+          "email_domains": {
+            "default": "",
+            "title": "Email Domains",
+            "type": "string"
+          },
+          "emails": {
+            "default": "",
+            "title": "Emails",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ZtAccessGroupCreateParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Delete a Zero Trust Access group. Policies referencing it must be repointed first \u2014 Cloudflare rejects deletion of a group still in use.",
+      "display_name": "Delete Cloudflare Access group",
+      "id": "cloudflare.zerotrust.access-groups.delete",
+      "params_schema": {
+        "properties": {
+          "group_id": {
+            "title": "Group Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "title": "ZtAccessGroupDeleteParams",
+        "type": "object"
+      },
+      "required_role": "admin",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 3
+    },
+    {
+      "description": "List Zero Trust Access groups \u2014 the reusable identity sets a published hostname's policy can reference via identity 'group:<name-or-id>' instead of inline emails.",
+      "display_name": "List Cloudflare Access groups",
+      "id": "cloudflare.zerotrust.access-groups.list",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          }
+        },
+        "title": "ZtAccessGroupsListParams",
         "type": "object"
       },
       "required_role": "viewer",
