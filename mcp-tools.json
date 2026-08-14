@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.2.0",
+  "contract_version": "2.3.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1909,6 +1909,12 @@
       "name": "monitoring_check_confirm",
       "op_id": "monitoring.check",
       "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_ci-crons",
+      "op_id": "monitoring.ci-crons",
+      "tier": 1
     },
     {
       "kind": "execute",

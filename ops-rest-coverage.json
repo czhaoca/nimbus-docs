@@ -256,6 +256,7 @@
   "init.profile-list",
   "init.render",
   "monitoring.check",
+  "monitoring.ci-crons",
   "monitoring.dashboard",
   "monitoring.history",
   "monitoring.infra",

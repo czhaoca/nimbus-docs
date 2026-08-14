@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.2.0",
+  "contract_version": "2.3.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -9209,6 +9209,28 @@
         "native"
       ],
       "tier": 2
+    },
+    {
+      "description": "Assert the governed Woodpecker cron surface against EXPECTED_CRONS; stalled or red entries surface as alerts (#356).",
+      "display_name": "CI cron staleness",
+      "id": "monitoring.ci-crons",
+      "params_schema": {
+        "properties": {
+          "repo": {
+            "default": "",
+            "title": "Repo",
+            "type": "string"
+          }
+        },
+        "title": "MonitoringCiCronsParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
     },
     {
       "description": "Latest health status per monitored service port/endpoint.",
