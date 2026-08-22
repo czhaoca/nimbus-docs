@@ -129,18 +129,23 @@ Do not reuse the local compose defaults.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `NIMBUS_DATABASE_URL` | empty | Required in production unless injected by Infisical |
+| `NIMBUS_DATABASE_URL` | empty | Required in production unless vault-injected |
 | `NIMBUS_ENVIRONMENT` | `production` | Environment name |
-| `NIMBUS_SECRETS_BACKEND` | `env` | Set to `env` for Infisical/runtime-injected credentials |
-| `INFISICAL_TOKEN` | empty | Legacy Infisical service token flow |
-| `INFISICAL_CLIENT_ID` / `INFISICAL_CLIENT_SECRET` | empty | Universal Auth for Infisical CLI injection |
-| `INFISICAL_PROJECT_ID` / `INFISICAL_API_URL` | empty | Infisical project targeting |
+| `NIMBUS_SECRETS_BACKEND` | `env` | Set to `env` for vault/runtime-injected credentials |
+| `BAO_ADDR` / `BAO_ROLE_ID` / `BAO_SECRET_ID` | empty | OpenBao AppRole — selects the OpenBao branch (canonical) |
+| `BAO_CACERT_B64` | empty | Pinned internal CA for the OpenBao listener, base64 PEM |
+| `BAO_SECRET_PATHS` | empty | Comma-separated vault folders to inject (an explicit list; a bare catch-all root is refused) |
+| `INFISICAL_TOKEN` | empty | Legacy Infisical service token flow (decommission scheduled) |
+| `INFISICAL_CLIENT_ID` / `INFISICAL_CLIENT_SECRET` | empty | Legacy Infisical Universal Auth |
+| `INFISICAL_PROJECT_ID` / `INFISICAL_API_URL` | empty | Legacy Infisical project targeting |
 | `INFISICAL_HOST_SECRET_PATH` | empty | Optional host-specific overlay path such as `/nimbus/lxc/<hostname>` |
 
-When `INFISICAL_TOKEN` or `INFISICAL_CLIENT_ID` / `INFISICAL_CLIENT_SECRET` are
-present, the repository entrypoint automatically wraps the engine process with
-`infisical run`. Production deploys still require a PostgreSQL `NIMBUS_DATABASE_URL`,
-either in the container env or injected by Infisical.
+The entrypoint selects its secrets branch by env presence: with the `BAO_*`
+AppRole set it injects from OpenBao (and wins, loudly, if both stores are
+configured); with only `INFISICAL_*` credentials it falls back to the legacy
+Infisical branch, which is scheduled for removal after the cutover soak.
+Production deploys still require a PostgreSQL `NIMBUS_DATABASE_URL`, either in
+the container env or vault-injected.
 
 ### PostgreSQL (Required For Production)
 

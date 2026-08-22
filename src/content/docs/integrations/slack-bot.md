@@ -111,14 +111,14 @@ Nimbus matches the `/nimbus-` prefix.
 
 ## 4. Store the Tokens
 
-Store both tokens in Infisical under path `/common/chat/slack/1`:
+Store both tokens in the vault (OpenBao) under path `/common/chat/slack/1`:
 
 | Key | Value |
 |-----|-------|
 | `SLACK_BOT_TOKEN` | Your bot token (prefix `xoxb-`) |
 | `SLACK_APP_TOKEN` | Your app-level token (prefix `xapp-`) |
 
-The trailing `/1` is the Infisical numbered-secret index, matching the
+The trailing `/1` is the vault's numbered-secret index, matching the
 `SLACK_1_BOT_TOKEN` fallback the CLI checks after `SLACK_BOT_TOKEN`.
 
 Alternatively, set the environment variables directly:

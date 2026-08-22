@@ -104,14 +104,15 @@ ProviderAdapter (ABC)            # base.py
 
 Adapters are registered in `ProviderRegistry` (singleton). The registry maps
 `provider_type` strings to adapter classes and manages authenticated instances.
-Credential resolution uses `services/secrets.py`, which supports env vars, file
-paths, and Infisical as backends.
+Credential resolution uses `services/secrets.py`, which supports env vars
+(vault-injected — OpenBao — in governed deployments) and file paths as
+backends.
 
 ## Security Model
 
-- **Secrets**: Never committed. Prefer runtime injection via env vars or Infisical.
-  `local/` remains gitignored for compatibility-only local overrides. Templates with
-  placeholders live in `templates/`.
+- **Secrets**: Never committed. Prefer runtime injection via env vars from the
+  vault (OpenBao). `local/` remains gitignored for compatibility-only local
+  overrides. Templates with placeholders live in `templates/`.
 - **Pre-commit hooks**: Two layers -- Claude Code hooks (`.claude/settings.json`)
   and Git hooks (`.githooks/pre-commit`) scan for secret patterns.
 - **Network isolation**: Proxmox VMs are VLAN-tagged; UniFi firewall rules enforce

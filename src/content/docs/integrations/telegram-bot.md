@@ -61,7 +61,7 @@ Note: Telegram commands use underscores, not hyphens.
 
 ## 2. Store the Bot Token
 
-Store the token in Infisical under path `/common/telegram/1` with key `TELEGRAM_BOT_TOKEN`.
+Store the token in the vault (OpenBao) under path `/common/telegram/1` with key `TELEGRAM_BOT_TOKEN`.
 
 Or set the environment variable:
 

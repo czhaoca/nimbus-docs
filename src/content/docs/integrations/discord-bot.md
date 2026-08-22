@@ -54,7 +54,7 @@ On the **Bot** tab, under **Privileged Gateway Intents**:
 
 ## 3. Store the Bot Token
 
-Store the token in Infisical under path `/common/discord/1` with key `DISCORD_BOT_TOKEN`.
+Store the token in the vault (OpenBao) under path `/common/discord/1` with key `DISCORD_BOT_TOKEN`.
 
 Alternatively, set the environment variable directly:
 

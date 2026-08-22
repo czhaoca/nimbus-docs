@@ -22,7 +22,7 @@ for governed Proxmox environment ports.
 ```bash
 git clone https://github.com/czhaoca/nimbus.git && cd nimbus
 mkdir -p local/backups
-cp .env.example .env      # set PostgreSQL / Infisical values before starting
+cp .env.example .env      # set PostgreSQL / vault values before starting
 mkdir -p local/config     # optional compatibility path only
 docker compose up -d --build
 docker compose ps && curl http://localhost:8000/health
@@ -39,11 +39,13 @@ current local defaults; the values below are the variables, not fixed numbers:
 | `NIMBUS_ENGINE_PORT` | FastAPI engine (direct API) |
 | `NIMBUS_DOCS_PORT` | Starlight/Astro documentation site |
 
-Additional variables: `NIMBUS_SECRETS_BACKEND` (`file` or `env`), `INFISICAL_CLIENT_ID`,
-`INFISICAL_CLIENT_SECRET`, `INFISICAL_PROJECT_ID`, `INFISICAL_API_URL`,
-`INFISICAL_HOST_SECRET_PATH` for a host-specific overlay such as `/nimbus/lxc/<hostname>`,
-`NIMBUS_UID`/`NIMBUS_GID` for container file permissions, and `NIMBUS_DATABASE_URL`
-for the PostgreSQL connection string.
+Additional variables: `NIMBUS_SECRETS_BACKEND` (`file` or `env`); the OpenBao
+set `BAO_ADDR`, `BAO_ROLE_ID`, `BAO_SECRET_ID`, `BAO_CACERT_B64`,
+`BAO_SECRET_PATHS` (canonical — the legacy `INFISICAL_*` variables still work
+during the migration soak, with `INFISICAL_HOST_SECRET_PATH` as a host-specific
+overlay such as `/nimbus/lxc/<hostname>`); `NIMBUS_UID`/`NIMBUS_GID` for
+container file permissions; and `NIMBUS_DATABASE_URL` for the PostgreSQL
+connection string.
 
 ## Governed Proxmox Environments
 
@@ -109,8 +111,9 @@ Mount certificates as Docker volumes or use Let's Encrypt with certbot.
 
 The script installs Docker if missing, clones/updates the repo, creates
 `local/backups/` and optional compatibility config directories, validates that
-PostgreSQL or Infisical is configured, seeds `INFISICAL_HOST_SECRET_PATH` with the
-remote hostname when absent, and then runs `docker compose up -d --build`.
+PostgreSQL or the vault is configured, seeds `INFISICAL_HOST_SECRET_PATH` with the
+remote hostname when absent (a legacy-branch overlay retained through the OpenBao
+migration soak), and then runs `docker compose up -d --build`.
 
 ## Database Backup and Restore
 

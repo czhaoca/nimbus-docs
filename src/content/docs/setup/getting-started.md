@@ -72,13 +72,14 @@ git config core.hooksPath .githooks
 1. Choose a secrets source.
 
 ```bash
-# Recommended: runtime env vars or Infisical injection
+# Recommended: runtime env vars or vault injection (OpenBao)
 export NIMBUS_SECRETS_BACKEND=env
 export OCI_CLI_PROFILE=DEFAULT
 ```
 
-Or run the engine through Infisical so provider credentials are injected at
-process start instead of stored in repo-local files.
+Or run the engine under the vault so provider credentials are injected at
+process start instead of stored in repo-local files (OpenBao via the `BAO_*`
+env set; the legacy Infisical path is scheduled for decommission).
 
 2. Register the provider:
 
@@ -91,7 +92,7 @@ nimbus providers add \
 ```
 
 3. Optional compatibility path: use a local credentials file only if you are not
-using env/Infisical secrets.
+using env/vault-injected secrets.
 
 ```bash
 mkdir -p local/config
@@ -131,7 +132,7 @@ nimbus backup list    # Show existing backups
 
 ```bash
 cp .env.example .env
-# Set NIMBUS_DATABASE_URL directly or configure Infisical before starting.
+# Set NIMBUS_DATABASE_URL directly or configure the vault (OpenBao) before starting.
 docker compose up --build
 # Local UI default:  http://localhost:3000
 # Local API default: http://localhost:8000
@@ -156,7 +157,7 @@ Use these interfaces when you need live access data:
 
 ## Security
 
-- **Never commit secrets** — prefer Infisical or runtime-injected environment variables
+- **Never commit secrets** — prefer vault-injected (OpenBao) or runtime environment variables
 - `local/` is a compatibility bridge for development, not the primary secrets model
 - Templates in `templates/` provide placeholder examples when a compatibility file is needed
 - Claude Code hooks and git pre-commit hooks enforce secret scanning

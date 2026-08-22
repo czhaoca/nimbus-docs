@@ -51,8 +51,8 @@ Runner resources are not app environment slots:
 
 ## Pipeline Secrets
 
-Store Woodpecker and SonarQube secrets in Infisical or runtime environment
-variables. Recommended paths:
+Store Woodpecker and SonarQube secrets in the vault (OpenBao) or runtime
+environment variables. Recommended paths:
 
 ```text
 /common/ci/woodpecker/1

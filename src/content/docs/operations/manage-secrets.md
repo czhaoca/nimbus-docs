@@ -6,8 +6,19 @@ sidebar:
 
 # Manage Secrets
 
-Runtime secrets via Infisical or environment variables, with optional file-based
-compatibility for local development.
+Runtime secrets via vault-injected environment variables, with optional
+file-based compatibility for local development.
+
+:::caution[Vault cutover in progress]
+The governed deployment has migrated its secret store from Infisical to
+**OpenBao**: containers select the vault by env presence (`BAO_ADDR` +
+`BAO_ROLE_ID` + `BAO_SECRET_ID`, plus `BAO_CACERT_B64` and `BAO_SECRET_PATHS`)
+and the engine receives every secret as an injected environment variable —
+section 1 below is the canonical interface either way. The Infisical sections
+on this page describe the **legacy** integration, still functional during the
+migration soak but scheduled for decommission; they will be replaced in the
+post-cutover docs refresh.
+:::
 
 ## Prerequisites
 
