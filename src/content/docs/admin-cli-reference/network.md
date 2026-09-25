@@ -31,6 +31,6 @@ Usage: `nimbus-admin network onboard [OPTIONS]`
 | `--id` | text | yes | - | Unique provider ID |
 | `--name` | text | no | `` | Display name |
 | `--region` | text | no | `` | Region or site label |
-| `--instance-index` | integer range | no | `1` | Numbered credential index (>=1) for the Infisical keys. |
+| `--instance-index` | integer range | no | `1` | Numbered credential index (>=1) for the vault keys. |
 | `--cred` | text | no | - | Credential KEY=VALUE (repeatable); prompts for missing required. |
-| `--persist`, `--no-persist` | boolean | no | `True` | Write the validated credential to Infisical. |
+| `--persist`, `--no-persist` | boolean | no | `True` | Write the validated credential to the vault. |

@@ -26,7 +26,7 @@ hand — run `scripts/gen-contracts.sh` and commit the result.
 | [`nimbus-admin plugins`](./plugins/) | group | 4 | Manage CLI plugins. |
 | `nimbus-admin proxmox` | group | - | ⚠️ Deprecated — use `nimbus-admin pve` instead. |
 | [`nimbus-admin pve`](./pve/) | group | 8 | Manage Proxmox VE resources (residual in-engine commands). |
-| [`nimbus-admin secrets`](./secrets/) | group | 8 | Write secrets into the Infisical vault. |
+| [`nimbus-admin secrets`](./secrets/) | group | 8 | Write secrets into the vault (OpenBao). |
 | `nimbus-admin serve` | command | - | Start the Nimbus API server. |
 | `nimbus-admin shell` | command | - | Launch the interactive Nimbus shell with menu navigation. |
 | `nimbus-admin status` | command | - | Show Nimbus engine status and registered providers. |

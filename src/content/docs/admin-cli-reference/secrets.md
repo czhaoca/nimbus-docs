@@ -4,7 +4,7 @@ sidebar:
   order: 13
 ---
 
-Write secrets into the Infisical vault.
+Write secrets into the vault (OpenBao).
 
 ## Commands
 
@@ -88,18 +88,18 @@ Usage: `nimbus-admin secrets lxc sync [OPTIONS]`
 | --- | --- | --- | --- | --- |
 | `--provider`, `-p` | text | no | - | Proxmox provider ID |
 | `--host` | text | no | - | Limit to one canonical host |
-| `--prune` | boolean | no | `False` | Delete stale service-value keys |
+| `--prune` | boolean | no | `False` | Delete stale service-value keys + retired pointers |
 | `--apply`, `--dry-run` | boolean | no | `False` | Write (default dry-run) |
 
 ### set
 
-Write one or more secrets to an Infisical path (idempotent upsert).
+Write one or more secrets to a vault path (idempotent upsert).
 
 Usage: `nimbus-admin secrets set [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
-| `--path` | text | yes | - | Infisical secret path, e.g. /common/ci/woodpecker/1 |
+| `--path` | text | yes | - | Vault secret path, e.g. /common/ci/woodpecker/1 |
 | `--key` | text | no | - | Secret name (used with --value). |
 | `--value` | text | no | - | Secret value (used with --key). |
 | `--from-file` | file | no | - | KEY=VALUE file to import (alternative to --key/--value). |

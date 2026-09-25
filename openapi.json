@@ -2618,7 +2618,7 @@
         "properties": {
           "credentials_path": {
             "default": "",
-            "description": "Optional compatibility credentials file path. Omit when using env or Infisical-backed runtime secrets.",
+            "description": "Optional compatibility credentials file path. Omit when using env-injected (vault-backed) runtime secrets.",
             "title": "Credentials Path",
             "type": "string"
           },
@@ -2905,7 +2905,7 @@
                 "type": "null"
               }
             ],
-            "description": "Optional compatibility credentials file path. Omit when using env or Infisical-backed runtime secrets.",
+            "description": "Optional compatibility credentials file path. Omit when using env-injected (vault-backed) runtime secrets.",
             "title": "Credentials Path"
           },
           "display_name": {
@@ -4654,7 +4654,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "2.3.0"
+    "version": "2.3.1"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -12479,7 +12479,7 @@
     },
     "/api/v1/providers/{provider_id}/refresh": {
       "post": {
-        "description": "Clear cached adapter and force re-authentication on next use.\n\nUsed after credential rotation (e.g. Infisical secret update).",
+        "description": "Clear cached adapter and force re-authentication on next use.\n\nUsed after credential rotation (e.g. a vault secret update).",
         "operationId": "refresh_provider_credentials_api_v1_providers__provider_id__refresh_post",
         "parameters": [
           {
