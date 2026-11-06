@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.3.1",
+  "contract_version": "2.4.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -6028,11 +6028,16 @@
       "tier": 1
     },
     {
-      "description": "Reconcile DB policies to the Cloudflare API (cloudflare zerotrust apply). The CLI keeps its own db.commit().",
+      "description": "Reconcile DB policies to the Cloudflare API (cloudflare zerotrust apply). prune deletes nimbus leftovers only; include_untracked extends it to objects nimbus did not create; protected objects (published hostnames' Access apps, warp-managed rules, apps fronting live ingress) are never deleted and are reported under kept. The CLI keeps its own db.commit().",
       "display_name": "Apply Cloudflare Zero Trust policies",
       "id": "cloudflare.zerotrust.apply",
       "params_schema": {
         "properties": {
+          "include_untracked": {
+            "default": false,
+            "title": "Include Untracked",
+            "type": "boolean"
+          },
           "provider_id": {
             "default": "",
             "title": "Provider Id",
@@ -6097,6 +6102,38 @@
         "provider"
       ],
       "tier": 1
+    },
+    {
+      "description": "Record live Gateway rules (by name or id) as tracked Zero Trust policies so diff/apply reconcile them and prune never treats them as untracked. Idempotent; warp-managed rules are refused.",
+      "display_name": "Adopt Cloudflare Gateway rules",
+      "id": "cloudflare.zerotrust.gateway-rules.adopt",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "rules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Rules",
+            "type": "array"
+          }
+        },
+        "required": [
+          "rules"
+        ],
+        "title": "ZtGatewayRulesAdoptParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "provider"
+      ],
+      "tier": 2
     },
     {
       "description": "List Gateway network policy rules (cloudflare zerotrust gateway-rules).",

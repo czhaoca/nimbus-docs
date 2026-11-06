@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.3.1",
+  "contract_version": "2.4.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1255,6 +1255,18 @@
       "name": "cloudflare_zerotrust_export",
       "op_id": "cloudflare.zerotrust.export",
       "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "cloudflare_zerotrust_gateway-rules_adopt",
+      "op_id": "cloudflare.zerotrust.gateway-rules.adopt",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "cloudflare_zerotrust_gateway-rules_adopt_confirm",
+      "op_id": "cloudflare.zerotrust.gateway-rules.adopt",
+      "tier": 2
     },
     {
       "kind": "execute",
