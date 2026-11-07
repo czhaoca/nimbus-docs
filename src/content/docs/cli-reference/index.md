@@ -18,7 +18,7 @@ the result. Operator commands live in the separate
 | `nimbus azure` | group | - | ⚠️ Deprecated — use `nimbus az` instead. |
 | [`nimbus budget`](./budget/) | group | 2 | Manage budget rules and spending. |
 | [`nimbus ci`](./ci/) | group | 4 | Woodpecker CI status and administration. |
-| [`nimbus cloudflare`](./cloudflare/) | group | 41 | Manage Cloudflare DNS, tunnels, Zero Trust, and network resources. |
+| [`nimbus cloudflare`](./cloudflare/) | group | 45 | Manage Cloudflare DNS, tunnels, Zero Trust, and network resources. |
 | [`nimbus deploy`](./deploy/) | group | 18 | Environment registry, target inventory, and access manifests. |
 | `nimbus digest` | command | - | Generate and display a spending digest summary. |
 | [`nimbus fleet`](./fleet/) | group | 2 | Cross-provider VM fleet operations. |
@@ -33,7 +33,7 @@ the result. Operator commands live in the separate
 | [`nimbus providers`](./providers/) | group | 4 | Manage cloud providers. |
 | `nimbus provision` | command | - | Provision a new resource on a cloud provider. |
 | `nimbus proxmox` | group | - | ⚠️ Deprecated — use `nimbus pve` instead. |
-| [`nimbus pve`](./pve/) | group | 40 | Manage Proxmox VE resources (containers, VMs, nodes). |
+| [`nimbus pve`](./pve/) | group | 42 | Manage Proxmox VE resources (containers, VMs, nodes). |
 | [`nimbus resources`](./resources/) | group | 6 | Manage cloud resources. |
 | [`nimbus security`](./security/) | group | 5 | Cross-cutting security surfaces. |
 | [`nimbus tasks`](./tasks/) | group | 3 | Scheduled / on-demand task management. |

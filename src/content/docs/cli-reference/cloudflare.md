@@ -320,7 +320,7 @@ Usage: `nimbus cloudflare tunnel publish [OPTIONS]`
 | `--service` | text | no | `` | Origin service URL (optional under --adopt) |
 | `--tunnel-id` | text | no | `` | Tunnel ID (auto if one site) |
 | `--zone-id` | text | no | `` | Zone ID (auto from hostname) |
-| `--identity` | text | no | `` | Access allow-list emails (default: settings key) |
+| `--identity` | text | no | `` | Access allow-list: emails and/or group:\<name-or-id> (default: settings key) |
 | `--bypass-path` | text | no | - | Path-scoped Access Bypass sub-app (repeatable) |
 | `--adopt` | boolean | no | `False` | Take over manually-wired live ingress/DNS/Access |
 | `--dry-run` | boolean | no | `False` | Preview the 5-object plan |
@@ -414,6 +414,17 @@ Usage: `nimbus cloudflare warp status [OPTIONS]`
 | --- | --- | --- | --- | --- |
 | `--provider`, `-p` | text | yes | - | Cloudflare provider ID |
 
+### zerotrust adopt-gateway-rules
+
+Track live Gateway rules as Zero Trust policies.
+
+Usage: `nimbus cloudflare zerotrust adopt-gateway-rules [OPTIONS]`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--rule` | text | yes | - | Gateway rule name or ID (repeatable) |
+| `--provider`, `-p` | text | no | - | Cloudflare provider ID |
+
 ### zerotrust apply
 
 Reconcile DB policies to Cloudflare API.
@@ -422,7 +433,9 @@ Usage: `nimbus cloudflare zerotrust apply [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
-| `--prune` | boolean | no | `False` | Delete orphaned CF policies |
+| `--prune` | boolean | no | `False` | Delete orphaned nimbus objects; others are kept |
+| `--include-untracked` | boolean | no | `False` | With --prune, also delete non-nimbus objects |
+| `--force` | boolean | no | `False` | Skip the --include-untracked confirmation |
 | `--provider`, `-p` | text | no | - | Cloudflare provider ID |
 
 ### zerotrust apps
@@ -449,6 +462,19 @@ Usage: `nimbus cloudflare zerotrust create-app [OPTIONS]`
 | `--type` | text | no | `self_hosted` | App type |
 | `--provider`, `-p` | text | no | - | Cloudflare provider ID |
 
+### zerotrust create-group
+
+Create a Zero Trust Access group.
+
+Usage: `nimbus cloudflare zerotrust create-group [OPTIONS]`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--name` | text | yes | - | Group name, e.g. platform-admins |
+| `--emails` | text | no | `` | Comma/space-separated member emails |
+| `--email-domains` | text | no | `` | Comma/space-separated domains (a whole org) |
+| `--provider`, `-p` | text | no | - | Cloudflare provider ID |
+
 ### zerotrust delete-app
 
 Delete a Zero Trust Access application.
@@ -458,6 +484,18 @@ Usage: `nimbus cloudflare zerotrust delete-app [OPTIONS]`
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |
 | `--app-id` | text | yes | - | Application ID |
+| `--provider`, `-p` | text | no | - | Cloudflare provider ID |
+| `--force` | boolean | no | `False` | Skip confirmation |
+
+### zerotrust delete-group
+
+Delete a Zero Trust Access group.
+
+Usage: `nimbus cloudflare zerotrust delete-group [OPTIONS]`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--group-id` | text | yes | - | Access group ID |
 | `--provider`, `-p` | text | no | - | Cloudflare provider ID |
 | `--force` | boolean | no | `False` | Skip confirmation |
 
@@ -487,6 +525,17 @@ Usage: `nimbus cloudflare zerotrust export [OPTIONS]`
 List Gateway network policy rules.
 
 Usage: `nimbus cloudflare zerotrust gateway-rules [OPTIONS]`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `--provider`, `-p` | text | no | - | Cloudflare provider ID |
+| `--format`, `-f` | text | no | `table` | Output format (table/json) |
+
+### zerotrust groups
+
+List Zero Trust Access groups (reusable identity sets).
+
+Usage: `nimbus cloudflare zerotrust groups [OPTIONS]`
 
 | Flag | Type | Required | Default | Help |
 | --- | --- | --- | --- | --- |

@@ -123,7 +123,7 @@ Usage: `nimbus pve ct list [OPTIONS]`
 
 ### ct resize
 
-Resize a container's CPU/memory allocation (disk resize not yet supported).
+Resize a container's CPU/memory allocation (disk: `pve lxc resize-disk`).
 
 Usage: `nimbus pve ct resize [OPTIONS] VMID`
 
@@ -133,6 +133,19 @@ Usage: `nimbus pve ct resize [OPTIONS] VMID`
 | `--cores` | integer | no | - | CPU cores |
 | `--memory` | integer | no | - | Memory in MB |
 | `--swap` | integer | no | - | Swap in MB |
+| `--provider`, `-p` | text | no | - | Proxmox provider ID |
+
+### ct resize-disk
+
+Grow a container mount point's disk.
+
+Usage: `nimbus pve ct resize-disk [OPTIONS] VMID`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `vmid` | integer | yes | - | Container VMID |
+| `--size` | text | yes | - | '+8G' grows, '20G' sets absolute (units M or G) |
+| `--disk` | text | no | `rootfs` | Mount point to grow |
 | `--provider`, `-p` | text | no | - | Proxmox provider ID |
 
 ### ct set-ip
@@ -285,7 +298,7 @@ Usage: `nimbus pve lxc list [OPTIONS]`
 
 ### lxc resize
 
-Resize a container's CPU/memory allocation (disk resize not yet supported).
+Resize a container's CPU/memory allocation (disk: `pve lxc resize-disk`).
 
 Usage: `nimbus pve lxc resize [OPTIONS] VMID`
 
@@ -295,6 +308,19 @@ Usage: `nimbus pve lxc resize [OPTIONS] VMID`
 | `--cores` | integer | no | - | CPU cores |
 | `--memory` | integer | no | - | Memory in MB |
 | `--swap` | integer | no | - | Swap in MB |
+| `--provider`, `-p` | text | no | - | Proxmox provider ID |
+
+### lxc resize-disk
+
+Grow a container mount point's disk.
+
+Usage: `nimbus pve lxc resize-disk [OPTIONS] VMID`
+
+| Flag | Type | Required | Default | Help |
+| --- | --- | --- | --- | --- |
+| `vmid` | integer | yes | - | Container VMID |
+| `--size` | text | yes | - | '+8G' grows, '20G' sets absolute (units M or G) |
+| `--disk` | text | no | `rootfs` | Mount point to grow |
 | `--provider`, `-p` | text | no | - | Proxmox provider ID |
 
 ### lxc set-ip

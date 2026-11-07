@@ -21,7 +21,7 @@ Usage: `nimbus providers add [OPTIONS]`
 | `--name` | text | yes | - | Display name |
 | `--region` | text | no | `` | Cloud region |
 | `--instance-index` | integer range | no | `0` | Credential instance index. Use 1 for numbered env vars like PROXMOX_1_*. |
-| `--credentials` | text | no | `` | Credential file path. Optional when using env/Infisical secrets. |
+| `--credentials` | text | no | `` | Credential file path. Optional when using env/vault-injected secrets. |
 
 ### list
 
