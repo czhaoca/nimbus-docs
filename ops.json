@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.4.0",
+  "contract_version": "2.6.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -6548,6 +6548,23 @@
       "tier": 2
     },
     {
+      "description": "Dry run of the placement policy: every slot with the verdict enforce mode would give it (unplaced when it holds no target), and the targets with no segment.",
+      "display_name": "Placement audit",
+      "id": "deployments.placement-audit",
+      "params_schema": {
+        "description": "No parameters: the audit always covers every slot.",
+        "properties": {},
+        "title": "PlacementAuditParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
       "description": "Configured port pools.",
       "display_name": "List port pools",
       "id": "deployments.pools",
@@ -6714,6 +6731,18 @@
             ],
             "default": null,
             "title": "Public Address"
+          },
+          "segment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Segment"
           },
           "target_id": {
             "title": "Target Id",
@@ -16342,6 +16371,46 @@
           "hostname"
         ],
         "title": "TunnelPublishParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cloudflare",
+        "native",
+        "tunnel"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Change the origin service of an already-published hostname in place: the tunnel ingress rule and the registry row move together, and the Access apps, bypass paths and DNS record are not touched (two-phase; re-run with the previous origin to revert).",
+      "display_name": "Tunnel set origin",
+      "id": "tunnel.set-origin",
+      "params_schema": {
+        "properties": {
+          "hostname": {
+            "title": "Hostname",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "tunnel_id": {
+            "default": "",
+            "title": "Tunnel Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "hostname",
+          "service"
+        ],
+        "title": "TunnelSetOriginParams",
         "type": "object"
       },
       "required_role": "operator",

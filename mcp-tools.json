@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.4.0",
+  "contract_version": "2.6.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1375,6 +1375,12 @@
       "name": "deployments_onboard-cicd_confirm",
       "op_id": "deployments.onboard-cicd",
       "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deployments_placement-audit",
+      "op_id": "deployments.placement-audit",
+      "tier": 1
     },
     {
       "kind": "execute",
@@ -3516,6 +3522,18 @@
       "kind": "confirm",
       "name": "tunnel_publish_confirm",
       "op_id": "tunnel.publish",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
+      "name": "tunnel_set-origin",
+      "op_id": "tunnel.set-origin",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "tunnel_set-origin_confirm",
+      "op_id": "tunnel.set-origin",
       "tier": 2
     },
     {
