@@ -178,6 +178,7 @@
   "cloudflare.zerotrust.gateway-rules.list",
   "cloudflare.zone.list",
   "deploy.down",
+  "deploy.preflight",
   "deploy.status",
   "deploy.up",
   "deployments.check-ports",

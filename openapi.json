@@ -1785,6 +1785,159 @@
         "title": "DependsOnEdgeOut",
         "type": "object"
       },
+      "DeployPreflightFinding": {
+        "properties": {
+          "owner": {
+            "default": "",
+            "title": "Owner",
+            "type": "string"
+          },
+          "rule": {
+            "title": "Rule",
+            "type": "string"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "refuse",
+              "warn",
+              "info"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "rule",
+          "service",
+          "value"
+        ],
+        "title": "DeployPreflightFinding",
+        "type": "object"
+      },
+      "DeployPreflightReport": {
+        "properties": {
+          "env_type": {
+            "title": "Env Type",
+            "type": "string"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/DeployPreflightFinding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "mode": {
+            "enum": [
+              "warn",
+              "enforce"
+            ],
+            "title": "Mode",
+            "type": "string"
+          },
+          "pool": {
+            "title": "Pool",
+            "type": "boolean"
+          },
+          "ports_checked": {
+            "title": "Ports Checked",
+            "type": "boolean"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "reserved": {
+            "title": "Reserved",
+            "type": "boolean"
+          },
+          "segment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segment"
+          },
+          "slot_key": {
+            "title": "Slot Key",
+            "type": "string"
+          },
+          "target": {
+            "title": "Target",
+            "type": "string"
+          },
+          "verdict": {
+            "enum": [
+              "refuse",
+              "warn",
+              "pass"
+            ],
+            "title": "Verdict",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project",
+          "env_type",
+          "slot_key",
+          "target",
+          "reserved",
+          "verdict",
+          "mode",
+          "pool",
+          "ports_checked",
+          "findings"
+        ],
+        "title": "DeployPreflightReport",
+        "type": "object"
+      },
+      "DeployPreflightRequest": {
+        "properties": {
+          "env_type": {
+            "title": "Env Type",
+            "type": "string"
+          },
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "slot_key": {
+            "default": "primary",
+            "title": "Slot Key",
+            "type": "string"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          }
+        },
+        "required": [
+          "project_name",
+          "env_type"
+        ],
+        "title": "DeployPreflightRequest",
+        "type": "object"
+      },
       "DeployRequest": {
         "properties": {
           "env_type": {
@@ -4676,7 +4829,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "2.9.0"
+    "version": "2.10.0"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -8986,6 +9139,48 @@
           }
         },
         "summary": "Deploy Down",
+        "tags": [
+          "deploy-orchestration"
+        ]
+      }
+    },
+    "/api/v1/deploy/preflight": {
+      "post": {
+        "description": "Dry run of the shared-host preflight for one slot; starts nothing.",
+        "operationId": "deploy_preflight_api_v1_deploy_preflight_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeployPreflightRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeployPreflightReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Deploy Preflight",
         "tags": [
           "deploy-orchestration"
         ]

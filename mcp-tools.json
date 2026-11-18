@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.9.0",
+  "contract_version": "2.10.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1291,6 +1291,12 @@
       "name": "deploy_down_confirm",
       "op_id": "deploy.down",
       "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "deploy_preflight",
+      "op_id": "deploy.preflight",
+      "tier": 1
     },
     {
       "kind": "execute",

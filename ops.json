@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.9.0",
+  "contract_version": "2.10.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -6212,6 +6212,52 @@
         "native"
       ],
       "tier": 2
+    },
+    {
+      "description": "Dry run of the shared-host preflight for one slot: name, port, volume, network and privilege collisions and the limits lint. Starts nothing.",
+      "display_name": "Deploy preflight",
+      "id": "deploy.preflight",
+      "params_schema": {
+        "properties": {
+          "env": {
+            "title": "Env",
+            "type": "string"
+          },
+          "project": {
+            "title": "Project",
+            "type": "string"
+          },
+          "slot": {
+            "default": "primary",
+            "title": "Slot",
+            "type": "string"
+          },
+          "target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Target"
+          }
+        },
+        "required": [
+          "project",
+          "env"
+        ],
+        "title": "DeployPreflightParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
     },
     {
       "description": "Deployment slot status, optionally for one project.",
