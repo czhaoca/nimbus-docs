@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.7.0",
+  "contract_version": "2.9.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -16337,7 +16337,7 @@
       "tier": 1
     },
     {
-      "description": "Publish a hostname on the tunnel behind a mandatory Access app + policy (two-phase; Access is created before ingress/DNS and failures abort).",
+      "description": "Publish a hostname on the tunnel behind a mandatory Access app + policy (two-phase; Access is created before ingress/DNS and failures abort). With adopt and exposure_class it instead records a hostname an app published itself: nothing is created, and it is refused unless the Access apps, ingress, DNS, a WAF rule and a rate rule are live and an undeclared path meets Access.",
       "display_name": "Tunnel publish",
       "id": "tunnel.publish",
       "params_schema": {
@@ -16353,6 +16353,11 @@
             },
             "title": "Bypass Paths",
             "type": "array"
+          },
+          "exposure_class": {
+            "default": "",
+            "title": "Exposure Class",
+            "type": "string"
           },
           "hostname": {
             "title": "Hostname",
@@ -16439,7 +16444,7 @@
       "tier": 2
     },
     {
-      "description": "Tear down a published hostname: ingress route, DNS CNAME, Access apps (root + bypass sub-apps), and the persisted ingress row (two-phase).",
+      "description": "Tear down a published hostname: ingress route, DNS CNAME, Access apps (root + bypass sub-apps), and the persisted ingress row (two-phase). For a hostname adopted under an exposure class only the registry row is removed; its live objects belong to the app.",
       "display_name": "Tunnel unpublish",
       "id": "tunnel.unpublish",
       "params_schema": {
