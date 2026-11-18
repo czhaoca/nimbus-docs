@@ -264,6 +264,7 @@
   "monitoring.infra",
   "monitoring.infra-collect",
   "monitoring.node",
+  "monitoring.pool-health",
   "monitoring.runners",
   "network.allocations",
   "network.allocations.list",

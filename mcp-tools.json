@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.6.0",
+  "contract_version": "2.7.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1968,6 +1968,12 @@
       "kind": "execute",
       "name": "monitoring_node",
       "op_id": "monitoring.node",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "monitoring_pool-health",
+      "op_id": "monitoring.pool-health",
       "tier": 1
     },
     {

@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.6.0",
+  "contract_version": "2.7.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -9375,6 +9375,23 @@
       "description": "Node-level resource summary from all Proxmox providers.",
       "display_name": "Proxmox node resources",
       "id": "monitoring.node",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "cli",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "State of each configured pool LXC: guest state read from the node plus the pool's application health endpoints; reports unconfigured when no pool list is set (#383).",
+      "display_name": "Pool health",
+      "id": "monitoring.pool-health",
       "params_schema": {
         "description": "Empty params for no-argument operations.",
         "properties": {},
