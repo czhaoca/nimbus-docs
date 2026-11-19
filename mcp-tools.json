@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.10.0",
+  "contract_version": "2.11.0",
   "schema_version": 1,
   "tools": [
     {
@@ -3043,30 +3043,6 @@
       "name": "oci_vms",
       "op_id": "oci.vms",
       "tier": 1
-    },
-    {
-      "kind": "dryrun",
-      "name": "orchestrate_dns-failover",
-      "op_id": "orchestrate.dns-failover",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "orchestrate_dns-failover_confirm",
-      "op_id": "orchestrate.dns-failover",
-      "tier": 2
-    },
-    {
-      "kind": "dryrun",
-      "name": "orchestrate_lockdown",
-      "op_id": "orchestrate.lockdown",
-      "tier": 2
-    },
-    {
-      "kind": "confirm",
-      "name": "orchestrate_lockdown_confirm",
-      "op_id": "orchestrate.lockdown",
-      "tier": 2
     },
     {
       "kind": "dryrun",

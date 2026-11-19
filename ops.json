@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.10.0",
+  "contract_version": "2.11.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -11717,12 +11717,19 @@
       "tier": 1
     },
     {
-      "description": "Run START/STOP/SOFTRESET/RESET (oci compute instance action). STOP is ARM-guarded.",
+      "description": "Run START/STOP/SOFTSTOP/SOFTRESET/RESET (oci compute instance action). STOP and SOFTSTOP are ARM-guarded.",
       "display_name": "OCI compute instance lifecycle action",
       "id": "oci.compute.instances.action",
       "params_schema": {
         "properties": {
           "action": {
+            "enum": [
+              "START",
+              "STOP",
+              "SOFTSTOP",
+              "SOFTRESET",
+              "RESET"
+            ],
             "title": "Action",
             "type": "string"
           },
@@ -14326,11 +14333,25 @@
       "tier": 1
     },
     {
-      "description": "Reinstall the OS / replace boot volume (oci vm reinstall). Allowed for ARM (recovery path); gated by typed confirmation in the CLI.",
+      "description": "Reinstall the OS / replace boot volume (oci vm reinstall). It stops the instance: on an ARM A1 instance it runs only when acknowledge_arm_instance is that instance's own OCID or display name, typed exactly, and is refused otherwise. Non-ARM instances need none.",
       "display_name": "Reinstall OCI VM OS",
       "id": "oci.vm.reinstall",
       "params_schema": {
         "properties": {
+          "acknowledge_arm_instance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Required when the instance is an OCI ARM A1 shape: set it to that instance's own OCID or display name, typed exactly, to acknowledge that the reinstall stops it. Any other value is refused. Not needed for non-ARM instances.",
+            "secret": true,
+            "title": "Acknowledge Arm Instance"
+          },
           "image_id": {
             "title": "Image Id"
           },
@@ -14510,12 +14531,12 @@
         "title": "OrchestrateDnsFailoverParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cli",
         "native"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Stop all non-critical resources for a provider.",
@@ -14534,12 +14555,12 @@
         "title": "OrchestrateLockdownParams",
         "type": "object"
       },
-      "required_role": "operator",
+      "required_role": "admin",
       "tags": [
         "cli",
         "native"
       ],
-      "tier": 2
+      "tier": 3
     },
     {
       "description": "Provision a VM and create a DNS record pointing to it.",
@@ -16061,10 +16082,16 @@
           "provider_id": {
             "title": "Provider Id",
             "type": "string"
+          },
+          "resource_type": {
+            "description": "Adapter resource type, e.g. 'vm' or 'dns_record'.",
+            "title": "Resource Type",
+            "type": "string"
           }
         },
         "required": [
-          "provider_id"
+          "provider_id",
+          "resource_type"
         ],
         "title": "ResourcesProvisionParams",
         "type": "object"
