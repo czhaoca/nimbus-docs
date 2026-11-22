@@ -4829,7 +4829,7 @@
   "info": {
     "description": "Nimbus \u2014 infrastructure platform.\n\nManage infrastructure across cloud providers (OCI, Azure, GCP, AWS, Cloudflare) and on-prem systems (Proxmox, UniFi) with budget enforcement, cross-provider workflows, and a dashboard UI.",
     "title": "Nimbus",
-    "version": "3.2.0"
+    "version": "3.3.0"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -12407,7 +12407,7 @@
     },
     "/api/v1/providers/{provider_id}/costs": {
       "get": {
-        "description": "Return cost data for a provider. Uses adapter when available, falls back to stub.",
+        "description": "Return cost data for a provider from its adapter's cost read.\n\nA failed read answers 502 (``cost_read_failed`` error envelope), never a\nzero. An empty successful read carries ``no_usage_data: true``. A provider\nwhose adapter has no cost read keeps the zero stub.",
         "operationId": "get_provider_costs_api_v1_providers__provider_id__costs_get",
         "parameters": [
           {
@@ -12438,6 +12438,9 @@
               }
             },
             "description": "Validation Error"
+          },
+          "502": {
+            "description": "The provider's cost read failed. Error envelope {detail, code: cost_read_failed, request_id}; the detail names the provider service and the upstream status and error code only."
           }
         },
         "summary": "Get Provider Costs",
@@ -12489,7 +12492,7 @@
     },
     "/api/v1/providers/{provider_id}/forecast": {
       "get": {
-        "description": "Project costs for the next 7 days using linear regression on recent spend.",
+        "description": "Project costs for the next 7 days using linear regression on recent spend.\n\nA failed cost read answers 502 (``cost_read_failed``), never a zero\nforecast; ``no_usage_data`` is passed through from a successful read.",
         "operationId": "cost_forecast_api_v1_providers__provider_id__forecast_get",
         "parameters": [
           {
@@ -12520,6 +12523,9 @@
               }
             },
             "description": "Validation Error"
+          },
+          "502": {
+            "description": "The provider's cost read failed. Error envelope {detail, code: cost_read_failed, request_id}; the detail names the provider service and the upstream status and error code only."
           }
         },
         "summary": "Cost Forecast",
