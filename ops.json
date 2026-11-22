@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.1.0",
+  "contract_version": "3.2.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -14980,6 +14980,12 @@
           "record_name": {
             "title": "Record Name",
             "type": "string"
+          },
+          "vm_config": {
+            "additionalProperties": true,
+            "description": "Extra provider VM settings passed to the provider unchanged (for OCI, image_id and subnet_id). vm_name and vm_type override the same keys here.",
+            "title": "Vm Config",
+            "type": "object"
           },
           "vm_name": {
             "title": "Vm Name",
