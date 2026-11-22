@@ -1257,8 +1257,9 @@ Usage: `nimbus oci vm reinstall [OPTIONS]`
 | `--id` | text | yes | - | Instance OCID |
 | `--tenancy`, `-t` | text | no | - | OCI tenancy alias (REQUIRED) |
 | `--preserve-old-bv`, `--no-preserve-old-bv` | boolean | no | `True` | Keep old boot volume |
-| `--force` | boolean | no | `False` | Skip confirmation (x86 only) |
+| `--force` | boolean | no | `False` | Skip confirmation (known x86 shapes only) |
 | `--dry-run` | boolean | no | `False` | Show what would happen |
+| `--acknowledge-arm-instance` | text | no | - | Protected (ARM or unrecognised) shapes: this instance's own OCID or display name, typed exactly. Prompted hidden when omitted; never echoed. |
 
 ### vm start
 
