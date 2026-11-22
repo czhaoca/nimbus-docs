@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.11.0",
+  "contract_version": "3.0.0",
   "schema_version": 1,
   "tools": [
     {
@@ -3184,6 +3184,18 @@
     },
     {
       "kind": "dryrun",
+      "name": "pve_lxc_set-startup",
+      "op_id": "pve.lxc.set-startup",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "pve_lxc_set-startup_confirm",
+      "op_id": "pve.lxc.set-startup",
+      "tier": 2
+    },
+    {
+      "kind": "dryrun",
       "name": "pve_lxc_start",
       "op_id": "pve.lxc.start",
       "tier": 2
@@ -3193,6 +3205,12 @@
       "name": "pve_lxc_start_confirm",
       "op_id": "pve.lxc.start",
       "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "pve_lxc_startup",
+      "op_id": "pve.lxc.startup",
+      "tier": 1
     },
     {
       "kind": "dryrun",

@@ -1,5 +1,5 @@
 {
-  "contract_version": "2.11.0",
+  "contract_version": "3.0.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -15184,6 +15184,246 @@
       "tier": 2
     },
     {
+      "description": "Set a container's onboot flag and startup order, config only (two-phase: the dry run shows current, new and the way back; the confirm writes and re-reads) (pve lxc set-startup).",
+      "display_name": "Set LXC start-on-boot and startup order",
+      "id": "pve.lxc.set-startup",
+      "params_schema": {
+        "properties": {
+          "digest": {
+            "anyOf": [
+              {
+                "pattern": "^[0-9a-f]{40}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The config digest from a read (pve.lxc.startup); when given, a config changed since that read is refused at the dry run and the confirm",
+            "title": "Digest"
+          },
+          "onboot": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start on boot; omit to leave it as it is",
+            "title": "Onboot"
+          },
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "startup": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "\"order=N[,up=S][,down=S]\"; \"\" clears it; omit to leave it as it is",
+            "title": "Startup"
+          },
+          "vmid": {
+            "description": "LXC id on the provider's node",
+            "maximum": 999999999,
+            "minimum": 100,
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcSetStartupParams",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "result_schema": {
+        "$defs": {
+          "LxcSetStartupWayBack": {
+            "properties": {
+              "op": {
+                "title": "Op",
+                "type": "string"
+              },
+              "params": {
+                "additionalProperties": true,
+                "title": "Params",
+                "type": "object"
+              }
+            },
+            "required": [
+              "op",
+              "params"
+            ],
+            "title": "LxcSetStartupWayBack",
+            "type": "object"
+          },
+          "LxcStartupValues": {
+            "properties": {
+              "onboot": {
+                "title": "Onboot",
+                "type": "boolean"
+              },
+              "startup": {
+                "title": "Startup",
+                "type": "string"
+              }
+            },
+            "required": [
+              "onboot",
+              "startup"
+            ],
+            "title": "LxcStartupValues",
+            "type": "object"
+          },
+          "LxcStartupView": {
+            "properties": {
+              "digest": {
+                "default": "",
+                "title": "Digest",
+                "type": "string"
+              },
+              "down": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Down"
+              },
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "onboot": {
+                "title": "Onboot",
+                "type": "boolean"
+              },
+              "onboot_explicit": {
+                "title": "Onboot Explicit",
+                "type": "boolean"
+              },
+              "order": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Order"
+              },
+              "startup": {
+                "title": "Startup",
+                "type": "string"
+              },
+              "up": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Up"
+              },
+              "vmid": {
+                "title": "Vmid",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "vmid",
+              "name",
+              "onboot",
+              "onboot_explicit",
+              "startup"
+            ],
+            "title": "LxcStartupView",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "after": {
+            "$ref": "#/$defs/LxcStartupView"
+          },
+          "before": {
+            "$ref": "#/$defs/LxcStartupValues"
+          },
+          "changed": {
+            "title": "Changed",
+            "type": "boolean"
+          },
+          "changes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Changes",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          },
+          "way_back": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/LxcSetStartupWayBack"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "way_back_command": {
+            "default": "",
+            "title": "Way Back Command",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vmid",
+          "name",
+          "changed",
+          "changes",
+          "before",
+          "after"
+        ],
+        "title": "LxcSetStartupResult",
+        "type": "object"
+      },
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 2
+    },
+    {
       "description": "Start a container (pve lxc start).",
       "display_name": "Start LXC container",
       "id": "pve.lxc.start",
@@ -15211,6 +15451,112 @@
         "pve"
       ],
       "tier": 2
+    },
+    {
+      "description": "Show a container's onboot flag and startup order (pve lxc startup).",
+      "display_name": "Show LXC start-on-boot and startup order",
+      "id": "pve.lxc.startup",
+      "params_schema": {
+        "properties": {
+          "provider_id": {
+            "default": "",
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "vmid": {
+            "description": "LXC id on the provider's node",
+            "maximum": 999999999,
+            "minimum": 100,
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid"
+        ],
+        "title": "LxcStartupParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "result_schema": {
+        "properties": {
+          "digest": {
+            "default": "",
+            "title": "Digest",
+            "type": "string"
+          },
+          "down": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Down"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "onboot": {
+            "title": "Onboot",
+            "type": "boolean"
+          },
+          "onboot_explicit": {
+            "title": "Onboot Explicit",
+            "type": "boolean"
+          },
+          "order": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Order"
+          },
+          "startup": {
+            "title": "Startup",
+            "type": "string"
+          },
+          "up": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Up"
+          },
+          "vmid": {
+            "title": "Vmid",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "vmid",
+          "name",
+          "onboot",
+          "onboot_explicit",
+          "startup"
+        ],
+        "title": "LxcStartupView",
+        "type": "object"
+      },
+      "tags": [
+        "provider",
+        "pve"
+      ],
+      "tier": 1
     },
     {
       "description": "Stop a container (pve lxc stop).",
