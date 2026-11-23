@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.4.0",
+  "contract_version": "3.4.1",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -14441,7 +14441,7 @@
       "tier": 2
     },
     {
-      "description": "Provision an OCI compute instance (two-phase: preview then confirm; free-tier guardrails enforced in the facade).",
+      "description": "Provision an OCI compute instance (two-phase: preview then confirm). The free-tier guardrail runs in both phases. With no recent usage snapshot, enforce blocks and warn_only (the default when no policy row exists) proceeds with a warning. Over-limit requests are blocked under enforce and warned under warn_only. Any failure to read the spec or usage blocks under every policy.",
       "display_name": "Provision OCI VM",
       "id": "oci.provision",
       "params_schema": {
