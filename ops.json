@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.3.0",
+  "contract_version": "3.4.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -11993,8 +11993,20 @@
       "params_schema": {
         "description": "Terminate request; ``reason`` is required (DEC-Q5 \u2014 audit justification\non a destructive op) and ``typed_name`` must match the instance display\nname exactly for the dry-run to stage.",
         "properties": {
+          "provider_id": {
+            "default": "",
+            "description": "The registry's OCI provider id; used when tenancy_alias is empty or names no alias row",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "reason": {
             "title": "Reason",
+            "type": "string"
+          },
+          "tenancy_alias": {
+            "default": "",
+            "description": "OCI tenancy alias (an OciTenancyAlias row), or the id of a registered OCI provider",
+            "title": "Tenancy Alias",
             "type": "string"
           },
           "typed_name": {
@@ -14434,7 +14446,7 @@
       "id": "oci.provision",
       "params_schema": {
         "additionalProperties": false,
-        "description": "Provision request plus the requesting actor for the resource tag.",
+        "description": "Provision request plus the requesting actor for the resource tag.\n\n``tenancy_alias`` or ``provider_id`` names the tenancy (#431); at least one\nis required.",
         "properties": {
           "actor": {
             "default": "chatbot",
@@ -14518,6 +14530,12 @@
             "title": "Os Distro",
             "type": "string"
           },
+          "provider_id": {
+            "default": "",
+            "description": "The registry's OCI provider id; used when tenancy_alias is empty or names no alias row",
+            "title": "Provider Id",
+            "type": "string"
+          },
           "shape": {
             "default": "VM.Standard.A1.Flex",
             "description": "Compute shape",
@@ -14537,14 +14555,13 @@
             "type": "string"
           },
           "tenancy_alias": {
-            "description": "OCI tenancy alias (registry key)",
-            "minLength": 1,
+            "default": "",
+            "description": "OCI tenancy alias (an OciTenancyAlias row), or the id of a registered OCI provider",
             "title": "Tenancy Alias",
             "type": "string"
           }
         },
         "required": [
-          "tenancy_alias",
           "label",
           "subnet_id"
         ],
