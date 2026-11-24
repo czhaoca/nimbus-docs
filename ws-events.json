@@ -1,6 +1,6 @@
 {
   "auth": "Bearer header or token query param (WebSocketAuthMiddleware; #241)",
-  "contract_version": "3.4.1",
+  "contract_version": "3.4.2",
   "endpoint": "/ws",
   "events": [
     {

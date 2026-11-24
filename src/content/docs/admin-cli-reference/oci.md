@@ -331,7 +331,7 @@ Usage: `nimbus-admin oci volume list [OPTIONS]`
 
 ### volume quota
 
-Check storage quota against OCI Always Free tier limit (200 GB).
+Check storage quota against the stored OCI Always Free storage limit.
 
 Usage: `nimbus-admin oci volume quota [OPTIONS]`
 

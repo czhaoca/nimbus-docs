@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.4.1",
+  "contract_version": "3.4.2",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
