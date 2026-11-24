@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.4.2",
+  "contract_version": "3.5.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -7065,6 +7065,289 @@
       "required_role": "operator",
       "tags": [
         "fleet",
+        "native"
+      ],
+      "tier": 2
+    },
+    {
+      "description": "Free-tier limit and spec changes, newest first.",
+      "display_name": "Free-tier change history",
+      "id": "freetier.changes.list",
+      "params_schema": {
+        "properties": {
+          "limit": {
+            "default": 50,
+            "maximum": 200,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "provider": {
+            "default": "",
+            "pattern": "^[a-z0-9_]{0,32}$",
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "title": "ChangesListParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "freetier",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Stored free-tier specs: age, staleness, revision, policy and the last refresh proposal, with the refresh settings.",
+      "display_name": "Free-tier specs",
+      "id": "freetier.spec.list",
+      "params_schema": {
+        "description": "Empty params for no-argument operations.",
+        "properties": {},
+        "title": "NoParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "chatbot",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "One provider's stored free-tier spec and its limits.",
+      "display_name": "Free-tier spec",
+      "id": "freetier.spec.show",
+      "params_schema": {
+        "properties": {
+          "provider": {
+            "pattern": "^[a-z0-9_]{1,32}$",
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "SpecShowParams",
+        "type": "object"
+      },
+      "required_role": "viewer",
+      "tags": [
+        "freetier",
+        "native"
+      ],
+      "tier": 1
+    },
+    {
+      "description": "Verify a free-tier proposal against pages the engine fetches itself, then apply it (two-phase).",
+      "display_name": "Update free-tier spec",
+      "id": "freetier.spec.update",
+      "params_schema": {
+        "$defs": {
+          "Evidence": {
+            "additionalProperties": false,
+            "description": "One cited page and a sentence quoted verbatim from it.",
+            "properties": {
+              "quote": {
+                "maxLength": 600,
+                "minLength": 1,
+                "title": "Quote",
+                "type": "string"
+              },
+              "url": {
+                "maxLength": 500,
+                "title": "Url",
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "quote"
+            ],
+            "title": "Evidence",
+            "type": "object"
+          },
+          "LimitFinding": {
+            "additionalProperties": false,
+            "description": "What the LLM found for one named limit.",
+            "properties": {
+              "conditions": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "maxLength": 300,
+                      "type": "string"
+                    },
+                    "maxItems": 10,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Conditions"
+              },
+              "display_name": {
+                "anyOf": [
+                  {
+                    "maxLength": 128,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Display Name"
+              },
+              "doc_url": {
+                "anyOf": [
+                  {
+                    "maxLength": 500,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Doc Url"
+              },
+              "evidence": {
+                "items": {
+                  "$ref": "#/$defs/Evidence"
+                },
+                "maxItems": 5,
+                "title": "Evidence",
+                "type": "array"
+              },
+              "name": {
+                "pattern": "^[a-z0-9_]{1,64}$",
+                "title": "Name",
+                "type": "string"
+              },
+              "note": {
+                "default": "",
+                "maxLength": 300,
+                "title": "Note",
+                "type": "string"
+              },
+              "resource_type": {
+                "anyOf": [
+                  {
+                    "pattern": "^[a-z_]{1,32}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Resource Type"
+              },
+              "status": {
+                "enum": [
+                  "unchanged",
+                  "changed",
+                  "added",
+                  "removed",
+                  "not_found",
+                  "ambiguous"
+                ],
+                "title": "Status",
+                "type": "string"
+              },
+              "unit": {
+                "anyOf": [
+                  {
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Unit"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Value"
+              }
+            },
+            "required": [
+              "name",
+              "status"
+            ],
+            "title": "LimitFinding",
+            "type": "object"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The whole proposal for one provider, against one spec revision.",
+        "properties": {
+          "findings": {
+            "items": {
+              "$ref": "#/$defs/LimitFinding"
+            },
+            "maxItems": 200,
+            "title": "Findings",
+            "type": "array"
+          },
+          "model": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "pattern": "^[a-z0-9_]{1,32}$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "schema_version": {
+            "const": 1,
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "spec_revision": {
+            "minimum": 1,
+            "title": "Spec Revision",
+            "type": "integer"
+          },
+          "summary": {
+            "maxLength": 2000,
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "provider",
+          "spec_revision",
+          "model",
+          "findings",
+          "summary"
+        ],
+        "title": "FreeTierProposal",
+        "type": "object"
+      },
+      "required_role": "operator",
+      "tags": [
+        "freetier",
         "native"
       ],
       "tier": 2

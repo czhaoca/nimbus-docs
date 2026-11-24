@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.4.2",
+  "contract_version": "3.5.0",
   "schema_version": 1,
   "tools": [
     {
@@ -1482,6 +1482,36 @@
       "kind": "confirm",
       "name": "fleet_install_confirm",
       "op_id": "fleet.install",
+      "tier": 2
+    },
+    {
+      "kind": "execute",
+      "name": "freetier_changes_list",
+      "op_id": "freetier.changes.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "freetier_spec_list",
+      "op_id": "freetier.spec.list",
+      "tier": 1
+    },
+    {
+      "kind": "execute",
+      "name": "freetier_spec_show",
+      "op_id": "freetier.spec.show",
+      "tier": 1
+    },
+    {
+      "kind": "dryrun",
+      "name": "freetier_spec_update",
+      "op_id": "freetier.spec.update",
+      "tier": 2
+    },
+    {
+      "kind": "confirm",
+      "name": "freetier_spec_update_confirm",
+      "op_id": "freetier.spec.update",
       "tier": 2
     },
     {
