@@ -7,7 +7,7 @@
 | **Reviewed at commit** | `96c4df1` chore(oci): add inline reference links to all OCI operation descriptors |
 | **Reviewed by** | cli-docs-alignment skill |
 | **Ops audited** | 98 total, 79 with refs, 19 skipped (nimbus-internal) |
-| **SDK dependency** | `oci>=2.100` — installed `2.168.3` — latest `2.182.1` — ✅ current |
+| **SDK dependency** | `oci>=2.193` — locked `2.193.0` — latest `2.193.0` (2026-11-24) — ✅ current (corrected 2026-11-25, #457: the July row compared the floor pin; see Dependency Status) |
 | **Gaps found** | 0 — all ops already matched official OCI CLI grammar |
 | **PR** | #336 |
 
@@ -41,6 +41,34 @@ All ops with a direct OCI CLI equivalent now have `# Ref:` comments pointing to 
 
 ## Dependency Status
 
-| Package | Pinned Min | Installed | Latest | Status |
-|---------|-----------|-----------|--------|--------|
-| `oci` | `>=2.100` | `2.168.3` | `2.182.1` | ✅ current |
+Corrected 2026-11-25 (#457). The July verdict ("installed 2.168.3, latest
+2.182.1, current") was wrong: it compared the floor pin in `engine/pyproject.toml`
+(`oci>=2.100`), not the version locked in `engine/uv.lock`. The lock held 2.168.3,
+14 weekly releases behind 2.182.1, and 2.168.3 caps `cryptography` below 47 and
+`pyOpenSSL` at 25.3.0 or lower. That cap held six advisories open, each carried as
+a dated `pip-audit` ignore in `.woodpecker/engine.yml` (tracking issue #298):
+
+| Package | Locked (July) | Advisories | Fixed in |
+|---------|---------------|------------|----------|
+| `cryptography` | `46.0.7` | GHSA-537c-gmf6-5ccf | `48.0.1` |
+| `cryptography` | `46.0.7` | CVE-2026-69248, CVE-2026-69249 | `49.0.0` |
+| `cryptography` | `46.0.7` | CVE-2026-69247 | `50.0.0` |
+| `pyOpenSSL` | `25.3.0` | CVE-2026-27448, CVE-2026-27459 | `26.0.0` |
+
+The three cryptography CVEs were ignored in CI under their PyPI advisory ids
+PYSEC-2026-3552, PYSEC-2026-3553 and PYSEC-2026-3554. `oci` 2.185.0 is the first
+release with the lifted ranges (`pyOpenSSL>=26.2.0,<27`, `cryptography` below 51).
+#457 raised the floor and re-locked `oci` and what it pulls in; the six ignores
+are removed and `pip-audit` passes without them.
+
+| Package | Pinned Min | Locked | Latest | Status |
+|---------|-----------|--------|--------|--------|
+| `oci` | `>=2.193` | `2.193.0` | `2.193.0` (2026-11-24) | ✅ current |
+| `cryptography` (via `oci`) | — | `50.0.2` | `50.0.2` | ✅ advisories fixed |
+| `pyOpenSSL` (via `oci`) | — | `26.4.0` | `26.4.0` | ✅ advisories fixed |
+
+The bump brings new runtime packages: `aiohttp` (with its helper packages),
+`crc32c` and `python-pkcs11`. The last two are C extensions that ship cp312 and
+cp314 wheels. No breaking SDK change between 2.168.3 and 2.193.0 touches a call
+nimbus makes. Future reviews compare the version **locked** in `engine/uv.lock`,
+never the floor pin.

@@ -1,5 +1,5 @@
 {
-  "contract_version": "3.5.0",
+  "contract_version": "3.6.0",
   "ops": [
     {
       "description": "Silence alert dispatch for a duration (two-phase).",
@@ -3174,7 +3174,7 @@
       "tier": 1
     },
     {
-      "description": "Create a virtual network (az network vnet create).",
+      "description": "Create a virtual network (az network vnet create); private_subnet makes its subnet private (defaultOutboundAccess false).",
       "display_name": "Create Azure virtual network",
       "id": "az.network.vnets.create",
       "params_schema": {
@@ -3194,6 +3194,12 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "private_subnet": {
+            "default": false,
+            "description": "Create the subnet private (defaultOutboundAccess false): no implicit outbound internet; default false keeps outbound access on",
+            "title": "Private Subnet",
+            "type": "boolean"
           },
           "provider_id": {
             "default": "",
@@ -3345,7 +3351,7 @@
       "tier": 1
     },
     {
-      "description": "Create a subnet (az network vnet subnet create).",
+      "description": "Create a subnet (az network vnet subnet create); private_subnet makes it private (defaultOutboundAccess false).",
       "display_name": "Create Azure subnet",
       "id": "az.network.vnets.subnets.create",
       "params_schema": {
@@ -3360,6 +3366,12 @@
           "name": {
             "title": "Name",
             "type": "string"
+          },
+          "private_subnet": {
+            "default": false,
+            "description": "Create the subnet private (defaultOutboundAccess false): no implicit outbound internet; default false keeps outbound access on",
+            "title": "Private Subnet",
+            "type": "boolean"
           },
           "provider_id": {
             "default": "",
@@ -4264,11 +4276,39 @@
       "tier": 1
     },
     {
-      "description": "Create a virtual machine (az vm create).",
+      "description": "Create a virtual machine (az vm create). With image (URN), nic_id or subnet_id, admin_username and ssh_public_key it creates a VM end to end; SSH-key login only, no password parameter.",
       "display_name": "Create Azure VM",
       "id": "az.vm.create",
       "params_schema": {
+        "additionalProperties": false,
+        "description": "A VM ARM can create needs an image, a NIC and an admin account (#468).\n\nGive all of them (image, nic_id or subnet_id, admin_username, ssh_public_key) or\nnone (the bare create kept for callers of the earlier contract). Admin access is an\nSSH public key only: there is no password parameter, and any unknown key is refused.",
         "properties": {
+          "admin_username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Linux admin account name",
+            "title": "Admin Username"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Image URN publisher:offer:sku:version (as az vm create --image)",
+            "title": "Image"
+          },
           "location": {
             "default": "eastus",
             "title": "Location",
@@ -4278,6 +4318,19 @@
             "title": "Name",
             "type": "string"
           },
+          "nic_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Resource id of an existing network interface to attach",
+            "title": "Nic Id"
+          },
           "provider_id": {
             "default": "",
             "title": "Provider Id",
@@ -4286,6 +4339,32 @@
           "resource_group": {
             "title": "Resource Group",
             "type": "string"
+          },
+          "ssh_public_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "OpenSSH public key line (ssh-rsa of 2048+ bits, or ssh-ed25519) for the admin account; password authentication is disabled",
+            "title": "Ssh Public Key"
+          },
+          "subnet_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Resource id of a subnet: nimbus creates <name>-nic there (not with nic_id)",
+            "title": "Subnet Id"
           },
           "vm_size": {
             "default": "Standard_B1s",
